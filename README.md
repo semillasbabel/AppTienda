@@ -1,4 +1,5 @@
 # AppTienda
+Ejemplo
 Aplicación sobre una tienda virtual
 
 ## ¿Qué es la AppTienda?
