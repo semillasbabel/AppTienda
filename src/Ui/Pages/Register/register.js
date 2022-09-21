@@ -21,16 +21,16 @@ const Register = () => {
         <ScrollView>
         <Text style={styles.TEXTO}>Registro de Usuarios</Text>
           <Input
-            placeholder=" Nombre Completo"
+            placeholder=" Nombre Completo" inputStyle={{color:'white'}}
             leftIcon={{ type: 'font-awesome', name: 'user', size: 35, color:'#ffeb3b' }}/>
             <Input
-            placeholder=" Direccion donde Vive"
+            placeholder=" Direccion donde Vive" inputStyle={{color:'white'}}
             leftIcon={{ type: 'font-awesome', name: 'map', size: 35, color:'#ffeb3b'}}/>
              <Input
-            placeholder=" Correo Electronico"
+            placeholder=" Correo Electronico" inputStyle={{color:'white'}}
             leftIcon={{ type: 'font-awesome', name: 'at', size: 35, color:'#ffeb3b' }}/>
           <Input
-            placeholder=" CONTRASEÑA"
+            placeholder=" CONTRASEÑA" inputStyle={{color:'white'}} 
             leftIcon={{ type: 'font-awesome', name: 'lock', size: 35, color:'#ffeb3b' }}/>
         <Button style={styles.botton} title={'Registrar'}></Button>
        <TouchableOpacity>

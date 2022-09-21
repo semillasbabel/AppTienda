@@ -20,10 +20,10 @@ const Loggin = () => {
 
         <Text style={styles.TEXTO}>BIENVENIDO</Text>
           <Input
-            placeholder=" Usuario"
+            placeholder=" Usuario" inputStyle={{color:'white'}}
             leftIcon={{ type: 'font-awesome', name: 'user', size: 35, color:'#fdd835' }}/>
           <Input
-            placeholder=" CONTRASEÑA"
+            placeholder=" CONTRASEÑA" inputStyle={{color:'white'}}
             leftIcon={{ type: 'font-awesome', name: 'lock', size: 35, color:'#fdd835' }}/>
         <Button style={styles.botton} title={'Ingresar'} > Ingresar</Button>
        
