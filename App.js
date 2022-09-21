@@ -1,20 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { View, Image, TouchableOpacity, ImageBackground} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App() {
+import Loggin from "./src/Ui/Pages/Loggin/loggin";
+import TabsUser from "./src/Ui/Pages/User/user";
+import Register from "./src/Ui/Pages/Register/register"
+
+const Stack = createNativeStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Tienda de productos para moviles</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      
+      <Stack.Navigator
+        screenOptions={{headerShown: false}}>
+
+        <Stack.Screen
+          name="Loggin"
+          component={Loggin}
+        />
+
+        
+        <Stack.Screen 
+          name="Register"
+          component={Register}
+        />
+
+        <Stack.Screen 
+          name="User"
+          component={TabsUser}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;

@@ -4,6 +4,7 @@ import { Button, Image, Input } from "@rneui/themed";
 
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { color } from '@rneui/base';
+import { useNavigation } from "@react-navigation/native";
 
 
 
@@ -11,9 +12,10 @@ import { color } from '@rneui/base';
 const image = { uri: "https://media.idownloadblog.com/wp-content/uploads/2020/05/Vector-wave-iPhone-wallpaper-Arthur1992aS-iDownloadBlog-6-710x1536.png" };
 
 
-const register = () => {
+const Register = () => {
+  const navigation = useNavigation();
   return (
-    <SafeAreaView style={styles.container}>
+   
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
      
         <ScrollView>
@@ -27,20 +29,18 @@ const register = () => {
              <Input
             placeholder=" Correo Electronico"
             leftIcon={{ type: 'font-awesome', name: 'at', size: 35, color:'#ffeb3b' }}/>
-            
           <Input
             placeholder=" CONTRASEÑA"
             leftIcon={{ type: 'font-awesome', name: 'lock', size: 35, color:'#ffeb3b' }}/>
         <Button style={styles.botton} title={'Registrar'}></Button>
-       
        <TouchableOpacity>
-        <Text style={styles.TEXTO}>Volver </Text>
+        <Text style={styles.TEXTO}   onPress={() => navigation.goBack() }>Volver </Text>
        </TouchableOpacity>
        </ScrollView>
       </ImageBackground>
       
       
-    </SafeAreaView>
+   
   )
 }
 
@@ -90,4 +90,4 @@ const styles = StyleSheet.create({
     alignContent:'center'
   }
   });
-export default register
+export default Register
