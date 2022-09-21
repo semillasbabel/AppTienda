@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, TextInput } from 'react-native'
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, TextInput, Alert } from 'react-native'
 import React from 'react'
 import { Button, Image, Input } from "@rneui/themed";
 import register from '../Register/register'
 import { color } from '@rneui/base';
 import { useNavigation } from "@react-navigation/native";
+import { handleSingIn } from "../../../Data/Services/AuthFirebase/SingIn/singIn"
 
 
 
@@ -11,11 +12,33 @@ const image = { uri: "https://media.idownloadblog.com/wp-content/uploads/2020/05
 
 
 const Loggin = () => {
+
   const [userSend, setUserSend] = React.useState({
     User: "",
     Password: "",
   });
   const navigation = useNavigation();
+
+  const validacion = ()=>{
+    const retorno = handleSingIn(userSend.User, userSend.Password)
+    if (retorno === "Error") {
+      Alert.alert("", 'Correo y contraseña incorrectos')
+    } else {
+      if (retorno === "hugo@gmail.com") {
+        Alert.alert("", 'Bienvenido Administrador')
+      } else {
+        Alert.alert("", `Bienvenido: ${retorno}`)
+      }
+    }
+
+    
+    // if (handleSingIn(userSend.User, userSend.Password)) {
+    // } else {
+    //   Alert.alert("", 'Correo y contraseña incorrectos')
+    // }
+  }
+
+
   return (
    
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
@@ -23,12 +46,13 @@ const Loggin = () => {
           source={require("../../../../assets/logo.png")}></Image>
 
         <Text style={styles.TEXTO}>BIENVENIDO</Text>
+
           <TextInput
                   placeholder='Usuario'
                   value={userSend.User}
                   textContentType="emailAddress"
                   onChangeText={(e) => setUserSend({...userSend, User: e})}
-                  style={{ height: 50,borderBottomWidth: 3, borderBottomColor: "#361659"}}
+                  style={{ height: 50,borderBottomWidth: 3, color:"red", borderBottomColor: "#361659"}}
           />
 
           <TextInput
@@ -37,10 +61,10 @@ const Loggin = () => {
                 textContentType="password"
                 secureTextEntry
                 onChangeText={(e) => setUserSend({...userSend, Password: e})}
-                style={{ height: 50,borderBottomWidth: 3, borderBottomColor: "#361659"}}
+                style={{ height: 50,borderBottomWidth: 3,color:"red", borderBottomColor: "#361659"}}
           />
 
-        <Button style={styles.botton} title={'Ingresar'} > Ingresar</Button>
+        <Button style={styles.botton} onPress={()=>validacion()} title={'Ingresar'} > Ingresar</Button>
        
         <Text style={styles.TEXTO}>NO ESTÁ REGISTRADO?</Text>
        <TouchableOpacity>
