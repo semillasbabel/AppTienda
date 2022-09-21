@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, TextInput } from 'react-native'
 import React from 'react'
 import { Button, Image, Input } from "@rneui/themed";
 import register from '../Register/register'
@@ -11,6 +11,10 @@ const image = { uri: "https://media.idownloadblog.com/wp-content/uploads/2020/05
 
 
 const Loggin = () => {
+  const [userSend, setUserSend] = React.useState({
+    User: "",
+    Password: "",
+  });
   const navigation = useNavigation();
   return (
    
@@ -19,12 +23,23 @@ const Loggin = () => {
           source={require("../../../../assets/logo.png")}></Image>
 
         <Text style={styles.TEXTO}>BIENVENIDO</Text>
-          <Input
-            placeholder=" Usuario" inputStyle={{color:'white'}}
-            leftIcon={{ type: 'font-awesome', name: 'user', size: 35, color:'#fdd835' }}/>
-          <Input
-            placeholder=" CONTRASEÑA" inputStyle={{color:'white'}}
-            leftIcon={{ type: 'font-awesome', name: 'lock', size: 35, color:'#fdd835' }}/>
+          <TextInput
+                  placeholder='Usuario'
+                  value={userSend.User}
+                  textContentType="emailAddress"
+                  onChangeText={(e) => setUserSend({...userSend, User: e})}
+                  style={{ height: 50,borderBottomWidth: 3, borderBottomColor: "#361659"}}
+          />
+
+          <TextInput
+                placeholder='Contraseña'
+                value={userSend.Password}
+                textContentType="password"
+                secureTextEntry
+                onChangeText={(e) => setUserSend({...userSend, Password: e})}
+                style={{ height: 50,borderBottomWidth: 3, borderBottomColor: "#361659"}}
+          />
+
         <Button style={styles.botton} title={'Ingresar'} > Ingresar</Button>
        
         <Text style={styles.TEXTO}>NO ESTÁ REGISTRADO?</Text>
