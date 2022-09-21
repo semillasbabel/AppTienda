@@ -7,4 +7,4 @@ import {
 export const deleteTask = async (id) => {
     const ref = doc(database, "productos", id);
     deleteDoc(ref);
-  };
+};
