@@ -40,8 +40,9 @@ const Loggin = () => {
                   placeholder='Usuario'
                   value={userSend.User}
                   textContentType="emailAddress"
+                  
                   onChangeText={(e) => setUserSend({...userSend, User: e})}
-                  style={{ height: 50,borderBottomWidth: 3, fontSize: 25,color:"red", borderBottomColor: "#f8f8f8"}}
+                  style={{ height: 50,borderBottomWidth: 3, fontSize: 25,color:"red", borderRadius: 10,borderBottomColor: "#f8f8f8"}}
           />
 
           <TextInput
@@ -50,7 +51,7 @@ const Loggin = () => {
                 textContentType="password"
                 secureTextEntry
                 onChangeText={(e) => setUserSend({...userSend, Password: e})}
-                style={{ height: 50,borderBottomWidth: 3,fontSize: 25, color:"red", borderBottomColor: "#f8f8f8"}}
+                style={{ height: 50,borderBottomWidth: 3,fontSize: 25, color:"red", borderRadius: 10,borderBottomColor: "#f8f8f8"}}
           />
 
         <Button style={styles.botton} onPress={()=>validacion()} title={'Ingresar'} > Ingresar</Button>
