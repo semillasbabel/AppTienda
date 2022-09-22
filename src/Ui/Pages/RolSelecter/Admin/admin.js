@@ -10,7 +10,7 @@ function Admin() {
   function singout(){
     signOut(auth).then(() => {
       console.log("Se cerro la sesión")
-      navigation.goBack()
+      navigation.navigate("Loggin")
     }).catch((error) => {
       console.log(error)
     });
@@ -19,7 +19,7 @@ function Admin() {
   return (
     <View>
       <View style={{height:100}}/>
-      <Text>rrrr</Text>
+      <Text>administrador</Text>
       <Button
         title='Cerrar Sesion'
         onPress={singout}
