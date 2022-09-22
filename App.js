@@ -20,7 +20,6 @@ function App() {
           name="Loggin"
           component={Loggin}
         />
-
         
         <Stack.Screen 
           name="Register"
