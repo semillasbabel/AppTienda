@@ -6,7 +6,6 @@ import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 function User() {
   const navigation = useNavigation();
   const auth = getAuth();
-  let usuario = onAuthStateChanged(auth)
 
   function singout(){
     signOut(auth).then(() => {

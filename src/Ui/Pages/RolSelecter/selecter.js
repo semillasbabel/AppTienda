@@ -3,29 +3,22 @@ import { View, Text, Button } from 'react-native'
 import { useNavigation } from "@react-navigation/native";
 import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 
-function Admin() {
-  const navigation = useNavigation();
+function Selecter({route}) {
+    const {user} = route.params;
   const auth = getAuth();
-
-  function singout(){
-    signOut(auth).then(() => {
-      console.log("Se cerro la sesión")
-      navigation.goBack()
-    }).catch((error) => {
-      console.log(error)
-    });
-  }
+  const navigation = useNavigation();
 
   return (
     <View>
       <View style={{height:100}}/>
       <Text>rrrr</Text>
+      <Text>{user.email}</Text>
       <Button
-        title='Cerrar Sesion'
-        onPress={singout}
+      title='volver'
+      onPress={()=> navigation.goback()}
       />
     </View>
   )
 }
 
-export default Admin
+export default Selecter

@@ -7,6 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import { firebaseApp, database } from '../../../Data/Repositories/FirebaseConfig/fbconfig'; 
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
+import { controllerSingIn } from '../../../Domain/Repositories/Firebase/Auth/singIn';
 const auth = getAuth(firebaseApp);
 
 const image = { uri: "https://media.idownloadblog.com/wp-content/uploads/2020/05/Vector-wave-iPhone-wallpaper-Arthur1992aS-iDownloadBlog-6-710x1536.png" };
@@ -52,10 +53,10 @@ const Loggin = () => {
   })
 
   const logIn = ()=>{
-    if (user.rol === "Admin") {
-      navigation.navigate("Admin")
+    if (controllerSingIn(userSend.email, userSend.Password)) {
+      navigation.navigate("Selector", {user: user})
     } else {
-      navigation.navigate("User")
+      
     }
   }
 

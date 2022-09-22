@@ -3,15 +3,16 @@ import { firebaseApp } from "../../Repositories/FirebaseConfig/fbconfig";
 
 const auth = getAuth(firebaseApp);
 
-export function handleSingIn(user, password){
-    signInWithEmailAndPassword(auth, user, password)
+export async function handleSingIn(user, password){
+    let error = true;
+    await signInWithEmailAndPassword(auth, user, password)
     .then((userCredential)=>{
         const user = userCredential.user
         console.log(user)
     })
     .catch(error => {
-        return false;
+        error = false;
     })
 
-    return true; 
+    return error;
 }
