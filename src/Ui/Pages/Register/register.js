@@ -1,10 +1,11 @@
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView, TextInput, Alert } from 'react-native'
 import React from 'react'
 import { Button, Image, Input } from "@rneui/themed";
 
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { color } from '@rneui/base';
 import { useNavigation } from "@react-navigation/native";
+import { registerController } from '../../../Domain/Repositories/Firebase/Auth/userRegister';
 
 
 
@@ -14,33 +15,76 @@ const image = { uri: "https://media.idownloadblog.com/wp-content/uploads/2020/05
 
 const Register = () => {
   const navigation = useNavigation();
+
+  const [estado, setEstado] = React.useState("Una vez ingresado los datos precione el boton registrar");
+
+  const [userRegister, setUserSend] = React.useState({
+    email: "",
+    Password: "",
+    name: "",
+    address: "",
+  });
+
+  async function registro(){
+    if (await registerController(userRegister.email, userRegister.Password, userRegister.name,userRegister.address)) {
+      Alert.alert("", 'Registro Exitoso')
+      navigation.goBack()
+    }
+    else{
+      setEstado("Datos Incorrectos")
+    }
+  }
+
   return (
    
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
      
         <ScrollView>
         <Text style={styles.TEXTO}>Registro de Usuarios</Text>
-          <Input
-            placeholder=" Nombre Completo" inputStyle={{color:'white'}}
-            leftIcon={{ type: 'font-awesome', name: 'user', size: 35, color:'#ffeb3b' }}/>
-            <Input
-            placeholder=" Direccion donde Vive" inputStyle={{color:'white'}}
-            leftIcon={{ type: 'font-awesome', name: 'map', size: 35, color:'#ffeb3b'}}/>
-             <Input
-            placeholder=" Correo Electronico" inputStyle={{color:'white'}}
-            leftIcon={{ type: 'font-awesome', name: 'at', size: 35, color:'#ffeb3b' }}/>
-          <Input
-            placeholder=" CONTRASEÑA" inputStyle={{color:'white'}} 
-            leftIcon={{ type: 'font-awesome', name: 'lock', size: 35, color:'#ffeb3b' }}/>
-        <Button style={styles.botton} title={'Registrar'}></Button>
-       <TouchableOpacity>
-        <Text style={styles.TEXTO}   onPress={() => navigation.goBack() }>Volver </Text>
-       </TouchableOpacity>
+        <TextInput
+          placeholder='Email'
+          placeholderTextColor={"#f8f8f8"}
+          value={userRegister.email}
+          textContentType="emailAddress"
+          onChangeText={(e) => setUserSend({...userRegister, email: e})}
+          style={{ height: 50,borderBottomWidth: 3, fontSize: 20,color:"red", borderBottomColor: "#f8f8f8"}}
+        />
+        <TextInput
+          placeholder='Password'
+          placeholderTextColor={"#f8f8f8"}
+          value={userRegister.Password}
+          secureTextEntry
+          textContentType="password"
+          onChangeText={(e) => setUserSend({...userRegister, Password: e})}
+          style={{ height: 50,borderBottomWidth: 3, fontSize: 20,color:"red", borderBottomColor: "#f8f8f8"}}
+        />
+        <TextInput
+          placeholder='Name'
+          placeholderTextColor={"#f8f8f8"}
+          value={userRegister.name}
+          textContentType="name"
+          onChangeText={(e) => setUserSend({...userRegister, name: e})}
+          style={{ height: 50,borderBottomWidth: 3, fontSize: 20,color:"red", borderBottomColor: "#f8f8f8"}}
+        />
+        <TextInput
+            placeholder='Address'
+            placeholderTextColor={"#f8f8f8"}
+            value={userRegister.address}
+            textContentType="addressCityAndState"
+            onChangeText={(e) => setUserSend({...userRegister, address: e})}
+            style={{ height: 50,borderBottomWidth: 3, fontSize: 20,color:"red", borderBottomColor: "#f8f8f8"}}
+          />
+        <Button
+          title={'Registrar'}
+          onPress={()=>registro()}
+        />
+        <Text style={{color:"red"}}>{estado}</Text>
+
        </ScrollView>
       </ImageBackground>
       
       
-   
+    
   )
 }
 

@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Loggin from "./src/Ui/Pages/Loggin/loggin";
 import TabsUser from "./src/Ui/Pages/User/user";
 import Register from "./src/Ui/Pages/Register/register"
+import Admin from "./src/Ui/Pages/RolSelecter/Admin/admin";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,9 +28,15 @@ function App() {
         />
 
         <Stack.Screen 
+          name="Admin"
+          component={Admin}
+        />
+
+        <Stack.Screen 
           name="User"
           component={TabsUser}
         />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,7 +1,7 @@
 import { getAuth, signOut, signInWithEmailAndPassword } from "firebase/auth";
-import { app } from "../../../Repositories/FirebaseConfig/fbconfig";
+import { firebaseApp } from "../../Repositories/FirebaseConfig/fbconfig";
 
-const auth = getAuth(app);
+const auth = getAuth(firebaseApp);
 
 export function handleSingIn(user, password){
     signInWithEmailAndPassword(auth, user, password)
