@@ -5,28 +5,28 @@ import { getReactNativePersistence } from 'firebase/auth/react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBBTT4YQR5I-QmmlcOILPuUmlQ1trs7uts",
-  authDomain: "apptienda-ea40c.firebaseapp.com",
-  projectId: "apptienda-ea40c",
-  storageBucket: "apptienda-ea40c.appspot.com",
-  messagingSenderId: "116873939550",
-  appId: "1:116873939550:web:ef3c1639dbef8cc5a202cf",
-  measurementId: "G-6HHPCET7EK"
+  apiKey: "AIzaSyCGwEyt9GUtwfvacDfg02VMlxsMc095tz4",
+  authDomain: "apptienda-7012d.firebaseapp.com",
+  projectId: "apptienda-7012d",
+  storageBucket: "apptienda-7012d.appspot.com",
+  messagingSenderId: "437095570210",
+  appId: "1:437095570210:web:cf452d672d2e0f7110637b",
+  measurementId: "G-GTC2L7SB4C"
 };
 
 // Initialize Firebase
-let app;
+let firebaseApp;
 let auth;
 if (getApps().length < 1) {
-  app = initializeApp(firebaseConfig);
-  auth = initializeAuth(app, {
+  firebaseApp = initializeApp(firebaseConfig);
+  auth = initializeAuth(firebaseApp, {
     persistence: getReactNativePersistence(AsyncStorage),
   });
 } else {
-  app = getApp();
+  firebaseApp = getApp();
   authentication = getAuth();
 }
 
 const database = getFirestore();
 
-export { app, database };
+export { firebaseApp, database };

@@ -6,24 +6,19 @@ import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 function User() {
   const navigation = useNavigation();
   const auth = getAuth();
-  let usuario = onAuthStateChanged(auth)
 
-  function singout(){
-    signOut(auth).then(() => {
-      console.log("Se cerro la sesión")
-      navigation.goBack()
-    }).catch((error) => {
-      console.log(error)
-    });
+  const logOut = async ()=>{
+    await signOut(auth)
+    navigation.goBack();
   }
 
   return (
     <View>
       <View style={{height:100}}/>
-      <Text>rrrr</Text>
+      <Text>Usuario</Text>
       <Button
         title='Cerrar Sesion'
-        onPress={singout}
+        onPress={()=>logOut()}
       />
     </View>
   )
