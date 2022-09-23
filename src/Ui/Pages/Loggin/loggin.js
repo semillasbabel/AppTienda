@@ -84,7 +84,7 @@ const Loggin = () => {
                   value={userSend.Email}
                   textContentType="emailAddress"
                   onChangeText={(e) => setUserSend({...userSend, Email: e})}
-                  style={{ height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"red", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}
+                  style={{ height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"#1899c5", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}
           />
 
           <TextInput
@@ -93,7 +93,7 @@ const Loggin = () => {
                 textContentType="password"
                 secureTextEntry
                 onChangeText={(e) => setUserSend({...userSend, Password: e})}
-                style={{  height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"red", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
+                style={{  height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"#1899c5", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
 
           <Button style={styles.botton} onPress={()=>logIn()} title={'Ingresar'} > Ingresar</Button>
           <Text style={styles.TEXTO}>NO ESTÁ REGISTRADO?</Text>

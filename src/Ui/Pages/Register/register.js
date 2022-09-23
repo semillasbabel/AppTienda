@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView, TextInput, Alert } from 'react-native'
 import React from 'react'
-import { Button, Image, Input } from "@rneui/themed";
+import { Button, Image, Input, Icon } from "@rneui/themed";
 
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { color } from '@rneui/base';
@@ -43,37 +43,37 @@ const Register = () => {
         <Text style={styles.TEXTO}>Registro de Usuarios</Text>
         <TextInput
           placeholder='Email'
-          placeholderTextColor={"#f8f8f8"}
+          placeholderTextColor={"#1899c5"}
           value={userRegister.email}
           textContentType="emailAddress"
           onChangeText={(e) => setUserSend({...userRegister, email: e})}
-          style={{ height: 50,borderBottomWidth: 3, fontSize: 20,color:"red", borderBottomColor: "#f8f8f8"}}
-        />
+          style={{  height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
+        
         <TextInput
           placeholder='Password'
-          placeholderTextColor={"#f8f8f8"}
+          placeholderTextColor={"#1899c5"}
           value={userRegister.Password}
           secureTextEntry
           textContentType="password"
           onChangeText={(e) => setUserSend({...userRegister, Password: e})}
-          style={{ height: 50,borderBottomWidth: 3, fontSize: 20,color:"red", borderBottomColor: "#f8f8f8"}}
-        />
+          style={{  height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
+        
         <TextInput
           placeholder='Name'
-          placeholderTextColor={"#f8f8f8"}
+          placeholderTextColor={"#1899c5"}
           value={userRegister.name}
           textContentType="name"
           onChangeText={(e) => setUserSend({...userRegister, name: e})}
-          style={{ height: 50,borderBottomWidth: 3, fontSize: 20,color:"red", borderBottomColor: "#f8f8f8"}}
-        />
+          style={{  height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
+       <Icon style={styles.searchIcon} name="ios-search" size={20} color="#000"/>
         <TextInput
-            placeholder='Address'
-            placeholderTextColor={"#f8f8f8"}
+        
+            placeholder='Address' 
+            placeholderTextColor={"#1899c5"}
             value={userRegister.address}
             textContentType="addressCityAndState"
             onChangeText={(e) => setUserSend({...userRegister, address: e})}
-            style={{ height: 50,borderBottomWidth: 3, fontSize: 20,color:"red", borderBottomColor: "#f8f8f8"}}
-          />
+            style={{  height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
         <Button
           title={'Registrar'}
           onPress={()=>registro()}
