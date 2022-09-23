@@ -70,21 +70,21 @@ const Loggin = () => {
     
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
         <View style={{margin:10, marginTop:50}}>
-      
-      <Image  style={{ width: 400, height: 300, justifyContent: "center",}}
+        <View>
+      <Image  style={{ width: 400, height: 275, justifyContent: "center",}}
               source={require("../../../../assets/logo.png")}>
       </Image>
-      
+      </View>
       
        </View> 
          
-          <KeyboardAwareScrollView resetScrollToCoords={{ x: 0, y: 0 }}>
+       <KeyboardAwareScrollView resetScrollToCoords={{ x: 0, y: 0 }}>
           <TextInput
-                  placeholder='Usuario'
+                  placeholder='Correo Electronico'
                   value={userSend.Email}
                   textContentType="emailAddress"
                   onChangeText={(e) => setUserSend({...userSend, Email: e})}
-                  style={{ height: 50,borderBottomWidth: 3, fontSize: 25,color:"red", borderBottomColor: "#f8f8f8"}}
+                  style={{ height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"red", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}
           />
 
           <TextInput
@@ -93,15 +93,16 @@ const Loggin = () => {
                 textContentType="password"
                 secureTextEntry
                 onChangeText={(e) => setUserSend({...userSend, Password: e})}
-                style={{ height: 50,borderBottomWidth: 3,fontSize: 25, color:"red", borderRadius: 10,borderBottomColor: "#f8f8f8"}}/>
+                style={{  height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"red", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
 
+          <Button style={styles.botton} onPress={()=>logIn()} title={'Ingresar'} > Ingresar</Button>
+          <Text style={styles.TEXTO}>NO ESTÁ REGISTRADO?</Text>
+        
+          <TouchableOpacity>
+            <Text style={styles.TEXTO} onPress={() => navigation.navigate("Register") }>REGISTRESE AQUI</Text>
+          </TouchableOpacity>
         </KeyboardAwareScrollView>
-        <Button style={styles.botton} onPress={()=>logIn()} title={'Ingresar'} > Ingresar</Button>
-        <Text style={styles.TEXTO}>NO ESTÁ REGISTRADO?</Text>
-       <TouchableOpacity>
-        <Text style={styles.TEXTO} onPress={() => navigation.navigate("Register") }>REGISTRESE AQUI</Text>
-       </TouchableOpacity>
-      
+       
       </ImageBackground>
       
       
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems:'center',
     paddingVertical:15,
-    textAlign:'center'
+    textAlign:'center',
   },
   container: {
     flex: 1,
