@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, TextInput, Alert, ScrollView, SafeAreaView } from 'react-native'
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, TextInput, ActivityIndicator, Alert, ScrollView, SafeAreaView } from 'react-native'
 import React from 'react'
 import { Button, Image, Input } from "@rneui/themed";
 import register from '../Register/register'
@@ -22,7 +22,7 @@ const Loggin = () => {
     Password: "",
   });
 
-  const [user, setUser] = React.useState(null);
+  const [isLoading, setLoading] = React.useState("NO");
 
 
   async function getRol(uid){
@@ -31,43 +31,21 @@ const Loggin = () => {
     return docfinal = docCifrado.data().rol;
   }
 
-  // async function setUserWithFirebaseAndRol(userFirebase){
-  //   getRol(userFirebase.uid).then((rol)=>{
-  //     const userData = {
-  //       uid: userFirebase.uid,
-  //       email: userFirebase.email,
-  //       rol: rol,
-  //     }
-  //     setUser(userData);
-  //   })
-  // }
-
-
-  // onAuthStateChanged(auth, (userFirebase)=>{
-  //   if (userFirebase) {
-  //     if (!user) {
-  //       setUserWithFirebaseAndRol(userFirebase);
-  //     }
-  //   } else {
-  //     setUser(null);
-  //   }
-  // })
-
   async function logIn(){
 
     if (await controllerSingIn(userSend.Email, userSend.Password)) {
-      if (getRol(auth.currentUser.uid) === "Admin") {
+      setLoading("SI")
+      if (await getRol(auth.currentUser.uid) === "Admin") {
+        setLoading("NO")
         navigation.navigate("Admin")
       } else {
+        setLoading("NO")
         navigation.navigate("User")
       }
-    } else {
-
     }
   }
 
   return (
-    
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
         <View style={{margin:10, marginTop:50}}>
         <View>
@@ -96,6 +74,9 @@ const Loggin = () => {
                 style={{  height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"#1899c5", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
 
           <Button style={styles.botton} onPress={()=>logIn()} title={'Ingresar'} > Ingresar</Button>
+
+          <View>{isLoading === "SI" ? <ActivityIndicator size="large" color="#1899c5"/> : <Text/>}</View>
+
           <Text style={styles.TEXTO}>NO ESTÁ REGISTRADO?</Text>
         
           <TouchableOpacity>

@@ -11,11 +11,11 @@ El funcionmiento se ve más abjo
 
 En caso de la configuración de firebase, en la ruta /src/Data/Repositories/FirebaseConfig debes agregar un archivo llamado constants.js el cual debera contener algo similar a lo siguiente:
 
-export const keysfirebase = {
+export const keysFirebase = {
     constapiKey: "",
     constauthDomain: "",
     constprojectId: "",
-    conststorageBucket: ",
+    conststorageBucket: "",
     constmessagingSenderId: "",
     constappId: "",
     constmeasurementId: ""
