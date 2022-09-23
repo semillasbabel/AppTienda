@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, TextInput, Alert, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, TextInput, Alert, ScrollView, SafeAreaView } from 'react-native'
 import React from 'react'
 import { Button, Image, Input } from "@rneui/themed";
 import register from '../Register/register'
@@ -8,6 +8,7 @@ import { firebaseApp, database } from '../../../Data/Repositories/FirebaseConfig
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { controllerSingIn } from '../../../Domain/Repositories/Firebase/Auth/singIn';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 const auth = getAuth(firebaseApp);
 
 const image = { uri: "https://media.idownloadblog.com/wp-content/uploads/2020/05/Vector-wave-iPhone-wallpaper-Arthur1992aS-iDownloadBlog-6-710x1536.png" };
@@ -55,7 +56,7 @@ const Loggin = () => {
   async function logIn(){
 
     if (await controllerSingIn(userSend.Email, userSend.Password)) {
-      if (await getRol(auth.currentUser.uid) === "Admin") {
+      if (getRol(auth.currentUser.uid) === "Admin") {
         navigation.navigate("Admin")
       } else {
         navigation.navigate("User")
@@ -66,13 +67,18 @@ const Loggin = () => {
   }
 
   return (
-
+    
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+        <View style={{margin:10, marginTop:50}}>
+      
       <Image  style={{ width: 400, height: 300, justifyContent: "center",}}
-          source={require("../../../../assets/logo.png")}></Image>
-
-          <ScrollView>
-
+              source={require("../../../../assets/logo.png")}>
+      </Image>
+      
+      
+       </View> 
+         
+          <KeyboardAwareScrollView resetScrollToCoords={{ x: 0, y: 0 }}>
           <TextInput
                   placeholder='Usuario'
                   value={userSend.Email}
@@ -87,18 +93,18 @@ const Loggin = () => {
                 textContentType="password"
                 secureTextEntry
                 onChangeText={(e) => setUserSend({...userSend, Password: e})}
-                style={{ height: 50,borderBottomWidth: 3,fontSize: 25, color:"red", borderRadius: 10,borderBottomColor: "#f8f8f8"}}
-          />
+                style={{ height: 50,borderBottomWidth: 3,fontSize: 25, color:"red", borderRadius: 10,borderBottomColor: "#f8f8f8"}}/>
 
+        </KeyboardAwareScrollView>
         <Button style={styles.botton} onPress={()=>logIn()} title={'Ingresar'} > Ingresar</Button>
-
         <Text style={styles.TEXTO}>NO ESTÁ REGISTRADO?</Text>
        <TouchableOpacity>
         <Text style={styles.TEXTO} onPress={() => navigation.navigate("Register") }>REGISTRESE AQUI</Text>
        </TouchableOpacity>
-       </ScrollView>
+      
       </ImageBackground>
-
+      
+      
 
 
   )
@@ -116,10 +122,11 @@ const styles = StyleSheet.create({
   },
   botton :{
     height:55,
-    width:350,
+    width:220,
     justifyContent:'center',
     marginLeft:'auto',
     marginRight:'auto',
+    
 
   },
   TEXTO:{
@@ -136,7 +143,7 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    justifyContent: "center"
+ 
   },
   Input:{
     fontSize: 35,

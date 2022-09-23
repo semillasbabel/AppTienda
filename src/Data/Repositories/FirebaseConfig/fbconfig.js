@@ -17,6 +17,7 @@ const firebaseConfig = {
 // Initialize Firebase
 let firebaseApp;
 let auth;
+
 if (getApps().length < 1) {
   firebaseApp = initializeApp(firebaseConfig);
   auth = initializeAuth(firebaseApp, {
@@ -29,4 +30,4 @@ if (getApps().length < 1) {
 
 const database = getFirestore();
 
-export { firebaseApp, database };
+export { firebaseApp, auth, database };
