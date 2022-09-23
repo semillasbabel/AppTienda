@@ -6,12 +6,13 @@ const auth = getAuth(firebaseApp);
 export async function handleSingIn(user, password){
     return await signInWithEmailAndPassword(auth, user, password)
     .then((userCredential)=>{
-        // const user = userCredential.user
-        // console.log(user)
+        const user = userCredential.user
+        console.log(user)
 
         return true
     })
     .catch(error => {
+        console.log(error)
         return false
     })
 }
