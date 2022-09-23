@@ -37,51 +37,60 @@ const Register = () => {
 
   return (
    
-      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+    <ImageBackground source={image} resizeMode="cover" style={styles.image}>
      
-        <ScrollView>
+      <ScrollView>
         <Text style={styles.TEXTO}>Registro de Usuarios</Text>
-        <TextInput
-          placeholder='Email'
+        <View style={{flexDirection:'row', alignItems: 'baseline', marginRight:20}}>
+          <Icon   name="home" size={25} color="#1eb6fa" />
+         <TextInput
+          placeholder='Correo Electronico'
           placeholderTextColor={"#1899c5"}
           value={userRegister.email}
           textContentType="emailAddress"
           onChangeText={(e) => setUserSend({...userRegister, email: e})}
           style={{  height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
-        
-        <TextInput
-          placeholder='Password'
+        </View>
+        <View style={{flexDirection:'row', alignItems: 'baseline', marginRight:20}}>
+          <Icon   name="home" size={25} color="#1eb6fa" />
+         <TextInput
+          placeholder='contraseña'
           placeholderTextColor={"#1899c5"}
           value={userRegister.Password}
           secureTextEntry
           textContentType="password"
           onChangeText={(e) => setUserSend({...userRegister, Password: e})}
           style={{  height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
-        
+        </View>
+        <View style={{flexDirection:'row', alignItems: 'baseline', marginRight:20}}>
+          <Icon   name="home" size={25} color="#1eb6fa" />
         <TextInput
-          placeholder='Name'
+          placeholder='Nombre Completo'
           placeholderTextColor={"#1899c5"}
           value={userRegister.name}
           textContentType="name"
           onChangeText={(e) => setUserSend({...userRegister, name: e})}
           style={{  height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
-       <Icon style={styles.searchIcon} name="ios-search" size={20} color="#000"/>
-        <TextInput
-        
-            placeholder='Address' 
+        </View>
+        <View style={{flexDirection:'row', alignItems: 'baseline', marginRight:20}}>
+           <Icon   name="home" size={25} color="#1eb6fa" />
+          <TextInput
+            placeholder='Domicilio' 
             placeholderTextColor={"#1899c5"}
             value={userRegister.address}
             textContentType="addressCityAndState"
             onChangeText={(e) => setUserSend({...userRegister, address: e})}
-            style={{  height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
+            style={{  height: 40,borderBottomWidth: 3, marginLeft:20,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
+        
+        </View>
         <Button
           title={'Registrar'}
           onPress={()=>registro()}
         />
         <Text style={{color:"red"}}>{estado}</Text>
 
-       </ScrollView>
-      </ImageBackground>
+      </ScrollView>
+    </ImageBackground>
       
       
     
