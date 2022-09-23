@@ -1,0 +1,1 @@
+npm i react-native-keyboard-aware-scroll-view --save
