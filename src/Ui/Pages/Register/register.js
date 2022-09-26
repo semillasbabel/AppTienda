@@ -16,7 +16,7 @@ const image = { uri: "https://media.idownloadblog.com/wp-content/uploads/2020/05
 const Register = () => {
   const navigation = useNavigation();
 
-  const [estado, setEstado] = React.useState("Una vez ingresado los datos precione el boton registrar");
+  const [estado, setEstado] = React.useState("Una vez ingresado los datos presione el boton registrar");
 
   const [userRegister, setUserSend] = React.useState({
     email: "",
@@ -42,17 +42,17 @@ const Register = () => {
       <ScrollView>
         <Text style={styles.TEXTO}>Registro de Usuarios</Text>
         <View style={{flexDirection:'row', alignItems: 'baseline', marginRight:20}}>
-          <Icon   name="home" size={25} color="#1eb6fa" />
+          <Icon   name="email" size={35} color="#1eb6fa" />
          <TextInput
           placeholder='Correo Electronico'
           placeholderTextColor={"#1899c5"}
           value={userRegister.email}
           textContentType="emailAddress"
           onChangeText={(e) => setUserSend({...userRegister, email: e})}
-          style={{  height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
+          style={{  height: 40,borderBottomWidth: 3, marginLeft:40,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
         </View>
         <View style={{flexDirection:'row', alignItems: 'baseline', marginRight:20}}>
-          <Icon   name="home" size={25} color="#1eb6fa" />
+          <Icon   name="lock" size={35} color="#1eb6fa" />
          <TextInput
           placeholder='contraseña'
           placeholderTextColor={"#1899c5"}
@@ -60,34 +60,35 @@ const Register = () => {
           secureTextEntry
           textContentType="password"
           onChangeText={(e) => setUserSend({...userRegister, Password: e})}
-          style={{  height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
+          style={{  height: 40,borderBottomWidth: 3, marginLeft:40,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
         </View>
         <View style={{flexDirection:'row', alignItems: 'baseline', marginRight:20}}>
-          <Icon   name="home" size={25} color="#1eb6fa" />
+          <Icon   name="people" size={35} color="#1eb6fa" />
         <TextInput
           placeholder='Nombre Completo'
           placeholderTextColor={"#1899c5"}
           value={userRegister.name}
           textContentType="name"
           onChangeText={(e) => setUserSend({...userRegister, name: e})}
-          style={{  height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
+          style={{  height: 40,borderBottomWidth: 3, marginLeft:40,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
         </View>
         <View style={{flexDirection:'row', alignItems: 'baseline', marginRight:20}}>
-           <Icon   name="home" size={25} color="#1eb6fa" />
+           <Icon   name="home" size={35} color="#1eb6fa" />
           <TextInput
             placeholder='Domicilio' 
             placeholderTextColor={"#1899c5"}
             value={userRegister.address}
             textContentType="addressCityAndState"
             onChangeText={(e) => setUserSend({...userRegister, address: e})}
-            style={{  height: 40,borderBottomWidth: 3, marginLeft:20,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
+            style={{  height: 40,borderBottomWidth: 3, marginLeft:40,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
         
         </View>
-        <Button
+        <Text style={{color:"red", alignContent:'center', alignSelf:'center', fontWeight:'bold'}}>{estado}</Text>
+        <Button style={{height:120, width:150, alignItems:'center', marginLeft:125, paddingVertical:25}}
           title={'Registrar'}
           onPress={()=>registro()}
         />
-        <Text style={{color:"red"}}>{estado}</Text>
+        
 
       </ScrollView>
     </ImageBackground>
