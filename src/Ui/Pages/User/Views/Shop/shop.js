@@ -11,13 +11,15 @@ import Storage from './Components/storage';
 import Video from './Components/video';
 
 import Home from './Components/Home';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const Drawer = createDrawerNavigator();
 export default function Store() {
   return (
       <Drawer.Navigator initialRouteName="Home">
+
         <Drawer.Screen name={productsCategoryKeys.Home} component={Home} />
+
         <Drawer.Screen name={productsCategoryKeys.Gabinete} component={Cases} options={{drawerIcon: ({focused, size}) => (
               <Icon
                name="clipboard-outline" 
@@ -41,15 +43,14 @@ export default function Store() {
             ),}}/>
         <Drawer.Screen name={productsCategoryKeys.Procesadores} component={Processors} options={{drawerIcon: ({focused, size}) => (
               <Icon
-               name="hardware-chip-outline"
+               name="microchip"
                 size={30}
                 color={"#1899c5"}
               />
             ),}}/>
         <Drawer.Screen name={productsCategoryKeys.MemoriasRam} component={Ram} options={{drawerIcon: ({focused, size}) => (
               <Icon
-              type='fontawasome'
-               name="fa-light fa-disc-drive"
+               name="memory"
                 size={30}
                 color={"#1899c5"}
               />
