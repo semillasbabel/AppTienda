@@ -29,7 +29,7 @@
 import * as React from 'react';
 import { Button, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ShoppingCar from './Views/shoppingCar';
+import ShoppingCar from './Views/Carrito/shoppingCar';
 import Store from './Views/Shop/shop';
 
 const Tab = createBottomTabNavigator();

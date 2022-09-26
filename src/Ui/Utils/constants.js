@@ -1,4 +1,5 @@
 export const productsCategoryKeys = {
+    Home: "Home",
     Gabinete: "Gabinete",
     TarjetaMadre: "Tarjetas Madres",
     FuentesPoder: "Fuentes de Poder",
