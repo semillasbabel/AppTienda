@@ -11,9 +11,7 @@ export async function domainSignIn(email, password){
 function _validation(email, password){
     switch (email) {
         case "": return false;
-        case null: 
-            console.log("El email es nulo");
-            return false;
+        case null: return false;
     }
 
     switch (password) {
