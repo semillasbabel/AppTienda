@@ -2,23 +2,13 @@ import { database } from "../../../Repositories/FirebaseConfig/fbconfig";
 import {
   onSnapshot,
   collection,
-  query,
+  addDoc,
   orderBy,
+  query
 } from "firebase/firestore";
 
-export const getTasks = async (setProductos) => {
-    const ref = collection(database, "productos");
-    const q = query(ref, orderBy("name", "desc"));
-  
-    const unsuscribe = onSnapshot(q, (querySnapshot) => {
-      setProductos(
-        querySnapshot.docs.map((x) => ({
-          id: x.id,
-          name: x.data().name,
-          price: x.data().price,
-        }))
-      );
-    });
-  
-    return unsuscribe;
-  };
+export async function getToFirebase(producttype){
+  const ref = collection(database, producttype);
+  const q = query(ref, orderBy("name", "desc"));
+  return q;
+};
