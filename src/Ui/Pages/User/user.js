@@ -1,30 +1,4 @@
-// import React from 'react'
-// import { View, Text, Button } from 'react-native'
-// import { useNavigation } from "@react-navigation/native";
-// import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 
-// function User() {
-//   const navigation = useNavigation();
-//   const auth = getAuth();
-
-//   const logOut = async ()=>{
-//     await signOut(auth)
-//     navigation.goBack();
-//   }
-
-//   return (
-//     <View>
-//       <View style={{height:100}}/>
-//       <Text>Usuario</Text>
-//       <Button
-//         title='Cerrar Sesion'
-//         onPress={()=>logOut()}
-//       />
-//     </View>
-//   )
-// }
-
-// export default User
 
 import * as React from 'react';
 import { Button, Text, View } from 'react-native';
@@ -78,9 +52,9 @@ export default function TabsUser() {
   >
       
             
-    <Tab.Screen name="Tienda" component={Store} options={{headerShown:false}}/>
-    <Tab.Screen name="Carrito" component={ShoppingCar} />
-    <Tab.Screen name="Salir" component={Salir} />
+    <Tab.Screen name="Tienda" component={Store} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black',}}}/>
+    <Tab.Screen name="Carrito" component={ShoppingCar} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black',}}}/>
+    <Tab.Screen name="Salir" component={Salir} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black',}}}/>
   </Tab.Navigator>
 
   );
