@@ -35,6 +35,7 @@ import Home from './Views/Shop/Components/Home';
 import Ionicons from 'react-native-vector-icons/FontAwesome5';
 import Icon from "react-native-vector-icons/Ionicons"
 import { ScreenStackHeaderSearchBarView } from 'react-native-screens';
+import Salir from './Views/Shop/Components/out';
 
 const Tab = createBottomTabNavigator();
 
@@ -55,6 +56,15 @@ export default function TabsUser() {
           size = 30
         }
         
+        if (route.name === 'Salir') {
+          iconName = 'power-off';
+          size = 30
+        }
+
+
+
+
+      
 
         // You can return any component that you like here!
         return <Ionicons name={iconName} size={size} color={color} />;
@@ -70,6 +80,7 @@ export default function TabsUser() {
             
     <Tab.Screen name="Tienda" component={Store} options={{headerShown:false}}/>
     <Tab.Screen name="Carrito" component={ShoppingCar} />
+    <Tab.Screen name="Salir" component={Salir} />
   </Tab.Navigator>
 
   );
