@@ -41,14 +41,11 @@ const Salir = () => {
         </View>
 
 
-        <TouchableOpacity onPress={salir}>
-            <View style={{backgroundColor:'yellow', height:55, width:200, borderRadius:15, alignItems:'center', alignContent:'center', marginStart:100, marginVertical:250}}>
-              <View style={{margin:10}}>
-                <Text style={{fontSize:25, alignContent:'center', alignItems:"center",alignSelf:'center',textAlign:'auto'}}>Cerrar sesion</Text>
-                </View>
-            </View>
-           
-        </TouchableOpacity>
+        <TouchableOpacity
+        style={styles.button}
+        onPress={salir}>
+        <Text style={styles.textb}>Cerrar Sesion</Text>
+      </TouchableOpacity>
         
     </View>
     </ImageBackground>
@@ -61,22 +58,19 @@ const styles = StyleSheet.create({
    color:'#fdd835',
 
   },
-  bottonout:{
-    height:55,
-    width:220,
+  textb: {
+    fontSize:18,
     justifyContent:'center',
-    marginLeft:'auto',
-    marginRight:'auto',
-    
-
-  },
-  TEXTO:{
-    fontSize: 20,
-    color:'#fdd835',
-    justifyContent:'center',
-    alignItems:'center',
-    paddingVertical:15,
-    textAlign:'center',
+    color:'red',
+ 
+   },
+  button: {
+    margin:100,
+    alignItems: "center",
+    backgroundColor: "#27272f",
+    padding: 10,
+    height:50,
+    width:200
   
   },
   image: {
