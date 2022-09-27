@@ -1,10 +1,10 @@
 import React from 'react'
 import {View, Text} from "react-native"
 
-function Home() {
+function Inicio() {
   return (
     <View><Text>Home</Text></View>
   )
 }
 
-export default Home
+export default Inicio

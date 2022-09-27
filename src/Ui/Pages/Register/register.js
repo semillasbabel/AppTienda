@@ -1,11 +1,12 @@
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView, TextInput, Alert } from 'react-native'
 import React from 'react'
-import { Button, Image, Input, Icon } from "@rneui/themed";
+import { Button, Image, Input } from "@rneui/themed";
 
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { color } from '@rneui/base';
 import { useNavigation } from "@react-navigation/native";
-import { registerController } from '../../../Domain/Repositories/Firebase/Auth/userRegister';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+// import { registerController } from '../../../Domain/Repositories/Firebase/Authd/userRegister';
 
 
 
@@ -26,13 +27,14 @@ const Register = () => {
   });
 
   async function registro(){
-    if (await registerController(userRegister.email, userRegister.Password, userRegister.name,userRegister.address)) {
-      Alert.alert("", 'Registro Exitoso')
-      navigation.goBack()
-    }
-    else{
-      setEstado("Datos Incorrectos")
-    }
+    navigation.goBack()
+    // if (await registerController(userRegister.email, userRegister.Password, userRegister.name,userRegister.address)) {
+    //   Alert.alert("", 'Registro Exitoso')
+    //   navigation.goBack()
+    // }
+    // else{
+    //   setEstado("Datos Incorrectos")
+    // }
   }
 
   return (
@@ -42,7 +44,7 @@ const Register = () => {
       <ScrollView>
         <Text style={styles.TEXTO}>Registro de Usuarios</Text>
         <View style={{flexDirection:'row', alignItems: 'baseline', marginRight:20}}>
-          <Icon   name="email" size={35} color="#1eb6fa" />
+          <Icon   name="at" size={30} color="#1eb6fa" style={{marginLeft:10}}/>
          <TextInput
           placeholder='Correo Electronico'
           placeholderTextColor={"#1899c5"}
@@ -52,7 +54,7 @@ const Register = () => {
           style={{  height: 40,borderBottomWidth: 3, marginLeft:40,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
         </View>
         <View style={{flexDirection:'row', alignItems: 'baseline', marginRight:20}}>
-          <Icon   name="lock" size={35} color="#1eb6fa" />
+          <Icon   name="lock" size={35} color="#1eb6fa"  style={{marginLeft:10}}/>
          <TextInput
           placeholder='contraseña'
           placeholderTextColor={"#1899c5"}
@@ -63,7 +65,7 @@ const Register = () => {
           style={{  height: 40,borderBottomWidth: 3, marginLeft:40,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
         </View>
         <View style={{flexDirection:'row', alignItems: 'baseline', marginRight:20}}>
-          <Icon   name="people" size={35} color="#1eb6fa" />
+          <Icon   name="user" size={35} color="#1eb6fa"  style={{marginLeft:10}}/>
         <TextInput
           placeholder='Nombre Completo'
           placeholderTextColor={"#1899c5"}
@@ -73,14 +75,14 @@ const Register = () => {
           style={{  height: 40,borderBottomWidth: 3, marginLeft:40,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
         </View>
         <View style={{flexDirection:'row', alignItems: 'baseline', marginRight:20}}>
-           <Icon   name="home" size={35} color="#1eb6fa" />
+           <Icon   name="home" size={30} color="#1eb6fa" style={{marginLeft:10}}/>
           <TextInput
             placeholder='Domicilio' 
             placeholderTextColor={"#1899c5"}
             value={userRegister.address}
             textContentType="addressCityAndState"
             onChangeText={(e) => setUserSend({...userRegister, address: e})}
-            style={{  height: 40,borderBottomWidth: 3, marginLeft:40,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
+            style={{  height: 40,borderBottomWidth: 3, marginLeft:37,marginBottom:15,width:300,fontSize: 20,color:"", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
         
         </View>
         <Text style={{color:"red", alignContent:'center', alignSelf:'center', fontWeight:'bold'}}>{estado}</Text>

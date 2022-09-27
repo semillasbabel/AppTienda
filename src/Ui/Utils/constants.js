@@ -1,5 +1,5 @@
 export const productsCategoryKeys = {
-    Home: "Home",
+    Home: "Inicio",
     Gabinete: "Gabinete",
     TarjetaMadre: "Tarjetas Madres",
     FuentesPoder: "Fuentes de Poder",
@@ -7,5 +7,6 @@ export const productsCategoryKeys = {
     MemoriasRam: "Memorias Ram",
     Almacenamiento: "Almacenamiento",
     Video: "Tarjetas de Video",
+    Salir:"Salir"
 }
 

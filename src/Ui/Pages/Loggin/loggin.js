@@ -32,17 +32,17 @@ const Loggin = () => {
   }
 
   async function logIn(){
-
-    if (await controllerSingIn(userSend.Email, userSend.Password)) {
-      setLoading("SI")
-      if (await getRol(auth.currentUser.uid) === "Admin") {
-        setLoading("NO")
-        navigation.navigate("Admin")
-      } else {
-        setLoading("NO")
-        navigation.navigate("User")
-      }
-    }
+    navigation.navigate("User")
+    // if (await controllerSingIn(userSend.Email, userSend.Password)) {
+    //   setLoading("SI")
+    //   if (await getRol(auth.currentUser.uid) === "Admin") {
+    //     setLoading("NO")
+    //     navigation.navigate("Admin")
+    //   } else {
+    //     setLoading("NO")
+    //     navigation.navigate("User")
+    //   }
+    // }
   }
 
   return (
