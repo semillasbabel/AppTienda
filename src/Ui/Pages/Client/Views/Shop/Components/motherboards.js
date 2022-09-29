@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect } from "react";
 import { TouchableOpacity, FlatList, View, Image, Button, Text, Section, StyleSheet, ImageBackground } from "react-native";
 import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
-import { getMotherboards } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
+import { getMotherboards, ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
 
 const MotherBoards = () => {
   const navigation = useNavigation();
@@ -11,7 +11,8 @@ const MotherBoards = () => {
 
   useEffect(() => {
     try {
-      getMotherboards(setProductos);
+      const manager = new ManagerRead();
+      manager.SearchMotherboards().search(setProductos);
     } catch (e) {
       alert(e);
     }

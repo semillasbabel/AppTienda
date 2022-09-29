@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect } from "react";
 import { TouchableOpacity, FlatList, View, Image, Button, Text, Section, StyleSheet } from "react-native";
 import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
-import { getVideo } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
+import { getVideo, ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
 
 const Video = () => {
   const navigation = useNavigation();
@@ -11,7 +11,8 @@ const Video = () => {
 
   useEffect(() => {
     try {
-      getVideo(setProductos);
+      const manager = new ManagerRead();
+      manager.SearchVideoCards().search(setProductos);
     } catch (e) {
       alert(e);
     }

@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect } from "react";
 import { TouchableOpacity, FlatList, View, Image, Button, Text, Section, StyleSheet } from "react-native";
 import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
-import { getpower } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
+import { getpower, ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
 
 const PowerSupply = () => {
   const navigation = useNavigation();
@@ -11,7 +11,8 @@ const PowerSupply = () => {
 
   useEffect(() => {
     try {
-      getpower(setProductos);
+      const manager = new ManagerRead();
+      manager.SearchPowerSupply().search(setProductos);
     } catch (e) {
       alert(e);
     }

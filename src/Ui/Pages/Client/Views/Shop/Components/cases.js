@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { TouchableOpacity, FlatList, View, Image, Button, Text, Section, StyleSheet,ImageBackground } from "react-native";
 import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
-import { getCases } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
+import { getCases, ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
 
 const Cases = () => {
   const navigation = useNavigation();
@@ -11,7 +11,8 @@ const Cases = () => {
 
   useEffect(() => {
     try {
-      getCases(setProductos);
+      const manager = new ManagerRead();
+      manager.searchCases().search(setProductos);
     } catch (e) {
       alert(e);
     }

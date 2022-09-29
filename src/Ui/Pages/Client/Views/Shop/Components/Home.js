@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { TouchableOpacity, FlatList, View, Image, Button, Text, Section } from "react-native";
 import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
-import { getOffers } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
+import { getOffers, getOffersts, ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
 import { collection, getDocs, query, where, orderBy, onSnapshot } from "firebase/firestore";
 import { database } from "../../../../../../Data/Repositories/FirebaseConfig/fbconfig";
 
@@ -13,11 +13,20 @@ const Home = () => {
 
   useEffect(() => {
     try {
-      getOffers(setProductos);
+      const manager = new ManagerRead();
+      manager.searchOfferts().search(setProductos);
     } catch (e) {
       alert(e);
     }
   }, []);
+
+  // useEffect(() => {
+  //   try {
+  //     getOffers(setProductos);
+  //   } catch (e) {
+  //     alert(e);
+  //   }
+  // }, []);
 
   const getProduct = async (setProductos) => {
     const ref = collection(database, "product");
@@ -35,34 +44,9 @@ const Home = () => {
   };
 
   function obtdato(){ 
-    const ref = collection(database, "product");
-    const q = query(ref, where("offert", "==", true));
-  
-    const unsuscribe = onSnapshot(q, (querySnapshot) => {
-      setProductos(
-        querySnapshot.docs.map((x) => ({
-          id: x.id,
-          category: x.data().category,
-          description: x.data().description,
-          imageurl: x.data().imageurl,
-          name: x.data().name,
-          offert: x.data().offert,
-        }))
-      );
-    });
-
-    console.log(productos);
-
-
-
-
-    // const q = query(collection(database, "product"), where("offert", "==", true));
-
-    // const querySnapshot = await getDocs(q);
-    // querySnapshot.forEach((doc) => {
-    //   // doc.data() is never undefined for query doc snapshots
-    //   console.log(doc.id, " => ", doc.data());
-    // });
+    const manager = new ManagerRead();
+    console.log(manager.searchOfferts())
+    // console.log(getOffersts());
   }
 
   async function buscardatos(){
@@ -84,7 +68,7 @@ const Home = () => {
         <View style={{flex: 1, justifyContent: "center", alignItems: "center" }}>
           <Text>Esperando</Text>
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>obtdato()}>
             <View style={{height: 50, width: 50, backgroundColor: "red"}}/>
           </TouchableOpacity>
 

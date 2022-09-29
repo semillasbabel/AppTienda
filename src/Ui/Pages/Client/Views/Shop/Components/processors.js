@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect } from "react";
 import { TouchableOpacity, FlatList, View, Image, Button, Text, Section, StyleSheet } from "react-native";
 import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
-import { getProcessors } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
+import { getProcessors, ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
 
 const Processors = () => {
   const navigation = useNavigation();
@@ -11,7 +11,8 @@ const Processors = () => {
 
   useEffect(() => {
     try {
-      getProcessors(setProductos);
+      const manager = new ManagerRead();
+      manager.SearchProcessors().search(setProductos);
     } catch (e) {
       alert(e);
     }

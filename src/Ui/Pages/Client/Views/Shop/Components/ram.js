@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect } from "react";
 import { TouchableOpacity, FlatList, View, Image, Button, Text, Section, StyleSheet } from "react-native";
 import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
-import { getRam } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
+import { getRam, ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
 
 const Ram = () => {
   const navigation = useNavigation();
@@ -11,7 +11,8 @@ const Ram = () => {
 
   useEffect(() => {
     try {
-      getRam(setProductos);
+      const manager = new ManagerRead();
+      manager.SearchMemoryRam().search(setProductos);
     } catch (e) {
       alert(e);
     }

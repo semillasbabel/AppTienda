@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect } from "react";
 import { TouchableOpacity, FlatList, View, Image, Button, Text, Section, StyleSheet } from "react-native";
 import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
-import { getStorage } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
+import { getStorage, ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
 
 const Storage = () => {
   const navigation = useNavigation();
@@ -11,7 +11,8 @@ const Storage = () => {
 
   useEffect(() => {
     try {
-      getStorage(setProductos);
+      const manager = new ManagerRead();
+      manager.SearchStorage().search(setProductos);
     } catch (e) {
       alert(e);
     }
