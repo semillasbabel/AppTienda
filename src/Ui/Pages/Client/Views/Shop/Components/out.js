@@ -7,6 +7,7 @@ import { Text } from "@rneui/themed";
 
 
 const Salir = () => {
+  console.log("salir")
     const navigation = useNavigation();
 
     function salir(){
@@ -44,11 +45,15 @@ const Salir = () => {
 
 
         <TouchableOpacity
-        
         style={styles.button}
-        onPress={salir}>
+        onPress={()=>salir()}>
         <Text style={styles.textb}>Cerrar Sesion</Text>
       </TouchableOpacity>
+
+      <Button
+      title='Salir'
+      onPress={()=>salir()}
+      />
     
 
         

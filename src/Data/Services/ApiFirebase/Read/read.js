@@ -4,11 +4,11 @@ import {
   collection,
   addDoc,
   orderBy,
-  query
+  query,
+  where
 } from "firebase/firestore";
 
-export async function getToFirebase(producttype){
-  const ref = collection(database, producttype);
-  const q = query(ref, orderBy("name", "desc"));
-  return q;
+export function getToFirebase(filter, valueFilter){
+  const ref = collection(database, "product");
+  return query(ref, where(filter, "==", valueFilter));
 };
