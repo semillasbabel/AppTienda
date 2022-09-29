@@ -3,6 +3,8 @@ import {View,  Alert, Button, StyleSheet,ImageBackground} from "react-native"
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text } from "@rneui/themed";
+import LinearGradient from 'react-native-linear-gradient';
+
 
 const Salir = () => {
     const navigation = useNavigation();
@@ -42,10 +44,13 @@ const Salir = () => {
 
 
         <TouchableOpacity
+        
         style={styles.button}
         onPress={salir}>
         <Text style={styles.textb}>Cerrar Sesion</Text>
       </TouchableOpacity>
+    
+
         
     </View>
     </ImageBackground>
