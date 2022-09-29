@@ -7,23 +7,20 @@ import { useNavigation } from "@react-navigation/native";
 import { firebaseApp, database } from '../../../Data/Repositories/FirebaseConfig/fbconfig';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
-import { controllerSingIn } from '../../../Domain/Repositories/Firebase/Auth/singIn';
+import { domainSignIn } from '../../../Domain/Repositories/Firebase/Auth/SignIn';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 const auth = getAuth(firebaseApp);
 
 const image = { uri: "https://media.idownloadblog.com/wp-content/uploads/2020/05/Vector-wave-iPhone-wallpaper-Arthur1992aS-iDownloadBlog-6-710x1536.png" };
 
 const Loggin = () => {
-
   const navigation = useNavigation();
-
   const [userSend, setUserSend] = React.useState({
     Email: "",
     Password: "",
   });
 
   const [isLoading, setLoading] = React.useState("NO");
-
 
   async function getRol(uid){
     const docuRef = doc(database, `users/${uid}`)
@@ -32,7 +29,10 @@ const Loggin = () => {
   }
 
   async function logIn(){
-    navigation.navigate("User")
+    
+    if (await controllerSingIn(userSend.Email, userSend.Password)) {
+    }
+
     // if (await controllerSingIn(userSend.Email, userSend.Password)) {
     //   setLoading("SI")
     //   if (await getRol(auth.currentUser.uid) === "Admin") {
@@ -40,55 +40,51 @@ const Loggin = () => {
     //     navigation.navigate("Admin")
     //   } else {
     //     setLoading("NO")
-    //     navigation.navigate("User")
+    //     navigation.navigate("Client")
     //   }
     // }
   }
 
   return (
-      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-        <View style={{margin:10, marginTop:50}}>
+    <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+      <View style={{margin:10, marginTop:50}}>
         <View>
-      <Image  style={{ width: 400, height: 275, justifyContent: "center",}}
-              source={require("../../../../assets/logo.png")}>
-      </Image>
-      </View>
-      
-       </View> 
+          <Image style={{ width: 400, height: 275, justifyContent: "center",}}
+            source={require("../../../../assets/logo.png")}/>
+        </View>        
+      </View> 
          
-       <KeyboardAwareScrollView resetScrollToCoords={{ x: 0, y: 0 }}>
-          <TextInput
-                  placeholder='Correo Electronico'
-                  value={userSend.Email}
-                  textContentType="emailAddress"
-                  onChangeText={(e) => setUserSend({...userSend, Email: e})}
-                  style={{ height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"#1899c5", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}
-          />
+      <KeyboardAwareScrollView resetScrollToCoords={{ x: 0, y: 0 }}>
 
-          <TextInput
-                placeholder='Contraseña'
-                value={userSend.Password}
-                textContentType="password"
-                secureTextEntry
-                onChangeText={(e) => setUserSend({...userSend, Password: e})}
-                style={{  height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"#1899c5", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}/>
-
-          <Button style={styles.botton} onPress={()=>logIn()} title={'Ingresar'} > Ingresar</Button>
-
-          <View>{isLoading === "SI" ? <ActivityIndicator size="large" color="#1899c5"/> : <Text/>}</View>
-
-          <Text style={styles.TEXTO}>NO ESTÁ REGISTRADO?</Text>
+        <TextInput
+          placeholder='Correo Electronico'
+          value={userSend.Email}
+          textContentType="emailAddress"
+          onChangeText={(e) => setUserSend({...userSend, Email: e})}
+          style={{ height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"#1899c5", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}
+        />
         
-          <TouchableOpacity>
-            <Text style={styles.TEXTO} onPress={() => navigation.navigate("Register") }>REGISTRESE AQUI</Text>
-          </TouchableOpacity>
-        </KeyboardAwareScrollView>
+        <TextInput
+          placeholder='Contraseña'
+          value={userSend.Password}
+          textContentType="password"
+          secureTextEntry
+          onChangeText={(e) => setUserSend({...userSend, Password: e})}
+          style={{  height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"#1899c5", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}
+        />
+
+        <Button style={styles.botton} onPress={()=>logIn()} title={'Ingresar'}>Ingresar</Button>
+
+        <View>{isLoading === "SI" ? <ActivityIndicator size="large" color="#1899c5"/> : <Text/>}</View>
+
+        <Text style={styles.TEXTO}>NO ESTÁ REGISTRADO?</Text>
+        
+        <TouchableOpacity>
+          <Text style={styles.TEXTO} onPress={() => navigation.navigate("Register") }>REGISTRESE AQUI</Text>
+        </TouchableOpacity>
+      </KeyboardAwareScrollView>
        
-      </ImageBackground>
-      
-      
-
-
+    </ImageBackground>
   )
 }
 

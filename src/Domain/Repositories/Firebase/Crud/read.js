@@ -3,6 +3,19 @@ import { onSnapshot } from "firebase/firestore";
 import { getToFirebase } from "../../../../Data/Services/ApiFirebase/Read/read";
 import { getKeys } from "../../../Keys/keys";
 
+export async function getShoppingCar(setProductos){
+
+  const q = await getToFirebase("shoppingCar");
+  return onSnapshot(q, (querySnapshot) => {
+    setProductos(
+      querySnapshot.docs.map((x) => ({
+          id: x.id,
+          listProduct: x.data().listProduct,
+      }))
+    );
+  });
+};
+
 export async function getCases(setProductos){
 
   const q = await getToFirebase(getKeys.BDNameCases);
