@@ -30,7 +30,7 @@ const Salir = () => {
         // setSignOut(true);
     }
 
-    const image = { uri: "https://media.idownloadblog.com/wp-content/uploads/2020/05/Vector-wave-iPhone-wallpaper-Arthur1992aS-iDownloadBlog-6-710x1536.png" };
+    const image = { uri: "https://media.idownloadblog.com/wp-content/uploads/2020/05/Vector-wave-iPhone-wallpaper-Arthur1992aS-iDownloadBlog-5-710x1536.png" };
 
   return (
     <ImageBackground source={image} resizeMode="cover" style={{flex:1}}>
