@@ -8,7 +8,7 @@ LogBox.ignoreLogs(['AsyncStorage has been extracted from react-native core and w
 
 import Loggin from "./src/Ui/Pages/Loggin/loggin";
 import Register from "./src/Ui/Pages/Register/register";
-import User from "./src/Ui/Pages/User/user";
+import Client from "./src/Ui/Pages/User/Client";
 import Admin from "./src/Ui/Pages/Admin/admin";
 
 const Stack = createNativeStackNavigator();
@@ -36,8 +36,8 @@ function App() {
         />
 
         <Stack.Screen 
-          name="User"
-          component={User}
+          name="Client"
+          component={Client}
         />
 
       </Stack.Navigator>

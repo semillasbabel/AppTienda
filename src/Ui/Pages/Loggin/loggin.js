@@ -22,13 +22,7 @@ const Loggin = () => {
   const auth = getAuth(firebaseApp);
   const domainLogIn = new domainSignIn();
   const getRol = new domainGetRol();
-
-  // async function getRol(uid){
-  //   const docuRef = doc(database, `users/${uid}`)
-  //   const docCifrado = await getDoc(docuRef);
-  //   return docCifrado.data().rol;
-  // }
-
+  
   async function logIn(){
     setLoading("SI")
     await domainLogIn.setEmail(userSend.Email).setPassword(userSend.Password).signIn();
@@ -44,8 +38,7 @@ const Loggin = () => {
 
         case "Client":
           setLoading("NO")
-          // navigation.navigate("Client")
-          console.log("Es usuario client");
+          navigation.navigate("Client")
           break;
 
         default:
@@ -55,23 +48,6 @@ const Loggin = () => {
     }
     else setLoading("NO")
   }
-
-  // async function logIn(){
-    
-  //   // if (await controllerSingIn(userSend.Email, userSend.Password)) {
-  //   // }
-
-  //   // if (await controllerSingIn(userSend.Email, userSend.Password)) {
-  //   //   setLoading("SI")
-  //   //   if (await getRol(auth.currentUser.uid) === "Admin") {
-  //   //     setLoading("NO")
-  //   //     navigation.navigate("Admin")
-  //   //   } else {
-  //   //     setLoading("NO")
-  //   //     navigation.navigate("Client")
-  //   //   }
-  //   // }
-  // }
 
   return (
     <ImageBackground source={image} resizeMode="cover" style={styles.image}>
