@@ -1,20 +1,23 @@
 import { async } from "@firebase/util"
-import {userRegister} from "../../../../Data/Services/AuthFirebase/userRegister"
+import { Registry } from "../../../../Data/Services/AuthFirebase/userRegister"
 
 export async function domainRegister(email,password,name,address){
     try {
-        if (_validation(email,password, name, address)) {
-            return await userRegister(email,password,name,address);
+        if (await _validation(email,password, name, address)) {
+            const reg = new Registry();
+            await reg.setEmail(email).setPassword(password).setName(name).setAddress(address).userRegistry();
+            return reg.getRegistryState;
         }
         else{
             return false
         }
     } catch (error) {
+        console.log("verificador",error)
         return false;
     }
 }
 
-function _validation(email, password, name, address){
+async function _validation(email, password, name, address){
     //Validation Email
     switch (email) {
         case "": return false;
@@ -30,7 +33,7 @@ function _validation(email, password, name, address){
     //Validation Name
     let expreg = /[a-zA-Z -]/;
 
-    if (!expreg.test(auth)){
+    if (!expreg.test(name)){
         return false;
     }
 

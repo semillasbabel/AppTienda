@@ -1,12 +1,11 @@
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView, TextInput, Alert } from 'react-native'
+import { View, Text, StyleSheet, ImageBackground, ActivityIndicator, TouchableOpacity, ScrollView, TextInput, Alert } from 'react-native'
 import React from 'react'
 import { Button, Image, Input } from "@rneui/themed";
-
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { color } from '@rneui/base';
 import { useNavigation } from "@react-navigation/native";
 import Icon from 'react-native-vector-icons/FontAwesome5';
-// import { registerController } from '../../../Domain/Repositories/Firebase/Authd/userRegister';
+import { domainRegister, pruebaclass } from '../../../Domain/Repositories/Firebase/Auth/userRegister';
 
 
 
@@ -18,6 +17,7 @@ const Register = () => {
   const navigation = useNavigation();
 
   const [estado, setEstado] = React.useState("Una vez ingresado los datos presione el boton registrar");
+  const [isLoading, setLoading] = React.useState("NO");
 
   const [userRegister, setUserSend] = React.useState({
     email: "",
@@ -27,14 +27,15 @@ const Register = () => {
   });
 
   async function registro(){
-    navigation.goBack()
-    // if (await registerController(userRegister.email, userRegister.Password, userRegister.name,userRegister.address)) {
-    //   Alert.alert("", 'Registro Exitoso')
-    //   navigation.goBack()
-    // }
-    // else{
-    //   setEstado("Datos Incorrectos")
-    // }
+    setLoading("SI")
+    if (await domainRegister(userRegister.email, userRegister.Password, userRegister.name,userRegister.address)) {
+      Alert.alert("", 'Registro Exitoso')
+      navigation.goBack()
+    }
+    else{
+      setLoading("NO")
+      setEstado("Datos Incorrectos")
+    }
   }
 
   return (
@@ -86,6 +87,7 @@ const Register = () => {
         
         </View>
         <Text style={{color:"red", alignContent:'center', alignSelf:'center', fontWeight:'bold'}}>{estado}</Text>
+        <View>{isLoading === "SI" ? <ActivityIndicator size="large" color="#1899c5"/> : <Text/>}</View>
         <Button style={{height:120, width:150, alignItems:'center', marginLeft:125, paddingVertical:25}}
           title={'Registrar'}
           onPress={()=>registro()}
