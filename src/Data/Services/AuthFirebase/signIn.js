@@ -26,6 +26,7 @@ export class GetRol{
             this.#validateSearch = true
         } else {
             this.#validateSearch = false
+            return false
         }
         return this;
     }
@@ -54,9 +55,10 @@ export class GetRol{
 
         } else {
             this.#rol = "false"
+            return false
         }
 
-        return this;
+        return this
     }
 
     get getRol(){

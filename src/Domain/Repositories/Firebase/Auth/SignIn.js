@@ -83,6 +83,7 @@ export class domainGetRol{
             this.#rol = dataGetRol.getRol;
         } else {
             this.#rol = "false"
+            return false
         }
         return this;
     }
