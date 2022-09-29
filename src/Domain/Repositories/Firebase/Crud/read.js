@@ -25,7 +25,7 @@ export async function getCases(setProductos){
           id: x.id,
           name: x.data().name,
           imageurl: x.data().imageurl,
-          size: x.data().size,
+          description: x.data().description,
       }))
     );
   });
@@ -40,8 +40,8 @@ export async function getMotherboards(setProductos){
           id: x.id,
           name: x.data().name,
           imageurl: x.data().imageurl,
-          platform: x.data().platform,
-          socket: x.data().socket
+          description: x.data().description,
+          
       }))
     );
   });
@@ -56,7 +56,7 @@ export async function getpower(setProductos){
           id: x.id,
           name: x.data().name,
           imageurl: x.data().imageurl,
-          power: x.data().power,
+          description: x.data().description,
       }))
     );
   });
@@ -71,9 +71,7 @@ export async function getProcessors(setProductos){
           id: x.id,
           name: x.data().name,
           imageurl: x.data().imageurl,
-          core: x.data().core,
-          frecuency: x.data().frecuency,
-          threads: x.data().threads,
+          description: x.data().description,
       }))
     );
   });
@@ -88,8 +86,7 @@ export async function getRam(setProductos){
           id: x.id,
           name: x.data().name,
           imageurl: x.data().imageurl,
-          capacity: x.data().capacity,
-          speed: x.data().speed,
+          description: x.data().description,
       }))
     );
   });
@@ -104,8 +101,7 @@ export async function getStorage(setProductos){
           id: x.id,
           name: x.data().name,
           imageurl: x.data().imageurl,
-          capacity: x.data().capacity,
-          speed: x.data().speed,
+          description: x.data().description,
       }))
     );
   });
@@ -120,9 +116,7 @@ export async function getVideo(setProductos){
           id: x.id,
           name: x.data().name,
           imageurl: x.data().imageurl,
-          gpu: x.data().gpu,
-          memory: x.data().memory,
-          producer: x.data().producer,
+          description: x.data().description,
       }))
     );
   });
