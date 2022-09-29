@@ -30,8 +30,6 @@ const Home = () => {
     });
   }
 
-  buscardatos();
-
   return (
   <View style={{flex: 1, backgroundColor: "#235b76"}}>
     <View style={{ flex: 1, backgroundColor: `#237667`}}>
@@ -39,6 +37,11 @@ const Home = () => {
         {productos.length === 0 ? (
         <View style={{flex: 1, justifyContent: "center", alignItems: "center" }}>
           <Text>Esperando</Text>
+
+          <TouchableOpacity onPress={()=> navigation.navigate("Details")}>
+            <View style={{height: 50, width: 50, backgroundColor: "red"}}/>
+          </TouchableOpacity>
+
         </View>
         ) : (
           <FlatList
