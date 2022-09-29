@@ -7,43 +7,71 @@ import { useNavigation } from "@react-navigation/native";
 import { firebaseApp, database } from '../../../Data/Repositories/FirebaseConfig/fbconfig';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
-import { domainSignIn } from '../../../Domain/Repositories/Firebase/Auth/SignIn';
+import { domainSignIn, domainGetRol } from '../../../Domain/Repositories/Firebase/Auth/SignIn';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-const auth = getAuth(firebaseApp);
+
+
 
 const image = { uri: "https://media.idownloadblog.com/wp-content/uploads/2020/05/Vector-wave-iPhone-wallpaper-Arthur1992aS-iDownloadBlog-6-710x1536.png" };
 
 const Loggin = () => {
+
   const navigation = useNavigation();
-  const [userSend, setUserSend] = React.useState({
-    Email: "",
-    Password: "",
-  });
-
+  const [userSend, setUserSend] = React.useState({Email: "",Password: ""});
   const [isLoading, setLoading] = React.useState("NO");
+  const auth = getAuth(firebaseApp);
+  const domainLogIn = new domainSignIn();
+  const getRol = new domainGetRol();
 
-  async function getRol(uid){
-    const docuRef = doc(database, `users/${uid}`)
-    const docCifrado = await getDoc(docuRef);
-    return docfinal = docCifrado.data().rol;
-  }
+  // async function getRol(uid){
+  //   const docuRef = doc(database, `users/${uid}`)
+  //   const docCifrado = await getDoc(docuRef);
+  //   return docCifrado.data().rol;
+  // }
 
   async function logIn(){
-    
-    if (await controllerSingIn(userSend.Email, userSend.Password)) {
-    }
+    setLoading("SI")
+    await domainLogIn.setEmail(userSend.Email).setPassword(userSend.Password).signIn();
+    if (domainLogIn.getSignIn) {
 
-    // if (await controllerSingIn(userSend.Email, userSend.Password)) {
-    //   setLoading("SI")
-    //   if (await getRol(auth.currentUser.uid) === "Admin") {
-    //     setLoading("NO")
-    //     navigation.navigate("Admin")
-    //   } else {
-    //     setLoading("NO")
-    //     navigation.navigate("Client")
-    //   }
-    // }
+      await getRol.setUid(auth.currentUser.uid).search();
+      switch (getRol.getRol) {
+        case "Admin":
+          setLoading("NO")
+          // navigation.navigate("Admin")
+          console.log("Es usuario admin");
+          break;
+
+        case "Client":
+          setLoading("NO")
+          // navigation.navigate("Client")
+          console.log("Es usuario client");
+          break;
+
+        default:
+          setLoading("NO")
+          break;
+      }
+    }
+    else setLoading("NO")
   }
+
+  // async function logIn(){
+    
+  //   // if (await controllerSingIn(userSend.Email, userSend.Password)) {
+  //   // }
+
+  //   // if (await controllerSingIn(userSend.Email, userSend.Password)) {
+  //   //   setLoading("SI")
+  //   //   if (await getRol(auth.currentUser.uid) === "Admin") {
+  //   //     setLoading("NO")
+  //   //     navigation.navigate("Admin")
+  //   //   } else {
+  //   //     setLoading("NO")
+  //   //     navigation.navigate("Client")
+  //   //   }
+  //   // }
+  // }
 
   return (
     <ImageBackground source={image} resizeMode="cover" style={styles.image}>
