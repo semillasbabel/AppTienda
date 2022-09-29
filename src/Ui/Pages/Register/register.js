@@ -1,17 +1,13 @@
-import { View, Text, StyleSheet, ImageBackground, ActivityIndicator, TouchableOpacity, ScrollView, TextInput, Alert } from 'react-native'
+import { View, Text, StyleSheet, ImageBackground, ActivityIndicator, ScrollView, TextInput, Alert } from 'react-native'
 import React from 'react'
-import { Button, Image, Input } from "@rneui/themed";
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { color } from '@rneui/base';
+import { Button} from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { domainRegister, pruebaclass } from '../../../Domain/Repositories/Firebase/Auth/userRegister';
+import { domainRegistry} from '../../../Domain/Repositories/Firebase/Auth/userRegister';
 
-
-
+const reg = new domainRegistry();
 
 const image = { uri: "https://media.idownloadblog.com/wp-content/uploads/2020/05/Vector-wave-iPhone-wallpaper-Arthur1992aS-iDownloadBlog-6-710x1536.png" };
-
 
 const Register = () => {
   const navigation = useNavigation();
@@ -28,8 +24,12 @@ const Register = () => {
 
   async function registro(){
     setLoading("SI")
-    if (await domainRegister(userRegister.email, userRegister.Password, userRegister.name,userRegister.address)) {
+    await reg.setEmail(userRegister.email).setPassword(userRegister.Password).setName(userRegister.name).setAddress(userRegister.address).userRegistry();
+
+    if (reg.getRegistryState) {
       Alert.alert("", 'Registro Exitoso')
+      setUserSend({email: "", Password: "", name: "", address: ""})
+      setEstado("Una vez ingresado los datos presione el boton registrar")
       navigation.goBack()
     }
     else{
@@ -101,9 +101,6 @@ const Register = () => {
     
   )
 }
-
-
-
 
 
 const styles = StyleSheet.create({

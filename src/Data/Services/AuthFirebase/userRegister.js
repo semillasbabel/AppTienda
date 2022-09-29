@@ -19,6 +19,7 @@ export class Registry{
             this.#email = email;
             this.#registryValidation[0] = true;
         }
+        else this.#registryValidation[0] = false;
         return this;
     }
     setPassword(password){
@@ -26,6 +27,7 @@ export class Registry{
             this.#password = password;
             this.#registryValidation[1] = true;
         }
+        else this.#registryValidation[1] = false;
         return this;
     }
     setName(name){
@@ -33,6 +35,7 @@ export class Registry{
             this.#name = name;
             this.#registryValidation[2] = true;
         }
+        else this.#registryValidation[2] = false;
         return this;
     }
     setAddress(address){
@@ -40,6 +43,7 @@ export class Registry{
             this.#address = address;
             this.#registryValidation[3] = true;
         }
+        else this.#registryValidation[3] = false;
         return this;
     }
 
@@ -73,6 +77,9 @@ export class Registry{
                 .catch(() => {
                     return false;
                 })
+        }
+        else{
+            return false
         }
     }
 

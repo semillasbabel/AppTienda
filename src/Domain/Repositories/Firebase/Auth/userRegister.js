@@ -1,52 +1,78 @@
 import { async } from "@firebase/util"
 import { Registry } from "../../../../Data/Services/AuthFirebase/userRegister"
 
-export async function domainRegister(email,password,name,address){
-    try {
-        if (await _validation(email,password, name, address)) {
+
+
+export class domainRegistry{
+    #email;
+    #password;
+    #name;
+    #address;
+    #registryValidation = [false,false,false,false];
+    #registryState = false;
+
+    setEmail(email){
+        if (this._attributeValidation(email)) {
+            this.#email = email;
+            this.#registryValidation[0] = true;
+        }
+        else this.#registryValidation[0] = false;
+        return this;
+    }
+    setPassword(password){
+        if (this._attributeValidation(password)) {
+            this.#password = password;
+            this.#registryValidation[1] = true;
+        }
+        else this.#registryValidation[1] = false;
+        return this;
+    }
+    setName(name){
+        if (this._attributeValidation(name)) {
+            this.#name = name;
+            this.#registryValidation[2] = true;
+        }
+        else this.#registryValidation[2] = false;
+        return this;
+    }
+    setAddress(address){
+        if (this._attributeValidation(address)) {
+            this.#address = address;
+            this.#registryValidation[3] = true;
+        }
+        else this.#registryValidation[3] = false;
+        return this;
+    }
+
+    _attributeValidation(atributo){
+        switch (atributo) {
+            case "": return false;
+            case null: return false;
+        }
+        return true;
+    }
+
+    async userRegistry(){
+        if (this._registryValidation()) {
             const reg = new Registry();
-            await reg.setEmail(email).setPassword(password).setName(name).setAddress(address).userRegistry();
-            return reg.getRegistryState;
+            await reg.setEmail(this.#email).setPassword(this.#password).setName(this.#name).setAddress(this.#address).userRegistry();
+            this.#registryState = reg.getRegistryState;
         }
-        else{
-            return false
-        }
-    } catch (error) {
-        console.log("verificador",error)
-        return false;
-    }
-}
-
-async function _validation(email, password, name, address){
-    //Validation Email
-    switch (email) {
-        case "": return false;
-        case null: return false;
+        else{return false}
     }
 
-    //Validation Password
-    switch (password) {
-        case "": return false;
-        case null: return false;
+    _registryValidation(){
+        let ret = true; 
+        this.#registryValidation.forEach(element => {
+            if (element === false) {
+                ret = false;
+            }
+        });
+
+        return ret;
     }
 
-    //Validation Name
-    let expreg = /[a-zA-Z -]/;
-
-    if (!expreg.test(name)){
-        return false;
+    get getRegistryState(){
+        return this.#registryState;
     }
-
-    switch (name) {
-        case "": return false;
-        case null: return false;
-    }
-
-    // Validation Address
-    switch (address) {
-        case "": return false;
-        case null: return false;
-    }
-
-    return true;
 }

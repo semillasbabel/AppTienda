@@ -22,7 +22,6 @@ const Loggin = () => {
 
   const [isLoading, setLoading] = React.useState("NO");
 
-
   async function getRol(uid){
     const docuRef = doc(database, `users/${uid}`)
     const docCifrado = await getDoc(docuRef);
@@ -30,17 +29,20 @@ const Loggin = () => {
   }
 
   async function logIn(){
-    // navigation.navigate("User")
+    
     if (await controllerSingIn(userSend.Email, userSend.Password)) {
-      setLoading("SI")
-      if (await getRol(auth.currentUser.uid) === "Admin") {
-        setLoading("NO")
-        navigation.navigate("Admin")
-      } else {
-        setLoading("NO")
-        navigation.navigate("Client")
-      }
     }
+
+    // if (await controllerSingIn(userSend.Email, userSend.Password)) {
+    //   setLoading("SI")
+    //   if (await getRol(auth.currentUser.uid) === "Admin") {
+    //     setLoading("NO")
+    //     navigation.navigate("Admin")
+    //   } else {
+    //     setLoading("NO")
+    //     navigation.navigate("Client")
+    //   }
+    // }
   }
 
   return (
