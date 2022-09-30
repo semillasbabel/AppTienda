@@ -38,7 +38,7 @@ const PowerSupply = () => {
               renderItem={(data) => (
                 <View style={{flex:1, flexDirection: "column", backgroundColor: "#1583d7"}}>
   
-                  <TouchableOpacity onPress={()=>navigation.navigate("Details")}>
+                  <TouchableOpacity onPress={()=>navigation.navigate("Details", {item: data.item})}>
 
                     <View style={{flex:1, alignContent:"center", alignItems: "center"}}>
                       <Text>{data.item.imageurl}</Text>
