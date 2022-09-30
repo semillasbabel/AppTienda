@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { TouchableOpacity, FlatList, View, Image, Button, Text, Section, StyleSheet,ImageBackground } from "react-native";
+import { TouchableOpacity, View, Text, StyleSheet,ImageBackground } from "react-native";
 import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
-import { getCases, ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
+import { ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
 
 const Cases = () => {
   const navigation = useNavigation();
@@ -38,16 +38,19 @@ const Cases = () => {
               renderItem={(data) => (
                 <View style={{flex:1, flexDirection: "column", backgroundColor: "#1583d7"}}>
   
-                  <TouchableOpacity>
-  
+                  <TouchableOpacity onPress={()=>navigation.navigate("Details")}>
+
                     <View style={{flex:1, alignContent:"center", alignItems: "center"}}>
-                      
-                      <Text style={styles.itemName} >{data.item.imageurl}</Text>
-                      <Text style={styles.itemName}>{data.item.name}</Text>
-                      <Text style={styles.itemName} >{data.item.description}</Text>
-                      
+                      <Text>{data.item.imageurl}</Text>
+                      <Text>{data.item.id}</Text>
+                      <Text>{data.item.name}</Text>
+                      <Text>{data.item.description}</Text>
+                      <Text>{data.item.category}</Text>
+                      <Text>{data.item.amount}</Text>
+                      <Text>{data.item.price}</Text>
+
                     </View>
-  
+
                   </TouchableOpacity>
   
   

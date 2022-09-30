@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
-import { TouchableOpacity, FlatList, View, Image, Button, Text, Section } from "react-native";
+import { TouchableOpacity, View, Text, StyleSheet,ImageBackground } from "react-native";
 import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
-import { getOffers, getOffersts, ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
-import { collection, getDocs, query, where, orderBy, onSnapshot } from "firebase/firestore";
-import { database } from "../../../../../../Data/Repositories/FirebaseConfig/fbconfig";
+import { ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
 
-const Home = () => {
+const Offerts = () => {
   const navigation = useNavigation();
 
   const [productos, setProductos] = React.useState([]);
@@ -20,89 +18,77 @@ const Home = () => {
     }
   }, []);
 
-  // useEffect(() => {
-  //   try {
-  //     getOffers(setProductos);
-  //   } catch (e) {
-  //     alert(e);
-  //   }
-  // }, []);
-
-  const getProduct = async (setProductos) => {
-    const ref = collection(database, "product");
-    const q = query(ref, where("offert", "==", true));
-  
-    const unsuscribe = onSnapshot(q, (querySnapshot) => {
-      setProductos(
-        querySnapshot.docs.map((x) => ({
-          id: x.id,
-        }))
-      );
-    });
-  
-    return unsuscribe;
-  };
-
-  function obtdato(){ 
-    const manager = new ManagerRead();
-    console.log(manager.searchOfferts())
-    // console.log(getOffersts());
-  }
-
-  async function buscardatos(){
-    const querySnapshot = await getDocs(collection(database, "shoppingCar"));
-    querySnapshot.forEach((doc) => {
-      const obj = doc.data().Lista;
-      for (const dat in obj){
-        console.log(`${dat} : ${obj[dat]}`)
-      }
-      // console.log(doc.data().Lista);
-    });
-  }
-
+  const image = { uri: "https://media.idownloadblog.com/wp-content/uploads/2020/05/Vector-wave-iPhone-wallpaper-Arthur1992aS-iDownloadBlog-6-710x1536.png" };
   return (
-  <View style={{flex: 1, backgroundColor: "#235b76"}}>
-    <View style={{ flex: 1, backgroundColor: `#237667`}}>
-      <View style={{ flex: 1}}>
-        {productos.length === 0 ? (
-        <View style={{flex: 1, justifyContent: "center", alignItems: "center" }}>
-          <Text>Esperando</Text>
+    <ImageBackground source={image} resizeMode="cover" style={{flex:1}}>
+    <View style={{flex: 1, backgroundColor: "transparent"}}>
+      <View style={{ flex: 1, backgroundColor: `transparent`}}>
+        <View style={{ flex: 1}}>
+          {productos.length === 0 ? (
+          <View style={{flex: 1, justifyContent: "center", alignItems: "center" }}>
+            <Text>Esperando</Text>
+          </View>
+          ) : (
+            <FlatGrid
+            itemDimension={130}
+              data={productos}
+              
+              spacing={10}
+              keyExtractor={(x) => x.id}
+              renderItem={(data) => (
+                <View style={{flex:1, flexDirection: "column", backgroundColor: "#1583d7"}}>
+  
+                  <TouchableOpacity onPress={()=>navigation.navigate("Details")}>
 
-          <TouchableOpacity onPress={()=>obtdato()}>
-            <View style={{height: 50, width: 50, backgroundColor: "red"}}/>
-          </TouchableOpacity>
+                    <View style={{flex:1, alignContent:"center", alignItems: "center"}}>
+                      <Text>{data.item.imageurl}</Text>
+                      <Text>{data.item.id}</Text>
+                      <Text>{data.item.name}</Text>
+                      <Text>{data.item.description}</Text>
+                      <Text>{data.item.category}</Text>
+                      <Text>{data.item.amount}</Text>
+                      <Text>{data.item.price}</Text>
 
+                    </View>
+
+                  </TouchableOpacity>
+  
+  
+                </View>
+                )}
+              style={{ marginTop: 10 }}
+            />
+          )}
         </View>
-        ) : (
-          <FlatList
-            data={productos}
-            keyExtractor={(x) => x.id}
-            renderItem={(data) => (
-              <View style={{flex:1, flexDirection: "column", backgroundColor: "#235b76", marginVertical:5}}>
-
-                <TouchableOpacity onPress={()=>navigation.navigate("Details")}>
-
-                  <View style={{flex:1, alignContent:"center", alignItems: "center"}}>
-                    <Text>{data.item.imageurl}</Text>
-                    <Text>{data.item.id}</Text>
-                    <Text>{data.item.name}</Text>
-                    <Text>{data.item.description}</Text>
-                    <Text>{data.item.category}</Text>
-                  </View>
-
-                </TouchableOpacity>
-
-
-              </View>
-              )}
-            style={{ marginTop: 10 }}
-          />
-        )}
       </View>
+  
     </View>
-
-  </View>
-  );
-};
-
-export default Home;
+    </ImageBackground>
+    );
+  };
+  
+  
+  
+  const styles = StyleSheet.create({
+    gridView: {
+      marginTop: 10,
+      flex: 1,
+    },
+    itemContainer: {
+      justifyContent: 'flex-end',
+      borderRadius: 5,
+      padding: 10,
+      height: 150,
+    },
+    itemName: {
+      fontSize: 15,
+      color: '#fff',
+      fontWeight: '600',
+    },
+    itemCode: {
+      fontWeight: '600',
+      fontSize: 12,
+      color: '#fff',
+    },
+  });
+export default Offerts;

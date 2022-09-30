@@ -87,8 +87,6 @@ export class ManagerRead{
             imageurl: x.data().imageurl,
             name: x.data().name,
             offert: x.data().offert,
-            amount: x.data().amount,
-            price: x.data().price,
           }))
         );
       });
@@ -106,4 +104,3 @@ export class ManagerRead{
   }
 
 }
-

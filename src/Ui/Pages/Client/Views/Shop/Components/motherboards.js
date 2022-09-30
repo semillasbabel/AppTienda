@@ -1,10 +1,10 @@
-import React, { useEffect, useLayoutEffect } from "react";
-import { TouchableOpacity, FlatList, View, Image, Button, Text, Section, StyleSheet, ImageBackground } from "react-native";
+import React, { useEffect } from "react";
+import { TouchableOpacity, View, Text, StyleSheet,ImageBackground } from "react-native";
 import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
-import { getMotherboards, ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
+import { ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
 
-const MotherBoards = () => {
+const Motherboards = () => {
   const navigation = useNavigation();
 
   const [productos, setProductos] = React.useState([]);
@@ -17,7 +17,7 @@ const MotherBoards = () => {
       alert(e);
     }
   }, []);
-        
+
   const image = { uri: "https://media.idownloadblog.com/wp-content/uploads/2020/05/Vector-wave-iPhone-wallpaper-Arthur1992aS-iDownloadBlog-6-710x1536.png" };
   return (
     <ImageBackground source={image} resizeMode="cover" style={{flex:1}}>
@@ -38,16 +38,19 @@ const MotherBoards = () => {
               renderItem={(data) => (
                 <View style={{flex:1, flexDirection: "column", backgroundColor: "#1583d7"}}>
   
-                  <TouchableOpacity>
-  
+                  <TouchableOpacity onPress={()=>navigation.navigate("Details")}>
+
                     <View style={{flex:1, alignContent:"center", alignItems: "center"}}>
-                      
-                      <Text style={styles.itemName} >{data.item.imageurl}</Text>
-                      <Text style={styles.itemName}>{data.item.name}</Text>
-                      <Text style={styles.itemName} >{data.item.description}</Text>
-                      
+                      <Text>{data.item.imageurl}</Text>
+                      <Text>{data.item.id}</Text>
+                      <Text>{data.item.name}</Text>
+                      <Text>{data.item.description}</Text>
+                      <Text>{data.item.category}</Text>
+                      <Text>{data.item.amount}</Text>
+                      <Text>{data.item.price}</Text>
+
                     </View>
-  
+
                   </TouchableOpacity>
   
   
@@ -88,4 +91,4 @@ const MotherBoards = () => {
       color: '#fff',
     },
   });
-export default MotherBoards;
+export default Motherboards;
