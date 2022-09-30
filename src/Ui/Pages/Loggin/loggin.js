@@ -51,41 +51,46 @@ const Loggin = () => {
 
   return (
     <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-      <View style={{margin:10, marginTop:50}}>
+
+      <View style={{margin:10, marginTop:50, alignSelf:"center"}}>
         <View>
-          <Image style={{ width: 400, height: 275, justifyContent: "center",}}
+          <Image style={{ width: 400, height: 275}}
             source={require("../../../../assets/logo.png")}/>
         </View>        
       </View> 
          
       <KeyboardAwareScrollView resetScrollToCoords={{ x: 0, y: 0 }}>
 
-        <TextInput
-          placeholder='Correo Electronico'
-          value={userSend.Email}
-          textContentType="emailAddress"
-          onChangeText={(e) => setUserSend({...userSend, Email: e})}
-          style={{ height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"#1899c5", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}
-        />
-        
-        <TextInput
-          placeholder='Contraseña'
-          value={userSend.Password}
-          textContentType="password"
-          secureTextEntry
-          onChangeText={(e) => setUserSend({...userSend, Password: e})}
-          style={{  height: 40,borderBottomWidth: 3, marginLeft:50,marginBottom:15,width:300,fontSize: 20,color:"#1899c5", borderRadius: 10,backgroundColor:'white',borderBottomColor: "#f8f8f8"}}
-        />
+        <View style={{alignSelf: "center", alignItems: "center"}}>
 
-        <Button style={styles.botton} onPress={()=>logIn()} title={'Ingresar'}>Ingresar</Button>
+          <TextInput
+            placeholder='Correo Electronico'
+            value={userSend.Email}
+            textContentType="emailAddress"
+            onChangeText={(e) => setUserSend({...userSend, Email: e})}
+            style={{ height: 40, marginBottom:15, width:300, fontSize: 20, color:"#1899c5", borderRadius: 10, backgroundColor:'white',}}
+          />
+          
+          <TextInput
+            placeholder='Contraseña'
+            value={userSend.Password}
+            textContentType="password"
+            secureTextEntry
+            onChangeText={(e) => setUserSend({...userSend, Password: e})}
+            style={{  height: 40, marginBottom:15, width:300, fontSize: 20, color:"#1899c5", borderRadius: 10,backgroundColor:'white'}}
+          />
 
-        <View>{isLoading === "SI" ? <ActivityIndicator size="large" color="#1899c5"/> : <Text/>}</View>
+          <Button style={styles.botton} onPress={()=>logIn()} title={'Ingresar'}>Ingresar</Button>
 
-        <Text style={styles.TEXTO}>NO ESTÁ REGISTRADO?</Text>
-        
-        <TouchableOpacity>
-          <Text style={styles.TEXTO} onPress={() => navigation.navigate("Register") }>REGISTRESE AQUI</Text>
-        </TouchableOpacity>
+          <View>{isLoading === "SI" ? <ActivityIndicator size="large" color="#1899c5"/> : <Text/>}</View>
+
+          <Text style={styles.TEXTO}>NO ESTÁ REGISTRADO?</Text>
+          
+          <TouchableOpacity>
+            <Text style={styles.TEXTO} onPress={() => navigation.navigate("Register") }>REGISTRESE AQUI</Text>
+          </TouchableOpacity>
+        </View>
+
       </KeyboardAwareScrollView>
        
     </ImageBackground>
