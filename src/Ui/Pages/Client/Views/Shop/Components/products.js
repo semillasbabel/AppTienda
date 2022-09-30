@@ -3,16 +3,51 @@ import { TouchableOpacity, View, Text, StyleSheet,ImageBackground } from "react-
 import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
 import { ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
+import { shopScreens } from "../Constants/keysShop"
 
-const Products = () => {
+function Offerts(props){
   const navigation = useNavigation();
-
+  const {searchType} = props;
   const [productos, setProductos] = React.useState([]);
 
   useEffect(() => {
     try {
       const manager = new ManagerRead();
-      manager.searchCases().search(setProductos);
+      switch (searchType) {
+
+        case shopScreens.HomeScreen:
+          manager.searchOfferts().search(setProductos);
+        break;
+
+        case shopScreens.FuentesPoderScreen:
+          manager.SearchPowerSupply().search(setProductos);
+        break;
+
+        case shopScreens.GabineteScreen:
+          manager.searchCases().search(setProductos);
+        break;
+
+        case shopScreens.MemoriasRamScreen:
+          manager.SearchMemoryRam().search(setProductos);
+        break;
+
+        case shopScreens.ProcesadoresScreen:
+          manager.SearchProcessors().search(setProductos);
+        break;
+
+        case shopScreens.AlmacenamientoScreen:
+          manager.SearchStorage().search(setProductos);
+        break;
+
+        case shopScreens.VideoScreen:
+          manager.SearchVideoCards().search(setProductos);
+        break;
+
+        case shopScreens.TarjetaMadreScreen:
+          manager.SearchMotherboards().search(setProductos);
+        break;
+
+      }
     } catch (e) {
       alert(e);
     }
@@ -38,7 +73,7 @@ const Products = () => {
               renderItem={(data) => (
                 <View style={{flex:1, flexDirection: "column", backgroundColor: "#1583d7"}}>
   
-                  <TouchableOpacity onPress={()=>navigation.navigate("Details")}>
+                  <TouchableOpacity onPress={()=>navigation.navigate("Details", {item: data.item})}>
 
                     <View style={{flex:1, alignContent:"center", alignItems: "center"}}>
                       <Text>{data.item.imageurl}</Text>
@@ -91,4 +126,4 @@ const Products = () => {
       color: '#fff',
     },
   });
-export default Products;
+export default Offerts;
