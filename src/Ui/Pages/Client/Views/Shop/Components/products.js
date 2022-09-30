@@ -4,6 +4,7 @@ import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
 import { ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
 import { shopScreens } from "../Constants/keysShop"
+import { imagesUrl } from "../../../../../Utils/constants"
 
 function Offerts(props){
   const navigation = useNavigation();
@@ -53,7 +54,7 @@ function Offerts(props){
     }
   }, []);
 
-  const image = { uri: "https://media.idownloadblog.com/wp-content/uploads/2020/05/Vector-wave-iPhone-wallpaper-Arthur1992aS-iDownloadBlog-6-710x1536.png" };
+  const image = { uri: imagesUrl.fondo };
   return (
     <ImageBackground source={image} resizeMode="cover" style={{flex:1}}>
     <View style={{flex: 1, backgroundColor: "transparent"}}>

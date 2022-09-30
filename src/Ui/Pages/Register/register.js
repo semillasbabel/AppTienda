@@ -4,17 +4,16 @@ import { Button} from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { domainRegistry} from '../../../Domain/Repositories/Firebase/Auth/userRegister';
+import { imagesUrl, activityState } from "../../Utils/constants"
+import { defaultStateNote } from './Constants/registerKeys';
 
-const reg = new domainRegistry();
-
-const image = { uri: "https://media.idownloadblog.com/wp-content/uploads/2020/05/Vector-wave-iPhone-wallpaper-Arthur1992aS-iDownloadBlog-6-710x1536.png" };
+const registry = new domainRegistry();
+const image = { uri: imagesUrl.fondo };
 
 const Register = () => {
   const navigation = useNavigation();
-
-  const [estado, setEstado] = React.useState("Una vez ingresado los datos presione el boton registrar");
-  const [isLoading, setLoading] = React.useState("NO");
-
+  const [estado, setEstado] = React.useState(defaultStateNote.inicial);
+  const [isLoading, setLoading] = React.useState(activityState.off);
   const [userRegister, setUserSend] = React.useState({
     email: "",
     Password: "",
@@ -23,18 +22,19 @@ const Register = () => {
   });
 
   async function registro(){
-    setLoading("SI")
-    await reg.setEmail(userRegister.email).setPassword(userRegister.Password).setName(userRegister.name).setAddress(userRegister.address).userRegistry();
+    setLoading(activityState.on)
+    await registry.setEmail(userRegister.email).setPassword(userRegister.Password).setName(userRegister.name).setAddress(userRegister.address).userRegistry();
 
-    if (reg.getRegistryState) {
+    if (registry.getRegistryState) {
       Alert.alert("", 'Registro Exitoso')
       setUserSend({email: "", Password: "", name: "", address: ""})
-      setEstado("Una vez ingresado los datos presione el boton registrar")
+      setEstado(defaultStateNote.inicial)
+      setLoading(activityState.off)
       navigation.goBack()
     }
     else{
-      setLoading("NO")
-      setEstado("Datos Incorrectos")
+      setLoading(activityState.off)
+      setEstado(defaultStateNote.error)
     }
   }
 
@@ -87,7 +87,7 @@ const Register = () => {
         
         </View>
         <Text style={{color:"red", alignContent:'center', alignSelf:'center', fontWeight:'bold'}}>{estado}</Text>
-        <View>{isLoading === "SI" ? <ActivityIndicator size="large" color="#1899c5"/> : <Text/>}</View>
+        <View>{isLoading === activityState.on ? <ActivityIndicator size="large" color="#1899c5"/> : <Text/>}</View>
         <Button style={{height:120, width:150, alignItems:'center', marginLeft:125, paddingVertical:25}}
           title={'Registrar'}
           onPress={()=>registro()}

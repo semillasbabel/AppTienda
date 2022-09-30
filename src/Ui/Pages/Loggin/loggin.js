@@ -1,52 +1,48 @@
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, TextInput, ActivityIndicator, Alert, ScrollView, SafeAreaView } from 'react-native'
 import React from 'react'
-import { Button, Image, Input } from "@rneui/themed";
-import register from '../Register/register'
-import { color } from '@rneui/base';
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
+import { Button, Image } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
-import { firebaseApp, database } from '../../../Data/Repositories/FirebaseConfig/fbconfig';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore';
+import { firebaseApp } from '../../../Data/Repositories/FirebaseConfig/fbconfig';
+import { getAuth } from 'firebase/auth';
 import { domainSignIn, domainGetRol } from '../../../Domain/Repositories/Firebase/Auth/SignIn';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { rolesKeys } from "./Constants/keysLoggin"
+import { routesName, imagesUrl, activityState } from "../../Utils/constants"
 
-
-
-const image = { uri: "https://media.idownloadblog.com/wp-content/uploads/2020/05/Vector-wave-iPhone-wallpaper-Arthur1992aS-iDownloadBlog-6-710x1536.png" };
+const domainLogIn = new domainSignIn();
+const getRol = new domainGetRol();
+const auth = getAuth(firebaseApp);
+const image = { uri: imagesUrl.fondo };
 
 const Loggin = () => {
-
   const navigation = useNavigation();
   const [userSend, setUserSend] = React.useState({Email: "",Password: ""});
-  const [isLoading, setLoading] = React.useState("NO");
-  const auth = getAuth(firebaseApp);
-  const domainLogIn = new domainSignIn();
-  const getRol = new domainGetRol();
+  const [isLoading, setLoading] = React.useState(activityState.off);
+
   
   async function logIn(){
-    setLoading("SI")
+    setLoading(activityState.on)
     await domainLogIn.setEmail(userSend.Email).setPassword(userSend.Password).signIn();
     if (domainLogIn.getSignIn) {
 
       await getRol.setUid(auth.currentUser.uid).search();
       switch (getRol.getRol) {
-        case "Admin":
-          setLoading("NO")
-          // navigation.navigate("Admin")
-          console.log("Es usuario admin");
+        case rolesKeys.admin:
+          setLoading(activityState.off)
+          // navigation.navigate(routesName.admin)
           break;
 
-        case "Client":
-          setLoading("NO")
-          navigation.navigate("Client")
+        case rolesKeys.client:
+          setLoading(activityState.off)
+          navigation.navigate(routesName.client)
           break;
 
         default:
-          setLoading("NO")
+          setLoading(activityState.off)
           break;
       }
     }
-    else setLoading("NO")
+    else setLoading(activityState.off)
   }
 
   return (
@@ -82,12 +78,12 @@ const Loggin = () => {
 
           <Button style={styles.botton} onPress={()=>logIn()} title={'Ingresar'}>Ingresar</Button>
 
-          <View>{isLoading === "SI" ? <ActivityIndicator size="large" color="#1899c5"/> : <Text/>}</View>
+          <View>{isLoading === activityState.on ? <ActivityIndicator size="large" color="#1899c5"/> : <Text/>}</View>
 
           <Text style={styles.TEXTO}>NO ESTÁ REGISTRADO?</Text>
           
           <TouchableOpacity>
-            <Text style={styles.TEXTO} onPress={() => navigation.navigate("Register") }>REGISTRESE AQUI</Text>
+            <Text style={styles.TEXTO} onPress={() => navigation.navigate(routesName.register) }>REGISTRESE AQUI</Text>
           </TouchableOpacity>
         </View>
 

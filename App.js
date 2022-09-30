@@ -3,6 +3,7 @@ import { View, Image, TouchableOpacity, ImageBackground} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { LogBox } from "react-native";
+import { routesName } from "./src/Ui/Utils/constants"
 
 LogBox.ignoreLogs(['AsyncStorage has been extracted from react-native core and will be removed in a future release. It can now be installed and imported from ']);
 
@@ -21,22 +22,22 @@ function App() {
         screenOptions={{headerShown: false}}>
 
         <Stack.Screen
-          name="Loggin"
+          name={routesName.Loggin}
           component={Loggin}
         />
         
         <Stack.Screen 
-          name="Register"
+          name={routesName.register}
           component={Register}
         />
 
         <Stack.Screen 
-          name="Admin"
+          name={routesName.admin}
           component={Admin}
         />
 
         <Stack.Screen 
-          name="Client"
+          name={routesName.client}
           component={Client}
         />
 
