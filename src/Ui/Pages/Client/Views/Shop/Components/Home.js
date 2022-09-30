@@ -4,7 +4,7 @@ import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
 import { ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
 
-const Offerts = () => {
+function Offerts(){
   const navigation = useNavigation();
 
   const [productos, setProductos] = React.useState([]);
@@ -38,7 +38,7 @@ const Offerts = () => {
               renderItem={(data) => (
                 <View style={{flex:1, flexDirection: "column", backgroundColor: "#1583d7"}}>
   
-                  <TouchableOpacity onPress={()=>navigation.navigate("Details")}>
+                  <TouchableOpacity onPress={()=>navigation.navigate("Details", {item: data.item})}>
 
                     <View style={{flex:1, alignContent:"center", alignItems: "center"}}>
                       <Text>{data.item.imageurl}</Text>
