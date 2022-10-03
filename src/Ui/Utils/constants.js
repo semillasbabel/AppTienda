@@ -13,3 +13,8 @@ export const activityState = {
     off: "off",
     on: "on",
 }
+
+export const KeyRoutes = {
+    store: "Tienda",
+    shoppingCar: "Carrito"
+}

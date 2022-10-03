@@ -2,7 +2,7 @@ import { SignInBuilder } from "../dataBuilder/signInDataBuilder";
 import { domainSignIn, domainGetRol } from "../../Domain/Repositories/Firebase/Auth/SignIn"
 import { handleSignIn, GetRol  } from "../../Data/Services/AuthFirebase/signIn"
 
-var data = new SignInBuilder();
+const data = new SignInBuilder();
 
 describe("TestToDomainSignIn", ()=>{
 
@@ -13,6 +13,7 @@ describe("TestToDomainSignIn", ()=>{
         .toBe(false)
     })
 
+    // TODO("IdIsEmptyEmailThenReturnFalse")
     it("IfEmailIsEmptythenReturnFalse", async ()=>{
         data.withEmail("");
         expect(await logIn.setEmail(data.email).setPassword(data.password).signIn())

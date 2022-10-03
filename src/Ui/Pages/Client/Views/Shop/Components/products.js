@@ -61,23 +61,27 @@ function Offerts(props){
 
 
   (async function () {
+    // TODO("Agregar un '=' en lña condición para que no arroje advertencias")
     if (temp[0] != undefined) {
       if (productos.length === 0) {
         console.log("verificador")
         for (let i = 0; i < temp.length; i++) {
           const reference = ref(storage, `Productos/${temp[i].imageurl}`);
           temp[i].imageurl = await getDownloadURL(reference)
-          .then((x)=>{return x;})
-          .catch((e)=>{})
+              .then((x) => {
+                return x;
+              })
+              .catch((e) => {
+              })
         }
         setProductos(temp);
       }
-    }else{
-
+    } else{
+      // TODO("Si no van a agregar logica mejor eliminen el ELSE")
     }
   })();
 
-
+  // TODO("Si no lo estan usando borrenlo del código")
   function goToDetails(item){
     // console.log(productos)
     console.log(item)
@@ -102,7 +106,7 @@ function Offerts(props){
               <FlatGrid
             itemDimension={130}
               data={productos}
-              
+
               spacing={10}
               keyExtractor={(x) => x.id}
               renderItem={(data) => (
@@ -111,7 +115,7 @@ function Offerts(props){
                   <TouchableOpacity onPress={()=>navigation.navigate("Details", {item: data.item})}>
 
                     <View style={{flex:1, alignContent:"center", alignItems: "center"}}>
-                      
+
                     <Image source={{uri: data.item.imageurl}} style={{height: 100, width: "90%", marginTop: 5}}/>
 
                       <Text>{data.item.id}</Text>
@@ -124,8 +128,8 @@ function Offerts(props){
                     </View>
 
                   </TouchableOpacity>
-  
-  
+
+
                 </View>
                 )}
               style={{ marginTop: 10 }}
@@ -134,14 +138,14 @@ function Offerts(props){
           )}
         </View>
       </View>
-  
+
     </View>
     </ImageBackground>
     );
   };
-  
-  
-  
+
+
+
   const styles = StyleSheet.create({
     gridView: {
       marginTop: 10,
