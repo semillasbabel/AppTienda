@@ -34,7 +34,7 @@ function DetailsScreen({ route, navigation }) {
   const image = { uri: imagesUrl.fondo };
   return (
     <ImageBackground source={image} resizeMode="cover" style={{flex:1}}>
-    <View style={{flex: 1, backgroundColor: "transparent"}}>
+    <View style={{flex: 1, backgroundColor: "transparent", marginBottom: 20}}>
       <View style={{height: 15, }}/>
       <Card containerStyle={{flex:1, backgroundColor: 'white'}} >
       <Text style={{fontSize:18}}> {item.name}</Text>
