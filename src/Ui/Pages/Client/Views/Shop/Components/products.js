@@ -1,15 +1,20 @@
 import React, { useEffect } from "react";
-import { TouchableOpacity, View, Text, StyleSheet,ImageBackground } from "react-native";
+import { TouchableOpacity, View, Text, ActivityIndicator, Image, StyleSheet,ImageBackground } from "react-native";
 import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
 import { ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
 import { shopScreens } from "../Constants/keysShop"
 import { imagesUrl } from "../../../../../Utils/constants"
+import { getDownloadURL, ref, getStorage } from "firebase/storage"
+import { storage } from "../../../../../../Data/Repositories/FirebaseConfig/fbconfig"
+import { Button } from "@rneui/base";
 
 function Offerts(props){
   const navigation = useNavigation();
   const {searchType} = props;
+  const [temp, setTemp] = React.useState([]);
   const [productos, setProductos] = React.useState([]);
+  let imageurlSend = "";
 
   useEffect(() => {
     try {
@@ -17,35 +22,35 @@ function Offerts(props){
       switch (searchType) {
 
         case shopScreens.HomeScreen:
-          manager.searchOfferts().search(setProductos);
+          manager.searchOfferts().search(setTemp);
         break;
 
         case shopScreens.FuentesPoderScreen:
-          manager.SearchPowerSupply().search(setProductos);
+          manager.SearchPowerSupply().search(setTemp);
         break;
 
         case shopScreens.GabineteScreen:
-          manager.searchCases().search(setProductos);
+          manager.searchCases().search(setTemp);
         break;
 
         case shopScreens.MemoriasRamScreen:
-          manager.SearchMemoryRam().search(setProductos);
+          manager.SearchMemoryRam().search(setTemp);
         break;
 
         case shopScreens.ProcesadoresScreen:
-          manager.SearchProcessors().search(setProductos);
+          manager.SearchProcessors().search(setTemp);
         break;
 
         case shopScreens.AlmacenamientoScreen:
-          manager.SearchStorage().search(setProductos);
+          manager.SearchStorage().search(setTemp);
         break;
 
         case shopScreens.VideoScreen:
-          manager.SearchVideoCards().search(setProductos);
+          manager.SearchVideoCards().search(setTemp);
         break;
 
         case shopScreens.TarjetaMadreScreen:
-          manager.SearchMotherboards().search(setProductos);
+          manager.SearchMotherboards().search(setTemp);
         break;
 
       }
@@ -53,6 +58,33 @@ function Offerts(props){
       alert(e);
     }
   }, []);
+
+
+  (async function () {
+    if (temp[0] != undefined) {
+      if (productos.length === 0) {
+        console.log("verificador")
+        for (let i = 0; i < temp.length; i++) {
+          const reference = ref(storage, `Productos/${temp[i].imageurl}`);
+          temp[i].imageurl = await getDownloadURL(reference)
+          .then((x)=>{return x;})
+          .catch((e)=>{})
+        }
+        setProductos(temp);
+      }
+    }else{
+
+    }
+  })();
+
+
+  function goToDetails(item){
+    // console.log(productos)
+    console.log(item)
+    // navigation.navigate("Details", {item: productos})
+  }
+
+
 
   const image = { uri: imagesUrl.fondo };
   return (
@@ -62,10 +94,12 @@ function Offerts(props){
         <View style={{ flex: 1}}>
           {productos.length === 0 ? (
           <View style={{flex: 1, justifyContent: "center", alignItems: "center" }}>
-            <Text>Esperando</Text>
+            <ActivityIndicator size="large" color="white"/>
+            <Text style={{color:"white", fontSize: 20}}>Cargando Productos</Text>
           </View>
           ) : (
-            <FlatGrid
+            <View>
+              <FlatGrid
             itemDimension={130}
               data={productos}
               
@@ -73,11 +107,13 @@ function Offerts(props){
               keyExtractor={(x) => x.id}
               renderItem={(data) => (
                 <View style={{flex:1, flexDirection: "column", backgroundColor: "#1583d7"}}>
-  
+
                   <TouchableOpacity onPress={()=>navigation.navigate("Details", {item: data.item})}>
 
                     <View style={{flex:1, alignContent:"center", alignItems: "center"}}>
-                      <Text>{data.item.imageurl}</Text>
+                      
+                    <Image source={{uri: data.item.imageurl}} style={{height: 100, width: "90%", marginTop: 5}}/>
+
                       <Text>{data.item.id}</Text>
                       <Text>{data.item.name}</Text>
                       <Text>{data.item.description}</Text>
@@ -94,6 +130,7 @@ function Offerts(props){
                 )}
               style={{ marginTop: 10 }}
             />
+            </View>
           )}
         </View>
       </View>

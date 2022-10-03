@@ -76,7 +76,7 @@ export class ManagerRead{
     return this;
   }
 
-  search(setProductos){
+  async search(setProductos){
     if (this._validation(this.query)){
       return onSnapshot(this.query, (querySnapshot) => {
         setProductos(

@@ -66,12 +66,12 @@ export class Registry{
                         address: this.#address,
                         rol: dataKeys.defaultRegister
                     })
-                    const shoppingCarRef = doc(database, `shoppingCar/${userFirebase.user.uid}` )
-                    setDoc(shoppingCarRef, {
-                        productos: {
+                    // const shoppingCarRef = doc(database, `shoppingCar/${userFirebase.user.uid}` )
+                    // setDoc(shoppingCarRef, {
+                    //     productos: {
 
-                        }
-                    })
+                    //     }
+                    // })
                     return true;
                 })
                 .catch(() => {

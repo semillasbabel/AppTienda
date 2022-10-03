@@ -1,5 +1,6 @@
 import { getApp, getApps, initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getStorage} from "firebase/storage"
 
 // import { getAuth, initializeAuth } from "firebase/auth";
 // import { getReactNativePersistence } from 'firebase/auth/react-native';
@@ -30,6 +31,8 @@ if (getApps().length < 1) {
   // auth = getAuth();
 }
 
+const storage = getStorage(firebaseApp);
+
 const database = getFirestore();
 
-export { firebaseApp, database };
+export { firebaseApp, database, storage };
