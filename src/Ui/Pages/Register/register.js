@@ -4,16 +4,18 @@ import { Button} from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { domainRegistry} from '../../../Domain/Repositories/Firebase/Auth/userRegister';
-import { imagesUrl, activityState } from "../../Utils/constants"
-import { defaultStateNote } from './Constants/registerKeys';
 
-const registry = new domainRegistry();
-const image = { uri: imagesUrl.fondo };
+import { activityState } from "../../Utils/constants"
+import { StateNoteEnum, ClearRegisterData } from './Constants/registerKeys';
+import { ImagesUrisEnum } from "../../Enums/AppImagesUris";
+import { ActivityStateEnum } from "../../Enums/ActivityIndicatorState"
 
 const Register = () => {
   const navigation = useNavigation();
-  const [estado, setEstado] = React.useState(defaultStateNote.inicial);
-  const [isLoading, setLoading] = React.useState(activityState.off);
+  const registry = new domainRegistry();
+
+  const [estado, setEstado] = React.useState(StateNoteEnum.inicial.value);
+  const [isLoading, setLoading] = React.useState(ActivityStateEnum.off.value);
   const [userRegister, setUserSend] = React.useState({
     email: "",
     Password: "",
@@ -22,25 +24,25 @@ const Register = () => {
   });
 
   async function registro(){
-    setLoading(activityState.on)
+    setLoading(ActivityStateEnum.on.value)
     await registry.setEmail(userRegister.email).setPassword(userRegister.Password).setName(userRegister.name).setAddress(userRegister.address).userRegistry();
 
     if (registry.getRegistryState) {
-      Alert.alert("", 'Registro Exitoso')
-      setUserSend({email: "", Password: "", name: "", address: ""})
-      setEstado(defaultStateNote.inicial)
-      setLoading(activityState.off)
+      Alert.alert(StateNoteEnum.registroExitoso.value)
+      setUserSend({email: ClearRegisterData.clear.value, Password: ClearRegisterData.clear.value, name: ClearRegisterData.clear.value, address: ClearRegisterData.clear.value})
+      setEstado(StateNoteEnum.inicial.value)
+      setLoading(ActivityStateEnum.off.value)
       navigation.goBack()
     }
     else{
-      setLoading(activityState.off)
-      setEstado(defaultStateNote.error)
+      setLoading(ActivityStateEnum.off.value)
+      setEstado(StateNoteEnum.error.value)
     }
   }
 
   return (
    
-    <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+    <ImageBackground source={{uri: ImagesUrisEnum.backgroundImage.value}} resizeMode="cover" style={styles.image}>
      
       <ScrollView>
         <Text style={styles.TEXTO}>Registro de Usuarios</Text>
