@@ -61,9 +61,8 @@ function Offerts(props){
 
 
   (async function () {
-    if (temp[0] != undefined) {
+    if (temp[0] !== undefined) {
       if (productos.length === 0) {
-        console.log("verificador")
         for (let i = 0; i < temp.length; i++) {
           const reference = ref(storage, `Productos/${temp[i].imageurl}`);
           temp[i].imageurl = await getDownloadURL(reference)
@@ -72,8 +71,6 @@ function Offerts(props){
         }
         setProductos(temp);
       }
-    }else{
-
     }
   })();
 

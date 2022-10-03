@@ -34,21 +34,18 @@ function DetailsScreen({ route, navigation }) {
   const image = { uri: imagesUrl.fondo };
   return (
     <ImageBackground source={image} resizeMode="cover" style={{flex:1}}>
-    <View style={{flex: 1, backgroundColor: "transparent", alignItems: "center"}}>
-
+    <View style={{flex: 1, backgroundColor: "transparent"}}>
       <View style={{height: 15, }}/>
-
-
-
-      <Card containerStyle={{ backgroundColor: '#1584c9' }} >
+      <Card containerStyle={{flex:1, backgroundColor: 'white'}} >
       <Text style={{fontSize:18}}> {item.name}</Text>
           <Card.Divider />
+          
+          <View style={{alignSelf:"center", height: "40%", width:"70%", marginBottom: 20}}>
           <Card.Image
-            style={{ marginTop:10, height:150, width:150, margin:100 }}
-            source={{uri: item.imageurl}}
-          />
-         
-             
+            style={{ margin:10, height:"100%", width:"90%", alignSelf:"center"}}
+            source={{uri: item.imageurl}}/>
+          </View>
+
               <Text style={{fontSize:18}} >Caracteristicas: {item.description}</Text>
               <Text style={{fontSize:18}} >Precio(iva): ¢{item.price}</Text>
               <Text style={{fontSize:18}} >cantidad en stock: {item.amount}</Text>
