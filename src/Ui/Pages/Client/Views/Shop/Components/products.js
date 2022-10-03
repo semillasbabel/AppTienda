@@ -106,20 +106,19 @@ function Offerts(props){
               spacing={10}
               keyExtractor={(x) => x.id}
               renderItem={(data) => (
-                <View style={{flex:1, flexDirection: "column", backgroundColor: "#1583d7"}}>
+                <View style={styles.cardSale}>
 
                   <TouchableOpacity onPress={()=>navigation.navigate("Details", {item: data.item})}>
 
                     <View style={{flex:1, alignContent:"center", alignItems: "center"}}>
                       
-                    <Image source={{uri: data.item.imageurl}} style={{height: 100, width: "90%", marginTop: 5}}/>
+                    <Image source={{uri: data.item.imageurl}} style={{height: 150, width: 150, marginTop: 5}}/>
 
-                      <Text>{data.item.id}</Text>
-                      <Text>{data.item.name}</Text>
-                      <Text>{data.item.description}</Text>
-                      <Text>{data.item.category}</Text>
-                      <Text>{data.item.amount}</Text>
-                      <Text>{data.item.price}</Text>
+                      
+                      <Text style={styles.textsale} >{data.item.name}</Text>
+                      <Text style={styles.textsale}> Descripcion: {data.item.description}</Text>
+                      <Text style={styles.textsale}> Stock: {data.item.amount}</Text>
+                      <Text style={styles.textsale}>Precio: ¢ {data.item.price}</Text>
 
                     </View>
 
@@ -163,5 +162,16 @@ function Offerts(props){
       fontSize: 12,
       color: '#fff',
     },
+    textsale:{
+      fontSize:18,
+     textAlign:'center',
+     color:'##29b6f6'
+    },
+    cardSale:{
+      flex:1,
+      flexDirection: "column", 
+      backgroundColor: "#f8f8f8",
+      borderRadius:10
+    }
   });
 export default Offerts;

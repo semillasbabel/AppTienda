@@ -6,7 +6,7 @@ import { getStorage} from "firebase/storage"
 // import { getReactNativePersistence } from 'firebase/auth/react-native';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { keysFirebase } from "./constants"
+import { keysFirebase } from "./constants.js"
 
 const firebaseConfig = {
   apiKey: keysFirebase.constapiKey,

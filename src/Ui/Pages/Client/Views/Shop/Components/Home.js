@@ -65,7 +65,7 @@ function Offerts(){
 
                     <View style={{flex:1, alignContent:"center", alignItems: "center"}}>
 
-                      <Image source={{uri: data.item.imageurl}} style={{height: 100, width: "90%", marginTop: 5}}/>
+                      <Image source={{uri: data.item.imageurl}} style={{height: 100, width: 90, marginTop: 5}}/>
                       
                       <Text>{data.item.id}</Text>
                       <Text>{data.item.name}</Text>
