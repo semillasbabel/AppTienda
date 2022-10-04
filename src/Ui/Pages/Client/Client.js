@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ShoppingCar from './Views/ShoppingCar/shoppingCar';
 import Store from './Views/Shop/shop';
 import Ionicons from 'react-native-vector-icons/FontAwesome5';
-import Salir from './Views/Shop/Components/out';
+import Salir from './Views/Exit/exit';
 import { ClientRoutesName } from "../../Enums/RoutesName"
 import { iconsKeys } from "./Constants/clientKeys"
 
