@@ -6,7 +6,6 @@ import { Text } from "@rneui/themed";
 
 
 const Salir = () => {
-  console.log("salir")
     const navigation = useNavigation();
 
     function salir(){
