@@ -4,17 +4,15 @@ import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
 import { ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
 import { shopScreens } from "../Constants/keysShop"
-import { imagesUrl } from "../../../../../Utils/constants"
-import { getDownloadURL, ref, getStorage } from "firebase/storage"
+import { ImagesUrisEnum } from "../../../../../Enums/AppImagesUris"
+import { getDownloadURL, ref} from "firebase/storage"
 import { storage } from "../../../../../../Data/Repositories/FirebaseConfig/fbconfig"
-import { Button } from "@rneui/base";
 
 function Offerts(props){
   const navigation = useNavigation();
   const {searchType} = props;
   const [temp, setTemp] = React.useState([]);
   const [productos, setProductos] = React.useState([]);
-  let imageurlSend = "";
 
   useEffect(() => {
     try {
@@ -73,19 +71,9 @@ function Offerts(props){
       }
     }
   })();
-
-
-  function goToDetails(item){
-    // console.log(productos)
-    console.log(item)
-    // navigation.navigate("Details", {item: productos})
-  }
-
-
-
-  const image = { uri: imagesUrl.fondo };
+  
   return (
-    <ImageBackground source={image} resizeMode="cover" style={{flex:1}}>
+    <ImageBackground source={{uri: ImagesUrisEnum.backgroundImage.value}} resizeMode="cover" style={{flex:1}}>
     <View style={{flex: 1, backgroundColor: "transparent"}}>
       <View style={{ flex: 1, backgroundColor: `transparent`}}>
         <View style={{ flex: 1}}>

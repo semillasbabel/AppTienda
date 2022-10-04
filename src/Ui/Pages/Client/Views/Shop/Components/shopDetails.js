@@ -1,12 +1,10 @@
 import React from "react";
-import {Text,  View, Button,Image, TouchableOpacity, ScrollView, ImageBackground} from 'react-native';
-import { Card, Icon } from "@rneui/themed";
-import { color } from "@rneui/base";
-import { useNavigation } from "@react-navigation/native";
-import { doc, setDoc, collection, addDoc, updateDoc } from "firebase/firestore"
+import {Text,  View, Button, ImageBackground} from 'react-native';
+import { Card} from "@rneui/themed";
+import { doc, setDoc} from "firebase/firestore"
 import { database, firebaseApp } from "../../../../../../Data/Repositories/FirebaseConfig/fbconfig"
 import { getAuth } from 'firebase/auth';
-import { imagesUrl } from "../../../../../Utils/constants"
+import { ImagesUrisEnum } from "../../../../../Enums/AppImagesUris"
 
 const auth = getAuth(firebaseApp);
 
@@ -15,25 +13,15 @@ function DetailsScreen({ route, navigation }) {
   const {item} = route.params;
 
   function addToCar(){
-
     const docuRef = doc(database, `shoppingCar/${auth.currentUser.uid}` )
     const ref = doc(database, `product/${item.id}`)
     setDoc(docuRef, {
       [`${item.id}`]:ref
     },{merge: true})
-    // console.log(item);
-
-    // const docuRef = doc(database, `shoppingCar/${auth.currentUser.uid}` )
-    // setDoc(docuRef, {
-    //   "":""
-    // },{merge: true})
-    // // console.log(item);
-
   }
 
-  const image = { uri: imagesUrl.fondo };
   return (
-    <ImageBackground source={image} resizeMode="cover" style={{flex:1}}>
+    <ImageBackground source={{uri: ImagesUrisEnum.backgroundImage.value}} resizeMode="cover" style={{flex:1}}>
     <View style={{flex: 1, backgroundColor: "transparent", marginBottom: 20}}>
       <View style={{height: 15, }}/>
       <Card containerStyle={{flex:1, backgroundColor: 'white'}} >

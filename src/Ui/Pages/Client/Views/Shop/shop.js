@@ -1,23 +1,12 @@
 import React from 'react'
-import {View, Text, Button} from "react-native"
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import Cases from './Components/cases';
-import MotherBoards from './Components/motherboards';
-import PowerSupply from './Components/powerSupply';
-import Processors from './Components/processors';
-import Ram from './Components/ram';
-import Storage from './Components/storage';
-import Video from './Components/video';
 import { shopScreens, productsCategory, iconsCategory, iconsColor } from './Constants/keysShop';
 
-import Home from './Components/Home';
 import Products from "./Components/products"
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Details from './Components/shopDetails';
-import {  DrawerItem, DrawerContentScrollView } from '@react-navigation/drawer' 
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { ManagerRead } from '../../../../../Domain/Repositories/Firebase/Crud/read';
 
 let screenType;
 
@@ -103,6 +92,7 @@ function HomeScreen(){
     </homestack.Navigator>
   )
 }
+
 
 const casestack = createNativeStackNavigator();
 function CaseScreen(){

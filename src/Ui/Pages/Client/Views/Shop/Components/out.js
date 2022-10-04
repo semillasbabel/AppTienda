@@ -3,8 +3,6 @@ import {View,  Alert, Button, StyleSheet,ImageBackground} from "react-native"
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text } from "@rneui/themed";
-// import LinearGradient from 'react-native-linear-gradient';
-
 
 const Salir = () => {
   console.log("salir")
@@ -18,7 +16,7 @@ const Salir = () => {
               {
                 text: "NO",
                 onPress: () => {
-                    navigation.goBack();
+                  navigation.goBack();
                 },
                 style: "cancel"
               },
@@ -28,7 +26,6 @@ const Salir = () => {
               }
             ]
           );
-        // setSignOut(true);
     }
 
     const image = { uri: "https://media.idownloadblog.com/wp-content/uploads/2020/05/Vector-wave-iPhone-wallpaper-Arthur1992aS-iDownloadBlog-5-710x1536.png" };

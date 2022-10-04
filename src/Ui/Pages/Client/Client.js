@@ -1,15 +1,11 @@
-
-
-import * as React from 'react';
-import { Button, Text, View } from 'react-native';
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ShoppingCar from './Views/Carrito/shoppingCar';
+import ShoppingCar from './Views/ShoppingCar/shoppingCar';
 import Store from './Views/Shop/shop';
-import Home from './Views/Shop/Components/Home';
 import Ionicons from 'react-native-vector-icons/FontAwesome5';
-import Icon from "react-native-vector-icons/Ionicons"
-import { ScreenStackHeaderSearchBarView } from 'react-native-screens';
 import Salir from './Views/Shop/Components/out';
+import { ClientRoutesName } from "../../Enums/RoutesName"
+import { iconsKeys } from "./Constants/clientKeys"
 
 const Tab = createBottomTabNavigator();
 
@@ -20,18 +16,18 @@ export default function TabsUser() {
       tabBarIcon: ({ color='black', size=10 }) => {
         let iconName;
 
-        if (route.name === 'Tienda') {
-          iconName = 'shopping-bag'
+        if (route.name === `${ClientRoutesName.shop.value}`) {
+          iconName = `${iconsKeys.shop}`;
             size = 30
         }
 
-        if (route.name === 'Carrito') {
-          iconName = 'shopping-cart';
+        if (route.name === `${ClientRoutesName.shoppingCar.value}`) {
+          iconName = `${iconsKeys.shoppingCar}`;
           size = 30
         }
         
-        if (route.name === 'Salir') {
-          iconName = 'power-off';
+        if (route.name === `${ClientRoutesName.exit.value}`) {
+          iconName = `${iconsKeys.exit}`;
           size = 30
         }
 
@@ -52,9 +48,9 @@ export default function TabsUser() {
   >
       
             
-    <Tab.Screen name="Tienda" component={Store} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black',}}}/>
-    <Tab.Screen name="Carrito" component={ShoppingCar} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black',}}}/>
-    <Tab.Screen name="Salir" component={Salir} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black',}}}/>
+    <Tab.Screen name={ClientRoutesName.shop.value} component={Store} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black',}}}/>
+    <Tab.Screen name={ClientRoutesName.shoppingCar.value} component={ShoppingCar} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black',}}}/>
+    <Tab.Screen name={ClientRoutesName.exit.value} component={Salir} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black',}}}/>
   </Tab.Navigator>
 
   );

@@ -7,46 +7,48 @@ import { getAuth } from 'firebase/auth';
 import { domainSignIn, domainGetRol } from '../../../Domain/Repositories/Firebase/Auth/SignIn';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { rolesKeys } from "./Constants/keysLoggin"
-import { routesName, imagesUrl, activityState } from "../../Utils/constants"
+import { ImagesUrisEnum } from "../../Enums/AppImagesUris"
+import { ActivityStateEnum } from "../../Enums/ActivityIndicatorState"
+import { MainRoutesEnum } from "../../Enums/RoutesName"
+import { PlaceholdersEnum, TextInputEnum } from "../../Enums/InputsEnum"
 
 const domainLogIn = new domainSignIn();
 const getRol = new domainGetRol();
 const auth = getAuth(firebaseApp);
-const image = { uri: imagesUrl.fondo };
 
 const Loggin = () => {
   const navigation = useNavigation();
   const [userSend, setUserSend] = React.useState({Email: "",Password: ""});
-  const [isLoading, setLoading] = React.useState(activityState.off);
+  const [isLoading, setLoading] = React.useState(ActivityStateEnum.off.value);
 
   
   async function logIn(){
-    setLoading(activityState.on)
+    setLoading(ActivityStateEnum.on.value)
     await domainLogIn.setEmail(userSend.Email).setPassword(userSend.Password).signIn();
     if (domainLogIn.getSignIn) {
 
       await getRol.setUid(auth.currentUser.uid).search();
       switch (getRol.getRol) {
         case rolesKeys.admin:
-          setLoading(activityState.off)
-          // navigation.navigate(routesName.admin)
+          setLoading(ActivityStateEnum.off.value)
+          // navigation.navigate(MainRoutesEnum)
           break;
 
         case rolesKeys.client:
-          setLoading(activityState.off)
-          navigation.navigate(routesName.client)
+          setLoading(ActivityStateEnum.off.value)
+          navigation.navigate(MainRoutesEnum.client.value)
           break;
 
         default:
-          setLoading(activityState.off)
+          setLoading(ActivityStateEnum.off.value)
           break;
       }
     }
-    else setLoading(activityState.off)
+    else setLoading(ActivityStateEnum.off.value)
   }
 
   return (
-    <ImageBackground source={image} resizeMode="cover" style={styles.image}>
+    <ImageBackground source={{uri: ImagesUrisEnum.backgroundImage.value}} resizeMode="cover" style={styles.image}>
 
       <View style={{margin:10, marginTop:50, alignSelf:"center"}}>
         <View>
@@ -60,17 +62,17 @@ const Loggin = () => {
         <View style={{alignSelf: "center", alignItems: "center"}}>
 
           <TextInput
-            placeholder='Correo Electronico'
+            placeholder={PlaceholdersEnum.logginEmail.value}
             value={userSend.Email}
-            textContentType="emailAddress"
+            textContentType={TextInputEnum.logginEmail.value}
             onChangeText={(e) => setUserSend({...userSend, Email: e})}
             style={{ height: 40, marginBottom:15, width:300, fontSize: 20, color:"#1899c5", borderRadius: 10, backgroundColor:'white',}}
           />
           
           <TextInput
-            placeholder='Contraseña'
+            placeholder={PlaceholdersEnum.logginPassword.value}
             value={userSend.Password}
-            textContentType="password"
+            textContentType={TextInputEnum.logginPassword.value}
             secureTextEntry
             onChangeText={(e) => setUserSend({...userSend, Password: e})}
             style={{  height: 40, marginBottom:15, width:300, fontSize: 20, color:"#1899c5", borderRadius: 10,backgroundColor:'white'}}
@@ -78,12 +80,12 @@ const Loggin = () => {
 
           <Button style={styles.botton} onPress={()=>logIn()} title={'Ingresar'}>Ingresar</Button>
 
-          <View>{isLoading === activityState.on ? <ActivityIndicator size="large" color="#1899c5"/> : <Text/>}</View>
+          <View>{isLoading === ActivityStateEnum.on.value ? <ActivityIndicator size="large" color="#1899c5"/> : <Text/>}</View>
 
           <Text style={styles.TEXTO}>NO ESTÁ REGISTRADO?</Text>
           
           <TouchableOpacity>
-            <Text style={styles.TEXTO} onPress={() => navigation.navigate(routesName.register) }>REGISTRESE AQUI</Text>
+            <Text style={styles.TEXTO} onPress={() => navigation.navigate(MainRoutesEnum.register.value) }>REGISTRESE AQUI</Text>
           </TouchableOpacity>
         </View>
 
@@ -92,9 +94,6 @@ const Loggin = () => {
     </ImageBackground>
   )
 }
-
-
-
 
 
 const styles = StyleSheet.create({
