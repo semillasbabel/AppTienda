@@ -1,5 +1,6 @@
+import { StyleSheet} from 'react-native';
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     text: {
      fontSize:25,
      justifyContent:'center',
@@ -38,5 +39,16 @@ const styles = StyleSheet.create({
       height:250,
       width:250,
       alignContent:'center'
+    },
+    
+    Inputicon:{
+     height: 40, 
+     marginBottom:15,
+     width:300,
+     fontSize: 20,
+     color:"#1899c5",
+     borderRadius: 10,
+     backgroundColor:'white',
+
     }
     });

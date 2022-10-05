@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
+import { View, Text,StyleSheet, ImageBackground, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
 import { Button, Image } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 import { firebaseApp } from '../../../Data/Repositories/FirebaseConfig/fbconfig';
@@ -11,6 +11,7 @@ import { ImagesUrisEnum } from "../../Enums/AppImagesUris"
 import { ActivityStateEnum } from "../../Enums/ActivityIndicatorState"
 import { MainRoutesEnum } from "../../Enums/RoutesName"
 import { PlaceholdersEnum, TextInputEnum } from "../../Enums/InputsEnum"
+import { styles } from './Styles/stylesLoggin';
 
 const domainLogIn = new domainSignIn();
 const getRol = new domainGetRol();
@@ -66,8 +67,7 @@ const Loggin = () => {
             value={userSend.Email}
             textContentType={TextInputEnum.logginEmail.value}
             onChangeText={(e) => setUserSend({...userSend, Email: e})}
-            style={{ height: 40, marginBottom:15, width:300, fontSize: 20, color:"#1899c5", borderRadius: 10, backgroundColor:'white',}}
-          />
+            style={styles.Inputicon}/>
           
           <TextInput
             placeholder={PlaceholdersEnum.logginPassword.value}
@@ -75,17 +75,16 @@ const Loggin = () => {
             textContentType={TextInputEnum.logginPassword.value}
             secureTextEntry
             onChangeText={(e) => setUserSend({...userSend, Password: e})}
-            style={{  height: 40, marginBottom:15, width:300, fontSize: 20, color:"#1899c5", borderRadius: 10,backgroundColor:'white'}}
-          />
+            style={styles.Inputicon}/>
 
           <Button style={styles.botton} onPress={()=>logIn()} title={'Ingresar'}>Ingresar</Button>
 
           <View>{isLoading === ActivityStateEnum.on.value ? <ActivityIndicator size="large" color="#1899c5"/> : <Text/>}</View>
 
-          <Text style={styles.TEXTO}>NO ESTÁ REGISTRADO?</Text>
+          <Text  style={styles.TEXTO}>NO ESTÁ REGISTRADO?</Text>
           
           <TouchableOpacity>
-            <Text style={styles.TEXTO} onPress={() => navigation.navigate(MainRoutesEnum.register.value) }>REGISTRESE AQUI</Text>
+            <Text  style={styles.TEXTO} onPress={() => navigation.navigate(MainRoutesEnum.register.value) }>REGISTRESE AQUI</Text>
           </TouchableOpacity>
         </View>
 

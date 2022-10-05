@@ -44,21 +44,21 @@ function DetailsScreen({ route, navigation }) {
 
   return (
     <ImageBackground source={{uri: ImagesUrisEnum.backgroundImage.value}} resizeMode="cover" style={{flex:1}}>
-    <View style={{flex: 1, backgroundColor: "transparent", marginBottom: 20}}>
+    <View style={styles.ViewPrincipal}>
       <View style={{height: 15, }}/>
       <Card containerStyle={{flex:1, backgroundColor: 'white'}} >
       <Text style={{fontSize:18}}> {item.name}</Text>
           <Card.Divider />
           
-          <View style={{alignSelf:"center", height: "40%", width:"70%", marginBottom: 20}}>
+          <View style={styles.ViewSecundario}>
           <Card.Image
-            style={{ margin:10, height:"100%", width:"90%", alignSelf:"center"}}
+            style={styles.cardImage}
             source={{uri: item.imageurl}}/>
           </View>
 
-              <Text style={{fontSize:18}} >Caracteristicas: {item.description}</Text>
-              <Text style={{fontSize:18}} >Precio(iva): ¢{item.price}</Text>
-              <Text style={{fontSize:18}} >cantidad en stock: {item.amount}</Text>
+              <Text style={styles.textView} >Caracteristicas: {item.description}</Text>
+              <Text style={styles.textView} >Precio(iva): ¢{item.price}</Text>
+              <Text style={styles.textView} >cantidad en stock: {item.amount}</Text>
               
                 <View style={{width: 50}}/>
                 
