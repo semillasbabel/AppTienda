@@ -10,7 +10,8 @@ import {
   SearchPowerSupply,
   SearchProcessors,
   SearchStorage,
-  SearchVideoCards
+  SearchVideoCards,
+  SearchShoppingCar
 } from "./searches";
 
 const manager = new SearchManager();
@@ -76,6 +77,13 @@ export class ManagerRead{
     return this;
   }
 
+  SearchShoppingCar(){
+    const search = new SearchShoppingCar();
+    manager.setSearch(search);
+    this.query = manager.getList();
+    return this;
+  }
+
   async search(setProductos){
     if (this._validation(this.query)){
       return onSnapshot(this.query, (querySnapshot) => {
@@ -89,6 +97,7 @@ export class ManagerRead{
             offert: x.data().offert,
             amount: x.data().amount,
             price: x.data().price,
+            quantity: x.data().quantity,
           }))
         );
       });
