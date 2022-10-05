@@ -138,7 +138,7 @@ function ShoppingCar(){
     </View>
     </ImageBackground>
     );
-  };
+  }
   
   
   
