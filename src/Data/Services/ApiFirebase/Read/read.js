@@ -1,9 +1,6 @@
 import { database, firebaseApp } from "../../../Repositories/FirebaseConfig/fbconfig";
 import {
-  onSnapshot,
   collection,
-  addDoc,
-  orderBy,
   query,
   where
 } from "firebase/firestore";

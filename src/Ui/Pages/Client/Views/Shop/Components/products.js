@@ -58,13 +58,12 @@ function Offerts(props){
     }
   }, []);
 
-
   (async function () {
     if (temp[0] !== undefined) {
       if (productos.length === 0) {
-        for (let i = 0; i < temp.length; i++) {
-          const reference = ref(storage, `Productos/${temp[i].imageurl}`);
-          temp[i].imageurl = await getDownloadURL(reference)
+        for (const data of temp) {
+          const reference = ref(storage, `Productos/${data.imageurl}`);
+          data.imageurl = await getDownloadURL(reference)
           .then((x)=>{return x;})
           .catch((e)=>{})
         }
@@ -72,7 +71,7 @@ function Offerts(props){
       }
     }
   })();
-  
+
   return (
     <ImageBackground source={{uri: ImagesUrisEnum.backgroundImage.value}} resizeMode="cover" style={{flex:1}}>
     <View style={{flex: 1, backgroundColor: "transparent"}}>
@@ -123,7 +122,7 @@ function Offerts(props){
     </View>
     </ImageBackground>
     );
-  };
+  }
   
 
 export default Offerts;
