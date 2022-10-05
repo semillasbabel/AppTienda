@@ -65,9 +65,13 @@ function ShoppingCar(){
 
   async function realizarCompra(){
     SetLoadingPay(true)
+    let now = new Date();
+    let fecha = `${now.getDate()}-${now.getMonth()}-${now.getFullYear()}`;
+    let hora = `${now.getHours()}-${now.getMinutes()}-${now.getSeconds()}`;
     await addDoc(collection(database, "report"), {
       personId: `${auth.currentUser.email}`,
-      date: Timestamp.now(),
+      date: `Realizada el: ${fecha} a las: ${hora}`,
+      createAt: now,
       totalPurchase: preciototal,  
     });
 

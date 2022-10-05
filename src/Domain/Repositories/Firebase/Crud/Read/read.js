@@ -1,5 +1,5 @@
 
-import { onSnapshot } from "firebase/firestore";
+import { onSnapshot, Timestamp } from "firebase/firestore";
 
 import { SearchManager } from "./manager";
 import { 
@@ -11,7 +11,9 @@ import {
   SearchProcessors,
   SearchStorage,
   SearchVideoCards,
-  SearchShoppingCar
+  SearchShoppingCar,
+  SearchAllProducts,
+  SearchReports
 } from "./searches";
 
 const manager = new SearchManager();
@@ -84,10 +86,24 @@ export class ManagerRead{
     return this;
   }
 
-  async search(setProductos){
+  SearchAllProducts(){
+    const search = new SearchAllProducts();
+    manager.setSearch(search);
+    this.query = manager.getList();
+    return this;
+  }
+
+  SearchReports(){
+    const search = new SearchReports();
+    manager.setSearch(search);
+    this.query = manager.getList();
+    return this;
+  }
+
+  async search(set){
     if (this._validation(this.query)){
       return onSnapshot(this.query, (querySnapshot) => {
-        setProductos(
+        set(
           querySnapshot.docs.map((x) => ({
             id: x.id,
             category: x.data().category,
@@ -98,6 +114,24 @@ export class ManagerRead{
             amount: x.data().amount,
             price: x.data().price,
             quantity: x.data().quantity,
+          }))
+        );
+      });
+    } else {
+      return null
+    }
+  }
+
+  async reports(set){
+    if (this._validation(this.query)){
+      return onSnapshot(this.query, (querySnapshot) => {
+        set(
+          querySnapshot.docs.map((x) => ({
+            id: x.id,
+            personId: x.data().personId,
+            totalPurchase: x.data().totalPurchase,
+            date: x.data().date,
+            createAt: x.data().createAt,
           }))
         );
       });

@@ -2,7 +2,8 @@ import { database, firebaseApp } from "../../../Repositories/FirebaseConfig/fbco
 import {
   collection,
   query,
-  where
+  where,
+  orderBy
 } from "firebase/firestore";
 import { getAuth } from 'firebase/auth';
 
@@ -16,4 +17,14 @@ export function getToFirebase(filter, valueFilter){
 export function getShoppingCar(){
   const ref = collection(database, `shoppingCar${auth.currentUser.uid}`);
   return query(ref);
+}
+
+export function getAllProducts(){
+  const ref = collection(database, `product`);
+  return query(ref);
+} 
+
+export function getReports(){
+  const ref = collection(database, `report`);
+  return query(ref, orderBy("createAt", "asc"));
 }
