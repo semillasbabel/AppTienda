@@ -26,6 +26,8 @@ function DetailsScreen({ route, navigation }) {
     },{merge: true})
   }
 
+ 
+
   return (
     <ImageBackground source={{uri: ImagesUrisEnum.backgroundImage.value}} resizeMode="cover" style={{flex:1}}>
     <View style={styles.ViewPrincipal}>

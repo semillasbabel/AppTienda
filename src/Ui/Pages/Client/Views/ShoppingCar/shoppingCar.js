@@ -91,7 +91,7 @@ function ShoppingCar(){
         <View style={{ flex: 1}}>
           {productos.length === 0 ? (
           <View style={{flex: 1, justifyContent: "center", alignItems: "center" }}>
-            <ActivityIndicator size="large" color="white"/>
+            <ActivityIndicator size="large" color="#00ff00" />
             <Text style={{color:"white", fontSize: 20}}>Esperando que agregues algún producto</Text>
           </View>
           ) : (
@@ -108,8 +108,8 @@ function ShoppingCar(){
 
                     <View style={{flex:1, flexDirection:"row", backgroundColor:"white"}}>
 
-                      <View style={{width:120 ,alignContent:"center", alignItems: "center", flexDirection: "column"}}>
-                        <Image source={{uri: data.item.imageurl}} style={{height: "60%", width: "90%", marginTop: 5}}/> 
+                      <View style={{width:130 ,alignContent:"center", alignItems: "center", flexDirection: "column"}}>
+                        <Image source={{uri: data.item.imageurl}} style={{height: "95%", width: "90%", marginTop: 5}}/> 
                       </View>
 
                       <View style={{flex:1, flexDirection:"column"}}>
@@ -117,12 +117,13 @@ function ShoppingCar(){
                         <Text style={styles.textsale}> Descripcion: {data.item.description}</Text>
                         <Text style={styles.textsale}> Stock: {data.item.amount}</Text>
                         <Text style={styles.textsale}>Precio: ¢ {data.item.price}</Text>
-                        <View style={{height:30 ,flexDirection:"row", alignSelf:"center"}}>
+                        <View style={{height:45 ,flexDirection:"row", alignSelf:"center"}}>
                           <Button title="min" onPress={()=>disminuirCantidad(data.item.id, data.index)}/>
-                          <View style={{width:20}}/>
-                          <Button title="max" onPress={()=>aumentarCantidad(data.item.id, data.index)}/>
+                          <Text style={{marginTop:10, alignContent:'center', marginLeft:10, alignItems:'center'}}> {data.item.quantity}</Text>
+                          <View style={{width:25}}/>
+                          <Button style={{height:25}} title="max" onPress={()=>aumentarCantidad(data.item.id, data.index)}/>
                         </View>
-                      <Text style={styles.textsale}>Cantidad: {data.item.quantity}</Text>
+                     
                       </View>
 
                     </View>
@@ -190,16 +191,24 @@ function ShoppingCar(){
       color: '#fff',
     },
     textsale:{
-      fontSize:12,
+      fontSize:14,
      textAlign:'center',
-     color:'##29b6f6'
+     color:'black'
     },
     cardSale:{
       flex:1,
       flexDirection:"column",
       margin:5, 
       backgroundColor: "#f8f8f8",
-      borderRadius:10
+      borderRadius:10,
+      height:150
+    },
+    textmount:{
+      fontSize:18,
+      fontStyle:'normal',
+      fontWeight:'bold',
+      marginVertical:8,
+      color:'#29b6f5'
     }
   });
 export default ShoppingCar;
