@@ -18,9 +18,8 @@ export const  styles = StyleSheet.create({
       color:'#ffff00',
       justifyContent:'center',
       alignItems:'center',
-      paddingVertical:15,
+      paddingVertical:75,
       textAlign:'center',
-      paddingVertical:60
     },
     container: {
       flex: 1,

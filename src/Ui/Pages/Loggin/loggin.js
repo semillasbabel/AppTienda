@@ -1,10 +1,10 @@
 import React from 'react'
-import { View, Text,StyleSheet, ImageBackground, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
+import { View, Text, ImageBackground, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
 import { Button, Image } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 import { firebaseApp } from '../../../Data/Repositories/FirebaseConfig/fbconfig';
 import { getAuth } from 'firebase/auth';
-import { domainSignIn, domainGetRol } from '../../../Domain/Repositories/Firebase/Auth/SignIn';
+import { DomainSignIn, DomainGetRol } from '../../../Domain/Repositories/Firebase/Auth/SignIn';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { rolesKeys } from "./Constants/keysLoggin"
 import { ImagesUrisEnum } from "../../Enums/AppImagesUris"
@@ -13,8 +13,8 @@ import { MainRoutesEnum } from "../../Enums/RoutesName"
 import { PlaceholdersEnum, TextInputEnum } from "../../Enums/InputsEnum"
 import { styles } from './Styles/stylesLoggin';
 
-const domainLogIn = new domainSignIn();
-const getRol = new domainGetRol();
+const domainLogIn = new DomainSignIn();
+const getRol = new DomainGetRol();
 const auth = getAuth(firebaseApp);
 
 const Loggin = () => {

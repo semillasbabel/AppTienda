@@ -1,6 +1,6 @@
 import { handleSignIn, GetRol } from "../../../../Data/Services/AuthFirebase/signIn"
 
-export class domainSignIn{
+export class DomainSignIn{
     #email;
     #password;
     #validateEmail = false;
@@ -26,11 +26,7 @@ export class domainSignIn{
     }
 
     _attributeValidation(atributo){
-        switch (atributo) {
-            case "": return false;
-            case null: return false;
-        }
-        return true;
+        return !((atributo === "") || (atributo === null));
     }
 
     async signIn(){
@@ -51,7 +47,7 @@ export class domainSignIn{
 
 //-------------------------------------------------- Separador -------------------------------------------------
 
-export class domainGetRol{
+export class DomainGetRol{
     #uid;
     #validateSearch = false;
     #rol;
@@ -66,14 +62,7 @@ export class domainGetRol{
         return this;
     }
     _uidValidate(uid){
-        switch (uid) {
-            case "": return false;
-            case null: return false;
-        }
-        if (!isNaN(uid)) {
-            return false
-        }
-        return true;
+        return !((uid === "") || (uid === null) || (!isNaN(uid)));
     }
 
     async search(){

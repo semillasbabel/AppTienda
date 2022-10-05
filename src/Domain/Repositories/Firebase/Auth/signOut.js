@@ -1,11 +1,7 @@
 
 
 export async function domainSignOut(auth){
-    if (_validation(auth)) {
-        return true;
-    } else {
-        return false;
-    }
+    return _validation(auth);
 }
 
 function _validation(auth){
@@ -15,10 +11,6 @@ function _validation(auth){
         return false;
     }
 
-    switch (auth) {
-        case null: return false
-        case "": return false
-    }
+    return !((auth === "") || (auth === null));
 
-    return true;
 }

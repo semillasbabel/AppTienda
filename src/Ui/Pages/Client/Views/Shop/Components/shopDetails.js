@@ -1,12 +1,11 @@
 import React from "react";
 import {Text,  View, Button, ImageBackground} from 'react-native';
 import { Card} from "@rneui/themed";
-import { arrayUnion, doc, Firestore, increment, setDoc, updateDoc} from "firebase/firestore"
+import { doc, setDoc} from "firebase/firestore"
 import { database, firebaseApp } from "../../../../../../Data/Repositories/FirebaseConfig/fbconfig"
 import { getAuth } from 'firebase/auth';
 import { ImagesUrisEnum } from "../../../../../Enums/AppImagesUris"
-import { onSnapshot } from "firebase/firestore";
-import { styles } from "./styles-details/style-details";
+import { styles } from "./styles-details/style-details"
 
 const auth = getAuth(firebaseApp);
 

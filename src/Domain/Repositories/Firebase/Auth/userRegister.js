@@ -1,9 +1,8 @@
-import { async } from "@firebase/util"
 import { Registry } from "../../../../Data/Services/AuthFirebase/userRegister"
 
 
 
-export class domainRegistry{
+export class DomainRegistry{
     #email;
     #password;
     #name;
@@ -45,11 +44,7 @@ export class domainRegistry{
     }
 
     _attributeValidation(atributo){
-        switch (atributo) {
-            case "": return false;
-            case null: return false;
-        }
-        return true;
+        return !((atributo === "") || (atributo === null));
     }
 
     async userRegistry(){

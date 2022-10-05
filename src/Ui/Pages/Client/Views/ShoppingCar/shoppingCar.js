@@ -1,33 +1,29 @@
 import React, { useEffect } from "react";
 import { TouchableOpacity, View, FlatList, Alert, Text, ActivityIndicator, Image, StyleSheet,ImageBackground, Button } from "react-native";
-import { FlatGrid } from 'react-native-super-grid';
-import { useNavigation } from "@react-navigation/native";
 import { ImagesUrisEnum } from "../../../../Enums/AppImagesUris"
 import { getAuth } from 'firebase/auth';
 import { database, firebaseApp } from "../../../../../Data/Repositories/FirebaseConfig/fbconfig";
-import { onSnapshot, doc, increment, getDocs, collection, updateDoc, DocumentSnapshot, query, deleteDoc } from "firebase/firestore";
-import { getProductos } from "./prueba"
+import { doc, increment, updateDoc, deleteDoc } from "firebase/firestore";
+import { ManagerRead } from "../../../../../Domain/Repositories/Firebase/Crud/Read/read";
 
-function Offerts(){
-  const navigation = useNavigation();
-  const [loading, setloading] = React.useState(false);
+function ShoppingCar(){
+
   const [productos, setProductos] = React.useState([]);
-  const [total, setTotal] = React.useState(0);
-  // let productos = [];
   const auth = getAuth(firebaseApp);  
   let preciototal = 0;
 
   useEffect(() => {
     try { 
-      getProductos(setProductos);
+      const manager = new ManagerRead();
+      manager.SearchShoppingCar().search(setProductos);
     } catch (e) {
       alert(e);
     }
   }, []);
 
   (async function () {
-    for (let i = 0; i < productos.length; i++) {
-      preciototal = preciototal + productos[i].price * productos[i].quantity
+    for (const products of productos) {
+      preciototal = preciototal + products.price * products.quantity
     }
   })();
 
@@ -68,8 +64,8 @@ function Offerts(){
 
   function realizarCompra(){
     console.log("Compra Realizada");
-    for (let i = 0; i < productos.length; i++) {
-      const ref = doc(database, `shoppingCar${auth.currentUser.uid}`, `${productos[i].id}`);
+    for (const products of productos) {
+      const ref = doc(database, `shoppingCar${auth.currentUser.uid}`, `${products.id}`);
       deleteDoc(ref);
       console.log("Producto Eliminado");
     }
@@ -143,7 +139,7 @@ function Offerts(){
     </View>
     </ImageBackground>
     );
-  };
+  }
   
   
   
@@ -189,5 +185,4 @@ function Offerts(){
       color:'#29b6f5'
     }
   });
-export default Offerts;
-
+export default ShoppingCar;
