@@ -1,9 +1,9 @@
-import { View, Text, StyleSheet, ImageBackground, ActivityIndicator, ScrollView, TextInput, Alert } from 'react-native'
+import { View, Text, ImageBackground, ActivityIndicator, ScrollView, TextInput, Alert } from 'react-native'
 import React from 'react'
 import { Button} from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { domainRegistry} from '../../../Domain/Repositories/Firebase/Auth/userRegister';
+import { DomainRegistry} from '../../../Domain/Repositories/Firebase/Auth/userRegister';
 import { ClearRegisterData, RegisterStateNote } from './Constants/registerKeys';
 import { ImagesUrisEnum } from "../../Enums/AppImagesUris";
 import { ActivityStateEnum } from "../../Enums/ActivityIndicatorState"
@@ -12,7 +12,7 @@ import { styles } from './stylesRegister/stylesR';
 
 const Register = () => {
   const navigation = useNavigation();
-  const registry = new domainRegistry();
+  const registry = new DomainRegistry();
 
   const [estado, setEstado] = React.useState(RegisterStateNote.inicial.value);
   const [isLoading, setLoading] = React.useState(ActivityStateEnum.off.value);

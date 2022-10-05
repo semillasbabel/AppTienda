@@ -1,19 +1,14 @@
 import React, { useEffect } from "react";
 import { TouchableOpacity, View, FlatList, Alert, Text, ActivityIndicator, Image, StyleSheet,ImageBackground, Button } from "react-native";
-import { FlatGrid } from 'react-native-super-grid';
-import { useNavigation } from "@react-navigation/native";
 import { ImagesUrisEnum } from "../../../../Enums/AppImagesUris"
 import { getAuth } from 'firebase/auth';
 import { database, firebaseApp } from "../../../../../Data/Repositories/FirebaseConfig/fbconfig";
-import { onSnapshot, doc, increment, getDocs, collection, updateDoc, DocumentSnapshot, query, deleteDoc } from "firebase/firestore";
+import { doc, increment, updateDoc, deleteDoc } from "firebase/firestore";
 import { getProductos } from "./prueba"
 
-function Offerts(){
-  const navigation = useNavigation();
-  const [loading, setloading] = React.useState(false);
+function ShoppingCar(){
+
   const [productos, setProductos] = React.useState([]);
-  const [total, setTotal] = React.useState(0);
-  // let productos = [];
   const auth = getAuth(firebaseApp);  
   let preciototal = 0;
 
@@ -26,8 +21,8 @@ function Offerts(){
   }, []);
 
   (async function () {
-    for (let i = 0; i < productos.length; i++) {
-      preciototal = preciototal + productos[i].price * productos[i].quantity
+    for (const products of productos) {
+      preciototal = preciototal + products.price * products.quantity
     }
   })();
 
@@ -68,8 +63,8 @@ function Offerts(){
 
   function realizarCompra(){
     console.log("Compra Realizada");
-    for (let i = 0; i < productos.length; i++) {
-      const ref = doc(database, `shoppingCar${auth.currentUser.uid}`, `${productos[i].id}`);
+    for (const products of productos) {
+      const ref = doc(database, `shoppingCar${auth.currentUser.uid}`, `${products.id}`);
       deleteDoc(ref);
       console.log("Producto Eliminado");
     }
@@ -180,41 +175,4 @@ function Offerts(){
       borderRadius:10
     }
   });
-export default Offerts;
-
-// // import React from 'react'
-// // import { View, Text, Button } from "react-native"
-// // import { doc, getDoc, collection, getDocs } from "firebase/firestore";
-// // import { firebaseApp, database } from "../../../../../Data/Repositories/FirebaseConfig/fbconfig"
-// // import { getAuth } from 'firebase/auth';
-
-// // const auth = getAuth(firebaseApp);
-
-// // function ShoppingCar() {
-
-// //   async function buscar(){
-// //     const docRef = doc(database, "shoppingCar", `${auth.currentUser.uid}`);
-// //     const docSnap = await getDoc(docRef);
-
-// //     console.log(docSnap.data().Productos);
-    
-// //     // if (docSnap.exists()) {
-// //     //   console.log(docSnap.data.);
-// //     // } else {
-// //     //   // doc.data() will be undefined in this case
-// //     //   console.log("No such document!");
-// //     // }
-// //   }
-
-// //   return (
-// //     <View>
-// //       <Text>ShoppingCar</Text>
-// //       <Button
-// //       title='Buscar'
-// //       onPress={()=>buscar()}
-// //       />
-// //     </View>
-// //   )
-// // }
-
-// // export default ShoppingCar
+export default ShoppingCar;

@@ -17,7 +17,7 @@ const manager = new SearchManager();
 
 export class ManagerRead{
   constructor(){
-    this.query;
+    this.query = "";
   }
 
   searchOfferts(){
@@ -98,11 +98,7 @@ export class ManagerRead{
   }
 
   _validation(query){
-    switch (query) {
-      case "": return false;
-      case null: return false;
-    }
-    return true;
+    return !((query === "") || (query === null));
   }
 
 }
