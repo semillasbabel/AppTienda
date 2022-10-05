@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { TouchableOpacity, View, Text, ActivityIndicator, Image, StyleSheet,ImageBackground } from "react-native";
 import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
-import { ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
+import { ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/Read/read";
 import { shopScreens } from "../Constants/keysShop"
 import { ImagesUrisEnum } from "../../../../../Enums/AppImagesUris"
 import { getDownloadURL, ref} from "firebase/storage"

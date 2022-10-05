@@ -1,24 +1,46 @@
 import React from "react";
 import {Text,  View, Button, ImageBackground} from 'react-native';
 import { Card} from "@rneui/themed";
-import { doc, setDoc} from "firebase/firestore"
+import { arrayUnion, doc, Firestore, increment, setDoc, updateDoc} from "firebase/firestore"
 import { database, firebaseApp } from "../../../../../../Data/Repositories/FirebaseConfig/fbconfig"
 import { getAuth } from 'firebase/auth';
 import { ImagesUrisEnum } from "../../../../../Enums/AppImagesUris"
+import { onSnapshot } from "firebase/firestore";
 
 const auth = getAuth(firebaseApp);
 
-
 function DetailsScreen({ route, navigation }) {
+
   const {item} = route.params;
 
-  function addToCar(){
-    const docuRef = doc(database, `shoppingCar/${auth.currentUser.uid}` )
-    const ref = doc(database, `product/${item.id}`)
-    setDoc(docuRef, {
-      [`${item.id}`]:ref
+  async function addToCar(){
+    const docuRef = doc(database, `shoppingCar${auth.currentUser.uid}/${item.id}` )
+    setDoc(docuRef,{
+      amount: item.amount,
+      category: item.category,
+      description: item.description,
+      imageurl: item.imageurl,
+      name: item.name,
+      price: item.price,
+      quantity: 1,
     },{merge: true})
   }
+
+  // async function addToCar(){
+  //   const ref = doc(database, "shoppingCar", `${auth.currentUser.uid}`);
+  //   await updateDoc(ref, {
+  //     [`${item.id}`]: item
+  //   },{merge:true});
+  // }
+
+  // function addToCar(){
+  //   const docuRef = doc(database, `shoppingCar/${auth.currentUser.uid}` )
+  //   setDoc(docuRef, {
+  //       Productos: {
+  //         [`${item.name}`]:`${item.id}`
+  //       }
+  //   },{merge: true})
+  // }
 
   return (
     <ImageBackground source={{uri: ImagesUrisEnum.backgroundImage.value}} resizeMode="cover" style={{flex:1}}>
@@ -42,6 +64,7 @@ function DetailsScreen({ route, navigation }) {
                 
                 <Button
                 title="Agregar al Carrito"
+                onPress={()=>addToCar()}
                 />
                  <Card.Divider />
                 <Button

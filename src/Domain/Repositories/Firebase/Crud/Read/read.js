@@ -1,7 +1,7 @@
 
 import { onSnapshot } from "firebase/firestore";
 
-import { SearchManager } from "./Read/manager";
+import { SearchManager } from "./manager";
 import { 
   SearchOffert,
   SearchCases,
@@ -11,7 +11,7 @@ import {
   SearchProcessors,
   SearchStorage,
   SearchVideoCards
-} from "./Read/searches";
+} from "./searches";
 
 const manager = new SearchManager();
 
@@ -76,7 +76,7 @@ export class ManagerRead{
     return this;
   }
 
-  search(setProductos){
+  async search(setProductos){
     if (this._validation(this.query)){
       return onSnapshot(this.query, (querySnapshot) => {
         setProductos(
@@ -87,6 +87,8 @@ export class ManagerRead{
             imageurl: x.data().imageurl,
             name: x.data().name,
             offert: x.data().offert,
+            amount: x.data().amount,
+            price: x.data().price,
           }))
         );
       });
@@ -104,3 +106,4 @@ export class ManagerRead{
   }
 
 }
+
