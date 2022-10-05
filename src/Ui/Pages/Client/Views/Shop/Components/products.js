@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { TouchableOpacity, View, Text, ActivityIndicator, Image, StyleSheet,ImageBackground } from "react-native";
+import { TouchableOpacity, View, Text, ActivityIndicator, Image,ImageBackground } from "react-native";
 import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
 import { ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/read";
@@ -7,6 +7,7 @@ import { shopScreens } from "../Constants/keysShop"
 import { ImagesUrisEnum } from "../../../../../Enums/AppImagesUris"
 import { getDownloadURL, ref} from "firebase/storage"
 import { storage } from "../../../../../../Data/Repositories/FirebaseConfig/fbconfig"
+import {styles} from "../style-productos/style-products"
 
 function Offerts(props){
   const navigation = useNavigation();
@@ -103,7 +104,7 @@ function Offerts(props){
                       <Text style={styles.textsale} >{data.item.name}</Text>
                       <Text style={styles.textsale}> Descripcion: {data.item.description}</Text>
                       <Text style={styles.textsale}> Stock: {data.item.amount}</Text>
-                      <Text style={styles.textsale}>Precio: ¢ {data.item.price}</Text>
+                      <Text style={styles.textsale}> Precio: ¢ {data.item.price}</Text>
 
                     </View>
 
@@ -124,39 +125,5 @@ function Offerts(props){
     );
   };
   
-  
-  
-  const styles = StyleSheet.create({
-    gridView: {
-      marginTop: 10,
-      flex: 1,
-    },
-    itemContainer: {
-      justifyContent: 'flex-end',
-      borderRadius: 5,
-      padding: 10,
-      height: 150,
-    },
-    itemName: {
-      fontSize: 15,
-      color: '#fff',
-      fontWeight: '600',
-    },
-    itemCode: {
-      fontWeight: '600',
-      fontSize: 12,
-      color: '#fff',
-    },
-    textsale:{
-      fontSize:18,
-     textAlign:'center',
-     color:'##29b6f6'
-    },
-    cardSale:{
-      flex:1,
-      flexDirection: "column", 
-      backgroundColor: "#f8f8f8",
-      borderRadius:10
-    }
-  });
+
 export default Offerts;
