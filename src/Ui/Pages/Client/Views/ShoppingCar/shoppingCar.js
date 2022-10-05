@@ -4,7 +4,6 @@ import { ImagesUrisEnum } from "../../../../Enums/AppImagesUris"
 import { getAuth } from 'firebase/auth';
 import { database, firebaseApp } from "../../../../../Data/Repositories/FirebaseConfig/fbconfig";
 import { doc, increment, updateDoc, deleteDoc } from "firebase/firestore";
-import { getProductos } from "./prueba"
 import { ManagerRead } from "../../../../../Domain/Repositories/Firebase/Crud/Read/read";
 
 function ShoppingCar(){
@@ -17,8 +16,6 @@ function ShoppingCar(){
     try { 
       const manager = new ManagerRead();
       manager.SearchShoppingCar().search(setProductos);
-      // getProductos(setProductos);
-
     } catch (e) {
       alert(e);
     }
