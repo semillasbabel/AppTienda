@@ -6,6 +6,7 @@ import { database, firebaseApp } from "../../../../../../Data/Repositories/Fireb
 import { getAuth } from 'firebase/auth';
 import { ImagesUrisEnum } from "../../../../../Enums/AppImagesUris"
 import { onSnapshot } from "firebase/firestore";
+import { styles } from "./styles-details/style-details";
 
 const auth = getAuth(firebaseApp);
 
@@ -26,21 +27,7 @@ function DetailsScreen({ route, navigation }) {
     },{merge: true})
   }
 
-  // async function addToCar(){
-  //   const ref = doc(database, "shoppingCar", `${auth.currentUser.uid}`);
-  //   await updateDoc(ref, {
-  //     [`${item.id}`]: item
-  //   },{merge:true});
-  // }
-
-  // function addToCar(){
-  //   const docuRef = doc(database, `shoppingCar/${auth.currentUser.uid}` )
-  //   setDoc(docuRef, {
-  //       Productos: {
-  //         [`${item.name}`]:`${item.id}`
-  //       }
-  //   },{merge: true})
-  // }
+ 
 
   return (
     <ImageBackground source={{uri: ImagesUrisEnum.backgroundImage.value}} resizeMode="cover" style={{flex:1}}>

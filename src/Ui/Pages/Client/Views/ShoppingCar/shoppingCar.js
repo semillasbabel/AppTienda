@@ -83,7 +83,7 @@ function Offerts(){
         <View style={{ flex: 1}}>
           {productos.length === 0 ? (
           <View style={{flex: 1, justifyContent: "center", alignItems: "center" }}>
-            <ActivityIndicator size="large" color="white"/>
+            <ActivityIndicator size="large" color="#00ff00" />
             <Text style={{color:"white", fontSize: 20}}>Esperando que agregues algún producto</Text>
           </View>
           ) : (
@@ -100,8 +100,8 @@ function Offerts(){
 
                     <View style={{flex:1, flexDirection:"row", backgroundColor:"white"}}>
 
-                      <View style={{width:120 ,alignContent:"center", alignItems: "center", flexDirection: "column"}}>
-                        <Image source={{uri: data.item.imageurl}} style={{height: "60%", width: "90%", marginTop: 5}}/> 
+                      <View style={{width:130 ,alignContent:"center", alignItems: "center", flexDirection: "column"}}>
+                        <Image source={{uri: data.item.imageurl}} style={{height: "95%", width: "90%", marginTop: 5}}/> 
                       </View>
 
                       <View style={{flex:1, flexDirection:"column"}}>
@@ -109,12 +109,13 @@ function Offerts(){
                         <Text style={styles.textsale}> Descripcion: {data.item.description}</Text>
                         <Text style={styles.textsale}> Stock: {data.item.amount}</Text>
                         <Text style={styles.textsale}>Precio: ¢ {data.item.price}</Text>
-                        <View style={{height:30 ,flexDirection:"row", alignSelf:"center"}}>
+                        <View style={{height:45 ,flexDirection:"row", alignSelf:"center"}}>
                           <Button title="min" onPress={()=>disminuirCantidad(data.item.id, data.index)}/>
-                          <View style={{width:20}}/>
-                          <Button title="max" onPress={()=>aumentarCantidad(data.item.id, data.index)}/>
+                          <Text style={{marginTop:10, alignContent:'center', marginLeft:10, alignItems:'center'}}> {data.item.quantity}</Text>
+                          <View style={{width:25}}/>
+                          <Button style={{height:25}} title="max" onPress={()=>aumentarCantidad(data.item.id, data.index)}/>
                         </View>
-                      <Text style={styles.textsale}>Cantidad: {data.item.quantity}</Text>
+                     
                       </View>
 
                     </View>
@@ -125,8 +126,8 @@ function Offerts(){
               </View>
 
 
-              <View style={{height:80, backgroundColor:"white", alignItems:"center"}}>
-                <Text style={{marginVertical: 8}}>{preciototal}</Text>
+              <View style={{height:90, backgroundColor:"black", alignItems:"center"}}>
+                <Text style={styles.textmount}>¢ {preciototal}</Text>
                 <TouchableOpacity onPress={()=>realizarCompra()}>
                   <View style={{height:40, width:150, backgroundColor:"yellow"}}>
                     <Text style={{marginTop:10, alignSelf:"center"}}>Realizar Compra</Text>
@@ -168,53 +169,25 @@ function Offerts(){
       color: '#fff',
     },
     textsale:{
-      fontSize:12,
+      fontSize:14,
      textAlign:'center',
-     color:'##29b6f6'
+     color:'black'
     },
     cardSale:{
       flex:1,
       flexDirection:"column",
       margin:5, 
       backgroundColor: "#f8f8f8",
-      borderRadius:10
+      borderRadius:10,
+      height:150
+    },
+    textmount:{
+      fontSize:18,
+      fontStyle:'normal',
+      fontWeight:'bold',
+      marginVertical:8,
+      color:'#29b6f5'
     }
   });
 export default Offerts;
 
-// // import React from 'react'
-// // import { View, Text, Button } from "react-native"
-// // import { doc, getDoc, collection, getDocs } from "firebase/firestore";
-// // import { firebaseApp, database } from "../../../../../Data/Repositories/FirebaseConfig/fbconfig"
-// // import { getAuth } from 'firebase/auth';
-
-// // const auth = getAuth(firebaseApp);
-
-// // function ShoppingCar() {
-
-// //   async function buscar(){
-// //     const docRef = doc(database, "shoppingCar", `${auth.currentUser.uid}`);
-// //     const docSnap = await getDoc(docRef);
-
-// //     console.log(docSnap.data().Productos);
-    
-// //     // if (docSnap.exists()) {
-// //     //   console.log(docSnap.data.);
-// //     // } else {
-// //     //   // doc.data() will be undefined in this case
-// //     //   console.log("No such document!");
-// //     // }
-// //   }
-
-// //   return (
-// //     <View>
-// //       <Text>ShoppingCar</Text>
-// //       <Button
-// //       title='Buscar'
-// //       onPress={()=>buscar()}
-// //       />
-// //     </View>
-// //   )
-// // }
-
-// // export default ShoppingCar

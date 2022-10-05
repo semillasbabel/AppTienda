@@ -1,9 +1,10 @@
 import React from 'react'
-import {View,  Alert, Button, StyleSheet,ImageBackground} from "react-native"
+import {View,  Alert, StyleSheet,ImageBackground} from "react-native"
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Text } from "@rneui/themed";
-
+import { Button,Icon } from "@rneui/themed";
+import { styles } from './styles-exit/styles';
 
 const Salir = () => {
     const navigation = useNavigation();
@@ -41,49 +42,18 @@ const Salir = () => {
         </View>
 
 
-        <TouchableOpacity
-        style={styles.button}
-        onPress={()=>salir()}>
-        <Text style={styles.textb}>Cerrar Sesion</Text>
-      </TouchableOpacity>
+        
 
-      <Button
-      title='Salir'
-      onPress={()=>salir()}
-      />
-    
+      
+    <Button style={styles.button} type="solid" title={'Cerrar session'} onPress={()=>salir()}>
+    Cerrar sesion  
+  <Icon name="cancel" color="white" />
+</Button>
 
         
     </View>
     </ImageBackground>
   )
 }
-const styles = StyleSheet.create({
-  textout: {
-   fontSize:18,
-   justifyContent:'center',
-   color:'#fdd835',
-
-  },
-  textb: {
-    fontSize:18,
-    justifyContent:'center',
-    color:'red',
- 
-   },
-  button: {
-    margin:100,
-    alignItems: "center",
-    backgroundColor: "#27272f",
-    padding: 10,
-    height:50,
-    width:200
-  
-  },
-  image: {
-    flex: 1,
-  },
-
-  });
 
 export default Salir
