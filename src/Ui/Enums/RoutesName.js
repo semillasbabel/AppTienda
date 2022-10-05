@@ -20,3 +20,13 @@ export class ClientRoutesName {
         this.value = value
     }
 }
+
+export class AdminRoutesName{
+    static report = new AdminRoutesName("Reporte")
+    static products = new AdminRoutesName("Productos")
+    static exit = new AdminRoutesName("Salir")
+
+    constructor(value) {
+        this.value = value
+    }
+}
