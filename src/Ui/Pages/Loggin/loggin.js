@@ -32,7 +32,7 @@ const Loggin = () => {
       switch (getRol.getRol) {
         case rolesKeys.admin:
           setLoading(ActivityStateEnum.off.value)
-          // navigation.navigate(MainRoutesEnum)
+          navigation.navigate(MainRoutesEnum.admin.value)
           break;
 
         case rolesKeys.client:

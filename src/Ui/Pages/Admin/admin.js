@@ -1,34 +1,51 @@
-import React from 'react'
-import { View, Text, Button } from 'react-native'
-import { useNavigation } from "@react-navigation/native";
-import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
-// import { singOutController } from "../../../Domain/Repositories/Firebase/Auth/singOut"
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/FontAwesome5';
+import { AdminRoutesName } from "../../Enums/RoutesName"
+import { iconsKeys } from "./Constants/adminKeys"
+import report from "./Views/Report/report"
+import products from "./Views/Products/products"
+import exit from "./Views/Exit/exit"
 
-function Admin() {
-  const navigation = useNavigation();
-  const auth = getAuth();
+const Tab = createBottomTabNavigator();
 
-  async function singout(){
-      // if (await singOutController(auth)) {
-      //   console.log("Se cerro la sesión")
-      //   navigation.navigate("Loggin")
-      // } else {
-      //   console.log("Error al cerrar la sesión")
-      // }
-  }
-
- 
-
+export default function TabsAdmin() {
   return (
-    <View>
-      <View style={{height:100}}/>
-      <Text>administrador</Text>
-      <Button
-        title='Cerrar Sesion'
-        onPress={singout}
-      />
-    </View>
-  )
-}
+    
+    <Tab.Navigator screenOptions={({ route }) => ({
+      tabBarIcon: ({ color='black', size=10 }) => {
+        let iconName;
 
-export default Admin
+        if (route.name === `${AdminRoutesName.report.value}`) {
+          iconName = `${iconsKeys.shop}`;
+            size = 30
+        }
+
+        if (route.name === `${AdminRoutesName.products.value}`) {
+          iconName = `${iconsKeys.shoppingCar}`;
+          size = 30
+        }
+        
+        if (route.name === `${AdminRoutesName.exit.value}`) {
+          iconName = `${iconsKeys.exit}`;
+          size = 30
+        }
+
+        return <Ionicons name={iconName} size={size} color={color} />;
+      },
+      tabBarStyle: {
+        backgroundColor: "black",
+      },
+      tabBarActiveTintColor: '#1899c5',
+      tabBarInactiveTintColor: '#ffff00',
+    })}
+  >
+      
+            
+    <Tab.Screen name={AdminRoutesName.report.value} component={report} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black',}}}/>
+    <Tab.Screen name={AdminRoutesName.products.value} component={products} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black',}}}/>
+    <Tab.Screen name={AdminRoutesName.exit.value} component={exit} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black',}}}/>
+  </Tab.Navigator>
+
+  );
+}

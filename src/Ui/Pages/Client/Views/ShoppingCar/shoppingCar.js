@@ -3,12 +3,13 @@ import { TouchableOpacity, View, FlatList, Alert, Text, ActivityIndicator, Image
 import { ImagesUrisEnum } from "../../../../Enums/AppImagesUris"
 import { getAuth } from 'firebase/auth';
 import { database, firebaseApp } from "../../../../../Data/Repositories/FirebaseConfig/fbconfig";
-import { doc, increment, updateDoc, deleteDoc } from "firebase/firestore";
+import { doc, increment, updateDoc, deleteDoc, addDoc, collection, Timestamp } from "firebase/firestore";
 import { ManagerRead } from "../../../../../Domain/Repositories/Firebase/Crud/Read/read";
 
 function ShoppingCar(){
 
   const [productos, setProductos] = React.useState([]);
+  const [loadingPay, SetLoadingPay] = React.useState(false);
   const auth = getAuth(firebaseApp);  
   let preciototal = 0;
 
@@ -62,14 +63,21 @@ function ShoppingCar(){
     }
   }
 
-  function realizarCompra(){
-    console.log("Compra Realizada");
+  async function realizarCompra(){
+    SetLoadingPay(true)
+    await addDoc(collection(database, "report"), {
+      personId: `${auth.currentUser.email}`,
+      date: Timestamp.now(),
+      totalPurchase: preciototal,  
+    });
+
     for (const products of productos) {
       const ref = doc(database, `shoppingCar${auth.currentUser.uid}`, `${products.id}`);
       deleteDoc(ref);
       console.log("Producto Eliminado");
     }
     setProductos([]);
+    SetLoadingPay(false)
   }
 
   return (
@@ -120,8 +128,8 @@ function ShoppingCar(){
                 style={{ marginTop: 10 }}/>
               </View>
 
-
-              <View style={{height:80, backgroundColor:"white", alignItems:"center"}}>
+              {loadingPay === false ?(
+                <View style={{height:80, backgroundColor:"white", alignItems:"center"}}>
                 <Text style={{marginVertical: 8}}>{preciototal}</Text>
                 <TouchableOpacity onPress={()=>realizarCompra()}>
                   <View style={{height:40, width:150, backgroundColor:"yellow"}}>
@@ -129,6 +137,20 @@ function ShoppingCar(){
                   </View>
                 </TouchableOpacity>
               </View>
+              ):(
+                <View style={{height:80, backgroundColor:"white", alignItems:"center"}}>
+                  <ActivityIndicator size="large" color="black"/>
+                  <Text>Procesando Compra</Text>
+                </View>
+              )}
+              {/* <View style={{height:80, backgroundColor:"white", alignItems:"center"}}>
+                <Text style={{marginVertical: 8}}>{preciototal}</Text>
+                <TouchableOpacity onPress={()=>realizarCompra()}>
+                  <View style={{height:40, width:150, backgroundColor:"yellow"}}>
+                    <Text style={{marginTop:10, alignSelf:"center"}}>Realizar Compra</Text>
+                  </View>
+                </TouchableOpacity>
+              </View> */}
 
             </View>
           )}
