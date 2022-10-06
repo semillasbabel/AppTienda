@@ -5,7 +5,6 @@ import { shopScreens, productsCategory, iconsCategory, iconsColor } from './Cons
 import Products from "./Components/products"
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Details from './Components/shopDetails';
-import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 let screenType;
@@ -172,6 +171,5 @@ function VideoScreen(){
 }
 
 function ProductScreen({navigation}){
-  const navi = useNavigation();
   return <Products searchType = {screenType}/>;
 }

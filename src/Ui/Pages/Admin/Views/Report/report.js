@@ -3,7 +3,7 @@ import { View, Text, ActivityIndicator, ImageBackground, StyleSheet, FlatList } 
 import { ManagerRead } from "../../../../../Domain/Repositories/Firebase/Crud/Read/read";
 import { ImagesUrisEnum } from "../../../../Enums/AppImagesUris"
 
-function Offerts(props){
+function Report(props){
   const [reports, setReports] = React.useState([]);
 
   useEffect(() => {
@@ -83,4 +83,4 @@ function Offerts(props){
     })
   
 
-    export default Offerts;
+    export default Report;

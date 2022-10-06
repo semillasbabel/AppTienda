@@ -4,7 +4,7 @@ import Ionicons from 'react-native-vector-icons/FontAwesome5';
 import { AdminRoutesName } from "../../Enums/RoutesName"
 import { iconsKeys } from "./Constants/adminKeys"
 import report from "./Views/Report/report"
-import products from "./Views/Products/products"
+import stackController from "./Views/Products/stackController"
 import exit from "./Views/Exit/exit"
 
 const Tab = createBottomTabNavigator();
@@ -43,7 +43,7 @@ export default function TabsAdmin() {
       
             
     <Tab.Screen name={AdminRoutesName.report.value} component={report} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black',}}}/>
-    <Tab.Screen name={AdminRoutesName.products.value} component={products} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black',}}}/>
+    <Tab.Screen name={AdminRoutesName.products.value} component={stackController} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black',}}}/>
     <Tab.Screen name={AdminRoutesName.exit.value} component={exit} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black',}}}/>
   </Tab.Navigator>
 
