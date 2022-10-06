@@ -5,6 +5,7 @@ import { getAuth } from 'firebase/auth';
 import { database, firebaseApp } from "../../../../../Data/Repositories/FirebaseConfig/fbconfig";
 import { doc, increment, updateDoc, deleteDoc, addDoc, collection, Timestamp } from "firebase/firestore";
 import { ManagerRead } from "../../../../../Domain/Repositories/Firebase/Crud/Read/read";
+import { styles } from "./shopping-style/style";
 
 function ShoppingCar(){
 
@@ -102,10 +103,10 @@ function ShoppingCar(){
                 renderItem={(data) => (
                   <View style={styles.cardSale}>
 
-                    <View style={{flex:1, flexDirection:"row", backgroundColor:"white"}}>
+                    <View style={{flex:1, flexDirection:"row", backgroundColor:"#F8F9FB", borderRadius:20}}>
 
-                      <View style={{width:130 ,alignContent:"center", alignItems: "center", flexDirection: "column"}}>
-                        <Image source={{uri: data.item.imageurl}} style={{height: "95%", width: "90%", marginTop: 5}}/> 
+                      <View style={{width:135 ,alignContent:"center", alignItems: "center", flexDirection: "column"}}>
+                        <Image source={{uri: data.item.imageurl}} style={{height: "90%", width: "95%", marginTop: 5}}/> 
                       </View>
 
                       <View style={{flex:1, flexDirection:"column"}}>
@@ -130,8 +131,8 @@ function ShoppingCar(){
               </View>
 
               {loadingPay === false ?(
-                <View style={{height:80, backgroundColor:"white", alignItems:"center"}}>
-                <Text style={{marginVertical: 8}}>{preciototal}</Text>
+                <View style={{height:100, backgroundColor:"#29b6f5", alignItems:"center"}}>
+                <Text style={styles.mount}> total a pagar: ¢ {preciototal}</Text>
                 <TouchableOpacity onPress={()=>realizarCompra()}>
                   <View style={{height:40, width:150, backgroundColor:"yellow"}}>
                     <Text style={{marginTop:10, alignSelf:"center"}}>Realizar Compra</Text>
@@ -144,14 +145,7 @@ function ShoppingCar(){
                   <Text>Procesando Compra</Text>
                 </View>
               )}
-              {/* <View style={{height:80, backgroundColor:"white", alignItems:"center"}}>
-                <Text style={{marginVertical: 8}}>{preciototal}</Text>
-                <TouchableOpacity onPress={()=>realizarCompra()}>
-                  <View style={{height:40, width:150, backgroundColor:"yellow"}}>
-                    <Text style={{marginTop:10, alignSelf:"center"}}>Realizar Compra</Text>
-                  </View>
-                </TouchableOpacity>
-              </View> */}
+             
 
             </View>
           )}
@@ -165,46 +159,5 @@ function ShoppingCar(){
   
   
   
-  const styles = StyleSheet.create({
-    gridView: {
-      marginTop: 10,
-      flex: 1,
-    },
-    itemContainer: {
-      justifyContent: 'flex-end',
-      borderRadius: 5,
-      padding: 10,
-      height: 150,
-    },
-    itemName: {
-      fontSize: 15,
-      color: '#fff',
-      fontWeight: '600',
-    },
-    itemCode: {
-      fontWeight: '600',
-      fontSize: 12,
-      color: '#fff',
-    },
-    textsale:{
-      fontSize:14,
-     textAlign:'center',
-     color:'black'
-    },
-    cardSale:{
-      flex:1,
-      flexDirection:"column",
-      margin:5, 
-      backgroundColor: "#f8f8f8",
-      borderRadius:10,
-      height:150
-    },
-    textmount:{
-      fontSize:18,
-      fontStyle:'normal',
-      fontWeight:'bold',
-      marginVertical:8,
-      color:'#29b6f5'
-    }
-  });
+  
 export default ShoppingCar;
