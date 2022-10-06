@@ -1,5 +1,5 @@
 
-import { onSnapshot, Timestamp } from "firebase/firestore";
+import { onSnapshot } from "firebase/firestore";
 
 import { SearchManager } from "./manager";
 import { 
