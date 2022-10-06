@@ -1,4 +1,4 @@
-import { getToFirebase, getShoppingCar } from "../../../../../Data/Services/ApiFirebase/Read/read";
+import { getToFirebase, getShoppingCar, getAllProducts, getReports } from "../../../../../Data/Services/ApiFirebase/Read/read";
 
 export class SearchOffert {
     getList(){
@@ -51,5 +51,17 @@ export class SearchVideoCards {
 export class SearchShoppingCar {
     getList(){
         return getShoppingCar();
+    }
+}
+
+export class SearchAllProducts {
+    getList(){
+        return getAllProducts();
+    }
+}
+
+export class SearchReports {
+    getList(){
+        return getReports();
     }
 }
