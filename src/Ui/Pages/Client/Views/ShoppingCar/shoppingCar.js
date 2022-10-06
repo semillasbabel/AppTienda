@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { TouchableOpacity, View, FlatList, Alert, Text, ActivityIndicator, Image, StyleSheet,ImageBackground, Button } from "react-native";
+import { TouchableOpacity, View, FlatList, Alert, Text, ActivityIndicator, Image, ImageBackground, Button } from "react-native";
 import { ImagesUrisEnum } from "../../../../Enums/AppImagesUris"
 import { getAuth } from 'firebase/auth';
 import { database, firebaseApp } from "../../../../../Data/Repositories/FirebaseConfig/fbconfig";
-import { doc, increment, updateDoc, deleteDoc, addDoc, collection, Timestamp } from "firebase/firestore";
+import { doc, increment, updateDoc, deleteDoc, addDoc, collection} from "firebase/firestore";
 import { ManagerRead } from "../../../../../Domain/Repositories/Firebase/Crud/Read/read";
 import { styles } from "./shopping-style/style";
 
