@@ -7,6 +7,8 @@ import { ImagesUrisEnum } from "../../../../../Enums/AppImagesUris"
 import { getDownloadURL, ref} from "firebase/storage"
 import { storage } from "../../../../../../Data/Repositories/FirebaseConfig/fbconfig"
 import { productRoutes } from "../constants/productsKey"
+import { doc, deleteDoc, updateDoc} from "firebase/firestore"
+import { database, firebaseApp } from "../../../../../../Data/Repositories/FirebaseConfig/fbconfig"
 
 function AllProducts(){
   const navigation = useNavigation();
@@ -36,6 +38,15 @@ function AllProducts(){
     }
   })();
 
+  const eliminar = (id)=>{
+    const ref = doc(database, `product`, `${id}`);
+    deleteDoc(ref);
+  }
+
+
+
+  
+
   return (
     <ImageBackground source={{uri: ImagesUrisEnum.backgroundImage.value}} resizeMode="cover" style={{flex:1}}>
     <View style={{flex: 1, backgroundColor: "transparent"}}>
@@ -48,6 +59,7 @@ function AllProducts(){
           </View>
           ) : (
             <View>
+              <Button title="CREAR ARTICULOS"  onPress={()=>navigation.Create}></Button>
               <FlatGrid
             itemDimension={130}
               data={productos}
@@ -55,7 +67,7 @@ function AllProducts(){
               spacing={10}
               keyExtractor={(x) => x.id}
               renderItem={(data) => (
-                <View style={{backgroundColor:"white"}}>
+                <View style={{backgroundColor:"white", borderRadius:15}}>
 
                   <TouchableOpacity onPress={()=>navigation.navigate(productRoutes.details, {item: data.item})}>
                     <View style={{flex:1, alignContent:"center", alignItems: "center"}}>
@@ -66,9 +78,9 @@ function AllProducts(){
 
                   <Button
                   title="Eliminar"
+                  onPress={()=>eliminar(data.item.id)}
                   />
-  
-  
+
                 </View>
                 )}
               style={{ marginTop: 10 }}
