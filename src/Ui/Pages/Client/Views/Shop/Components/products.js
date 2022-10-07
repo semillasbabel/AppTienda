@@ -85,7 +85,7 @@ function Offerts(props){
           ) : (
             <View>
               <FlatGrid
-            itemDimension={130}
+            itemDimension={150}
               data={productos}
               
               spacing={10}
