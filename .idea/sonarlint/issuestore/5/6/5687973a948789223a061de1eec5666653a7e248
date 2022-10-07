@@ -1,21 +1,0 @@
-
-Cjavascript:S1128"(Remove this unused import of 'FlatGrid'.(‰È¿R
-Kjavascript:S1128"*Remove this unused import of 'onSnapshot'.(¾ ½¢úÿÿÿÿ
-Hjavascript:S1128"'Remove this unused import of 'getDocs'.(¾ ½¢úÿÿÿÿ
-Kjavascript:S1128"*Remove this unused import of 'collection'.(¾ ½¢úÿÿÿÿ
-Qjavascript:S1128"0Remove this unused import of 'DocumentSnapshot'.(¾ ½¢úÿÿÿÿ
-Fjavascript:S1128"%Remove this unused import of 'query'.(¾ ½¢úÿÿÿÿ
-Wjavascript:S1481";Remove the declaration of the unused 'navigation' variable.(ëöãƒ
-Tjavascript:S1854"8Remove this useless assignment to variable "navigation".(ëöãƒ
-Tjavascript:S1481"8Remove the declaration of the unused 'loading' variable.(±®¢Ë
-Qjavascript:S1854"5Remove this useless assignment to variable "loading".(±®¢Ë
-Wjavascript:S1481";Remove the declaration of the unused 'setloading' variable.(±®¢Ë
-Tjavascript:S1854"8Remove this useless assignment to variable "setloading".(±®¢Ë
-Rjavascript:S1481"6Remove the declaration of the unused 'total' variable.(£ÁÁ
-Ojavascript:S1854"3Remove this useless assignment to variable "total".(£ÁÁ
-Ujavascript:S1481"9Remove the declaration of the unused 'setTotal' variable.(£ÁÁ
-Rjavascript:S1854"6Remove this useless assignment to variable "setTotal".(£ÁÁ
-?javascript:S125"Remove this commented out code.(™µË·úÿÿÿÿ
-hjavascript:S4138"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(åâÚú
-hjavascript:S4138G"LExpected a `for-of` loop instead of a `for` loop with this simple iteration.(åâÚú
-8javascript:S1116‘"Unnecessary semicolon.(ôŸìúÿÿÿÿ
