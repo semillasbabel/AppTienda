@@ -68,7 +68,7 @@ function CreateScreen({ route, navigation }) {
         value={isEnabled}
       />
          </View>
-        </View>
+        </View> 
        
         
         <View style={styles.Button}>
