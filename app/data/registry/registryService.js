@@ -12,7 +12,7 @@ export async function RegistryServiceData(email, password, name, address){
             name: name,
             address: address,
             rol: RegistryEnums.defaultRol.value
-        })
+        }).then(()=>{}).catch(()=>{})
         return true;
     })
     .catch(() => {
