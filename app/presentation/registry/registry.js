@@ -9,11 +9,13 @@ import { AppActivityIndicator } from "../enums/appActivityIndicator"
 import { PlaceholdersEnum, TextInputEnum, RegisterInputsIcons } from "../enums/inputsEnum"
 import { styles } from './styles/styles';
 import {RegistryServiceDomain} from "../../domain/registry/service/registryService";
+import { validateEmail, validatePassword } from "../enums/expresionesRegulares"
 
 const Register = () => {
   const navigation = useNavigation();
   const registry = new RegistryServiceDomain();
   const [estado, setEstado] = React.useState(RegisterStateNote.inicial.value);
+  const [note, setNote] = React.useState("");
   const [isLoading, setLoading] = React.useState(AppActivityIndicator.off.value);
   const [user, setUser] = React.useState({
     email: "",
@@ -23,18 +25,43 @@ const Register = () => {
   }); 
 
   async function registro(){
-    setLoading(AppActivityIndicator.on.value)
-    if (await registry.registry(user.email, user.password, user.name, user.address)){
-      Alert.alert(RegisterStateNote.registroExitoso.value)
-      setUser({email: "", Password: "", name: "", address: ""})
-      setEstado(RegisterStateNote.inicial.value)
-      setLoading(AppActivityIndicator.off.value)
-      navigation.goBack()
+    if (validate()) {
+      setNote("");
+      setLoading(AppActivityIndicator.on.value)
+      if (await registry.registry(user.email, user.password, user.name, user.address)){
+        Alert.alert(RegisterStateNote.registroExitoso.value)
+        setUser({email: "", Password: "", name: "", address: ""})
+        setEstado(RegisterStateNote.inicial.value)
+        setLoading(AppActivityIndicator.off.value)
+        navigation.goBack()
+      }
+      else{
+        setLoading(AppActivityIndicator.off.value)
+        setEstado(RegisterStateNote.error.value)
+      }
     }
-    else{
-      setLoading(AppActivityIndicator.off.value)
-      setEstado(RegisterStateNote.error.value)
+  }
+
+  function validate(){
+    if(!validateEmail(user.email)){
+      setNote("El correo es incorrecto")
+      return false;
     }
+    if(!validatePassword(user.password)){
+      setNote("La contraseña es incorrecta")
+      return false;
+    }
+
+    if (user.name === "") {
+      setNote("El nombre es incorrecto")
+      return false;
+    }
+
+    if (user.address === "") {
+      setNote("La dirección es incorrecta")
+      return false;
+    }
+    return true
   }
 
   return (
@@ -44,6 +71,8 @@ const Register = () => {
       <ScrollView>
 
         <Text style={styles.TEXTO}>Registro de Usuarios</Text>
+
+        <Text style={styles.note}>{estado}</Text>
 
         <View style={styles.views}>
           <Icon   name={RegisterInputsIcons.registerEmail.value} size={30} color="#1eb6fa" style={{marginLeft:10}}/>
@@ -94,7 +123,7 @@ const Register = () => {
             />
         </View>
 
-        <Text style={styles.note}>{estado}</Text>
+        <Text style={{color:"red", fontSize:20, alignSelf:"center"}}>{note}</Text>
         <View>{isLoading === AppActivityIndicator.on.value ? <ActivityIndicator size="large" color="#1899c5"/> : <Text/>}</View>
         
         <View style={{width: 200, alignSelf:"center"}}>
