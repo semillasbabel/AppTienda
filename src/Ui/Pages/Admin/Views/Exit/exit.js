@@ -4,7 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Button, Icon, Text } from "@rneui/themed";
 import { styles } from './styles-exit/styles';
 
-const Salir = () => {
+const exit = () => {
     const navigation = useNavigation();
 
     function salir(){
@@ -54,7 +54,7 @@ const Salir = () => {
   )
 }
 
-export default Salir
+export default exit
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
