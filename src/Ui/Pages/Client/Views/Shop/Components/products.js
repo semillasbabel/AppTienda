@@ -8,6 +8,7 @@ import { ImagesUrisEnum } from "../../../../../Enums/AppImagesUris"
 import { getDownloadURL, ref} from "firebase/storage"
 import { storage } from "../../../../../../Data/Repositories/FirebaseConfig/fbconfig"
 import {styles} from "../style-productos/style-products"
+import { Icon } from "@rneui/themed";
 
 function Offerts(props){
   const navigation = useNavigation();
@@ -109,7 +110,7 @@ function Offerts(props){
 
                   </TouchableOpacity>
   
-  
+                    
                 </View>
                 )}
               style={{ marginTop: 10 }}
@@ -120,6 +121,7 @@ function Offerts(props){
       </View>
   
     </View>
+    
     </ImageBackground>
     );
   }

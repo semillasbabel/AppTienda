@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, ImageBackground, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
-import { Button, Image } from "@rneui/themed";
+import { Button, Image, Avatar, Badge, Icon } from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 import { firebaseApp } from '../../../Data/Repositories/FirebaseConfig/fbconfig';
 import { getAuth } from 'firebase/auth';
@@ -12,6 +12,7 @@ import { ActivityStateEnum } from "../../Enums/ActivityIndicatorState"
 import { MainRoutesEnum } from "../../Enums/RoutesName"
 import { PlaceholdersEnum, TextInputEnum } from "../../Enums/InputsEnum"
 import { styles } from './Styles/stylesLoggin';
+import ShakeText from "react-native-shake-text";
 
 const domainLogIn = new DomainSignIn();
 const getRol = new DomainGetRol();
@@ -46,7 +47,11 @@ const Loggin = () => {
       }
     }
     else setLoading(ActivityStateEnum.off.value)
-  }
+  };
+
+
+
+
 
   return (
     <ImageBackground source={{uri: ImagesUrisEnum.backgroundImage.value}} resizeMode="cover" style={styles.image}>
@@ -69,6 +74,8 @@ const Loggin = () => {
             onChangeText={(e) => setUserSend({...userSend, Email: e})}
             style={styles.Inputicon}/>
           
+            
+            
           <TextInput
             placeholder={PlaceholdersEnum.logginPassword.value}
             value={userSend.Password}
@@ -76,6 +83,8 @@ const Loggin = () => {
             secureTextEntry
             onChangeText={(e) => setUserSend({...userSend, Password: e})}
             style={styles.Inputicon}/>
+        
+    
 
           <Button style={styles.botton} onPress={()=>logIn()} title={'Ingresar'}>Ingresar</Button>
 
@@ -87,6 +96,32 @@ const Loggin = () => {
             <Text  style={styles.TEXTO} onPress={() => navigation.navigate(MainRoutesEnum.register.value) }>REGISTRESE AQUI</Text>
           </TouchableOpacity>
         </View>
+        <View>
+          
+          <Badge
+            status="success"
+            Style={{ position: 'absolute', top: 5, left: 40 }}
+          />
+           
+        </View>
+       
+        <TouchableOpacity
+   style={{
+       borderWidth:1,
+       borderColor:'rgba(0,0,0,0.2)',
+       alignItems:'center',
+       justifyContent:'center',
+       width:70,
+       position: 'absolute',                                          
+       bottom: 10,                                                    
+       right: 10,
+       height:70,
+       backgroundColor:'#fff',
+       borderRadius:100,
+     }}
+ >
+   <Icon name="home"  size={30} color="#01a699" />
+  </TouchableOpacity>
 
       </KeyboardAwareScrollView>
        

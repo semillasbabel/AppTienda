@@ -2,7 +2,7 @@ import React from 'react'
 import {View,  Alert, ImageBackground} from "react-native"
 import { useNavigation } from "@react-navigation/native";
 import { Button, Icon, Text } from "@rneui/themed";
-import { styles } from './styles-exit/styles';
+
 
 const exit = () => {
     const navigation = useNavigation();

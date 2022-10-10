@@ -68,6 +68,7 @@ const Register = () => {
    
     <ImageBackground source={{uri: AppImages.backgroundImage.value}} resizeMode="cover" style={styles.image}>
      
+    
       <ScrollView>
 
         <Text style={styles.TEXTO}>Registro de Usuarios</Text>
@@ -133,7 +134,14 @@ const Register = () => {
           />
         </View>
         
-
+        <View style={{width: 200, alignSelf:"center"}}>
+          <Button style={styles.botton}
+            title={'Volver'}
+            onPress={()=>navigation.goBack()}/>
+        </View>
+        
+        
+       
       </ScrollView>
     </ImageBackground>
       
