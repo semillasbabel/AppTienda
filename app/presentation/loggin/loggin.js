@@ -28,13 +28,11 @@ const Loggin = () => {
     if (await signInService.signIn(userSend.Email,userSend.Password)) {
       switch (await rolService.getRol(auth.currentUser.uid)) {
         case AppRoles.admin.value:
-          console.log("admin")
           setLoading(AppActivityIndicator.off.value)
           navigation.navigate(MainRoutesEnum.admin.value)
         break;
       
         case AppRoles.client.value:
-          console.log("cliente")
           setLoading(AppActivityIndicator.off.value)
           navigation.navigate(MainRoutesEnum.client.value)
         break;

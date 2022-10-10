@@ -143,3 +143,10 @@ import {
     }
   
   }
+
+  async function searchimg(data){
+    return "https://www.coopaca.com/uploads/no-imagen.png"
+  } 
+
+
+

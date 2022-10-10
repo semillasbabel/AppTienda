@@ -8,6 +8,7 @@ import { AppImages } from "../../enums/appImages"
 import { getDownloadURL, ref} from "firebase/storage"
 import { storage } from "../../../data/firebaseConfig/config"
 import { styles } from "./styles/productStyles"
+import { getOfferts } from "../../../domain/searches/service/searches"
 
 function Offerts(props){
   const navigation = useNavigation();
@@ -21,35 +22,36 @@ function Offerts(props){
       switch (searchType) {
 
         case shopScreens.HomeScreen:
-          manager.searchOfferts().search(setTemp);
+          manager.searchOfferts().search(setProductos);
+
         break;
 
         case shopScreens.FuentesPoderScreen:
-          manager.SearchPowerSupply().search(setTemp);
+          manager.SearchPowerSupply().search(setProductos);
         break;
 
         case shopScreens.GabineteScreen:
-          manager.searchCases().search(setTemp);
+          manager.searchCases().search(setProductos);
         break;
 
         case shopScreens.MemoriasRamScreen:
-          manager.SearchMemoryRam().search(setTemp);
+          manager.SearchMemoryRam().search(setProductos);
         break;
 
         case shopScreens.ProcesadoresScreen:
-          manager.SearchProcessors().search(setTemp);
+          manager.SearchProcessors().search(setProductos);
         break;
 
         case shopScreens.AlmacenamientoScreen:
-          manager.SearchStorage().search(setTemp);
+          manager.SearchStorage().search(setProductos);
         break;
 
         case shopScreens.VideoScreen:
-          manager.SearchVideoCards().search(setTemp);
+          manager.SearchVideoCards().search(setProductos);
         break;
 
         case shopScreens.TarjetaMadreScreen:
-          manager.SearchMotherboards().search(setTemp);
+          manager.SearchMotherboards().search(setProductos);
         break;
 
       }
@@ -58,20 +60,22 @@ function Offerts(props){
     }
   }, []);
 
-  (async function () {
-    if (temp[0] !== undefined) {
-      if (productos.length === 0) {
-        for (const data of temp) {
-          const reference = ref(storage, `Productos/${data.imageurl}`);
-          data.imageurl = await getDownloadURL(reference)
-          .then((x)=>{return x;})
-          .catch((e)=>{})
-        }
-        setProductos(temp);
-      }
-    }
-  })();
 
+  // (async function () {
+  //   if (temp[0] !== undefined) {
+  //     if (productos.length === 0) {
+  //       for (const data of temp) {
+  //         const reference = ref(storage, `Productos/${data.imageurl}`);
+  //         data.imageurl = await getDownloadURL(reference)
+  //         .then((x)=>{return x;})
+  //         .catch((e)=>{})
+  //       }
+  //       setProductos(temp);
+  //     }
+  //   }
+  // })();
+
+  
   return (
     <ImageBackground source={{uri: AppImages.backgroundImage.value}} resizeMode="cover" style={{flex:1}}>
     <View style={{flex: 1, backgroundColor: "transparent"}}>

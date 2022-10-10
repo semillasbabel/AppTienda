@@ -3,6 +3,7 @@ import { getAllProducts } from "../../../data/searches/getAllProducts"
 import { getShoppingCar } from "../../../data/searches/getShoppingCar"
 import { getReports } from "../../../data/searches/getReports"
 
+
 export class SearchOffert {
     getList(){
         return getCategories("offert",true);

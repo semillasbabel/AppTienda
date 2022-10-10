@@ -5,3 +5,4 @@ npm install @react-native-async-storage/async-storage
 npm install react-native-super-grid
 npm install -g firebase-tools
 npx expo install jest-expo jest
+npx expo install expo-image-picker

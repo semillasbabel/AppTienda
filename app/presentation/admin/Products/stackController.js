@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { productRoutes } from "./constants/productsKey"
 import products from "./allProducts"
 import details from "./details"
+import create from "./createProduct"
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,11 @@ function StackController() {
         <Stack.Screen 
           name={productRoutes.details}
           component={details}
+        />
+
+        <Stack.Screen 
+          name={productRoutes.create}
+          component={create}
         />
 
     </Stack.Navigator>

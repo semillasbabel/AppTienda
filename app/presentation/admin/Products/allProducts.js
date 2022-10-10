@@ -4,37 +4,26 @@ import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
 import { SearchesService } from "../../../domain/searches/service/searchService";
 import { AppImages } from "../../enums/appImages"
-import { getDownloadURL, ref} from "firebase/storage"
-import { storage } from "../../../data/firebaseConfig/config"
 import { productRoutes } from "./constants/productsKey"
 
 function AllProducts(){
   const navigation = useNavigation();
-  const [temp, setTemp] = React.useState([]);
   const [productos, setProductos] = React.useState([]);
 
   useEffect(() => {
     try {
       const manager = new SearchesService();
-      manager.SearchAllProducts().search(setTemp);
+      manager.SearchAllProducts().search(setProductos);
     } catch (e) {
       alert(e);
     }
   }, []);
 
-  (async function () {
-    if (temp[0] !== undefined) {
-      if (productos.length === 0) {
-        for (const data of temp) {
-          const reference = ref(storage, `Productos/${data.imageurl}`);
-          data.imageurl = await getDownloadURL(reference)
-          .then((x)=>{return x;})
-          .catch((e)=>{})
-        }
-        setProductos(temp);
-      }
-    }
-  })();
+
+  const eliminar = (id)=>{
+    const ref = doc(database, `product`, `${id}`);
+    deleteDoc(ref);
+  }
 
   return (
     <ImageBackground source={{uri: AppImages.backgroundImage.value}} resizeMode="cover" style={{flex:1}}>
@@ -48,6 +37,9 @@ function AllProducts(){
           </View>
           ) : (
             <View>
+              <Button title="CREAR ARTICULOS"  
+                onPress={()=>navigation.navigate(productRoutes.create)}
+              />
               <FlatGrid
             itemDimension={130}
               data={productos}
@@ -55,7 +47,7 @@ function AllProducts(){
               spacing={10}
               keyExtractor={(x) => x.id}
               renderItem={(data) => (
-                <View style={{backgroundColor:"white"}}>
+                <View style={{backgroundColor:"white", borderRadius:15}}>
 
                   <TouchableOpacity onPress={()=>navigation.navigate(productRoutes.details, {item: data.item})}>
                     <View style={{flex:1, alignContent:"center", alignItems: "center"}}>
@@ -66,9 +58,9 @@ function AllProducts(){
 
                   <Button
                   title="Eliminar"
+                  onPress={()=>eliminar(data.item.id)}
                   />
-  
-  
+
                 </View>
                 )}
               style={{ marginTop: 10 }}
