@@ -13,37 +13,49 @@ import { PlaceholdersEnum, TextInputEnum } from "../enums/inputsEnum"
 import { styles } from './styles/styles';
 import { GetRolServiceDomain } from "../../domain/auth/service/getRolService"
 import { SignInServiceDomain } from "../../domain/auth/service/signInService"
+import { validateEmail, validatePassword } from "../enums/expresionesRegulares"
 
 
 const Loggin = () => {
   const navigation = useNavigation();
   const [userSend, setUserSend] = React.useState({Email: "",Password: ""});
   const [isLoading, setLoading] = React.useState(AppActivityIndicator.off.value);
+  const [note, setnote] = React.useState("");
 
   const signInService = new SignInServiceDomain();
   const rolService = new GetRolServiceDomain();
 
   async function logIn(){
-    setLoading(AppActivityIndicator.on.value)
-    if (await signInService.signIn(userSend.Email,userSend.Password)) {
-      switch (await rolService.getRol(auth.currentUser.uid)) {
-        case AppRoles.admin.value:
-          setLoading(AppActivityIndicator.off.value)
-          navigation.navigate(MainRoutesEnum.admin.value)
-        break;
-      
-        case AppRoles.client.value:
-          setLoading(AppActivityIndicator.off.value)
-          navigation.navigate(MainRoutesEnum.client.value)
-        break;
+    
+    if (validateEmail(userSend.Email)) {
+      setnote("");
+      if (validatePassword(userSend.Password)) {
+        setLoading(AppActivityIndicator.on.value)
+        if (await signInService.signIn(userSend.Email,userSend.Password)) {
+          switch (await rolService.getRol(auth.currentUser.uid)) {
+            case AppRoles.admin.value:
+              setLoading(AppActivityIndicator.off.value)
+              navigation.navigate(MainRoutesEnum.admin.value)
+            break;
+          
+            case AppRoles.client.value:
+              setLoading(AppActivityIndicator.off.value)
+              navigation.navigate(MainRoutesEnum.client.value)
+            break;
 
-        default:
+            default:
+              setLoading(AppActivityIndicator.off.value)
+              break;
+          }
+        }
+        else{
           setLoading(AppActivityIndicator.off.value)
-          break;
+        }
+      } else {
+        setnote("La contraseña es incorrecta");
       }
-    }
-    else{
-      setLoading(AppActivityIndicator.off.value)
+    }else{
+      setnote("El email es incorrecto");
     }
   }
 
@@ -76,6 +88,8 @@ const Loggin = () => {
             onChangeText={(e) => setUserSend({...userSend, Password: e})}
             style={styles.Inputicon}/>
 
+          <Text style={{color:"red", fontSize:25}}>{note}</Text>
+          <View style={{height:10}}/>
           <Button style={styles.botton} onPress={()=>logIn()} title={'Ingresar'}>Ingresar</Button>
 
           <View>{isLoading === AppActivityIndicator.on.value ? <ActivityIndicator size="large" color="#1899c5"/> : <Text/>}</View>
