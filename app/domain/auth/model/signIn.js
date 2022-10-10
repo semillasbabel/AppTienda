@@ -6,6 +6,15 @@ export class SignInModel{
     constructor(email, password){
         this.#email = email
         this.#password = password
+        this.validate();
+    }
+
+    get email(){
+        return this.#email
+    }
+
+    get password(){
+        return this.#password
     }
 
     validate(){
