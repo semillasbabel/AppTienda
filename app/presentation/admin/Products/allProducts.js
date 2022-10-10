@@ -38,12 +38,10 @@ function AllProducts(){
           ) : (
             <View>
               <Button title="CREAR ARTICULOS"  
-                onPress={()=>navigation.navigate(productRoutes.create)}
-              />
+                onPress={()=>navigation.navigate(productRoutes.create)}/>
               <FlatGrid
-            itemDimension={130}
+              itemDimension={130}
               data={productos}
-              
               spacing={10}
               keyExtractor={(x) => x.id}
               renderItem={(data) => (
