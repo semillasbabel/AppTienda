@@ -12,6 +12,7 @@ import { update } from "firebase/database";
 import * as ImagePicker from "expo-image-picker"
 import { CreateProductServiceDomain } from "../../../domain/products/service/createProductService"
 import { Alert } from "react-native";
+import { styles } from "./styles-products/style-create";
 
 
 export default function CreateScreen({navigation}) {
@@ -49,24 +50,7 @@ export default function CreateScreen({navigation}) {
       Alert.alert("","Error al crear el producto");
     }
 
-    // const response = await fetch(image.uri)
-    // const blob = await response.blob();
-    // const filename = image.uri.substring(image.uri.lastIndexOf("/")+1);
-
-    // const storageRef = ref(storage,`Productos/${filename}`);
-
-    // uploadBytes(storageRef, blob).then(async (snapshot) => {
-    //   console.log(snapshot.metadata);
-    //   const reference = ref(storage, `Productos/${filename}`);
-    //   let image = await getDownloadURL(reference)
-    //   .then((x)=>{return x;})
-    //   .catch((e)=>{})
-  
-    //   console.log(image);
-    // });
-
-    // Alert.alert("photo uploaded..!!");
-    // setImage(null);
+   
   }
 
  
@@ -151,28 +135,6 @@ export default function CreateScreen({navigation}) {
   );
 }
 
-const styles = StyleSheet.create({
-
-  Inputicon:{
-   height: 30, 
-   marginBottom:15,
-   width:300,
-   fontSize: 15,
-   color:"black",
-   borderRadius: 10,
-   backgroundColor:'#1899c5',
-   alignSelf:"center"
-  },
-  texto:{
-    fontSize:16,
-    paddingLeft:40
-  },
-  Button:{
-    margin: 25,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  }
-  });
 
 
 
@@ -180,16 +142,6 @@ const styles = StyleSheet.create({
 
 
 
-  // <SafeAreaView style={{flex: 1, marginTop: 100}}>
-  //     <TouchableOpacity onPress={()=>pickImage()}>
-  //       <Text>Selecciona una imagen</Text>
-  //     </TouchableOpacity>
-  //     <View>
-  //       {image && <Image source={{ uri: image.uri}} style={{width: 300, height: 300}}/>}
-  //       <TouchableOpacity onPress={()=>uploadImage()}>
-  //         <Text>
-  //           Updload Image
-  //         </Text>
-  //       </TouchableOpacity>
-  //     </View>
-  //   </SafeAreaView>
+
+
+ 

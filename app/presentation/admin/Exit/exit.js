@@ -35,8 +35,8 @@ const Salir = () => {
       
         <View style={{backgroundColor:'transparent', height:125, width:350, marginStart: 40, marginTop:30,borderRadius:15}}> 
         <Text style={styles.textout}>*Para Cerrar Sesion presione el boton</Text>
-        <Text style={styles.textout}>*Asegurese de haber realizado Su compra</Text>
-        <Text style={styles.textout}>*Recuerde Verificar sus datos del pedido</Text>
+        <Text style={styles.textout}>*Asegurese de haber realizado sus cambios</Text>
+        <Text style={styles.textout}>*los cambios son en tiempo real</Text>
         </View>
 
 
