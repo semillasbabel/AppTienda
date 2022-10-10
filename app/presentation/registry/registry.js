@@ -26,7 +26,7 @@ const Register = () => {
     setLoading(AppActivityIndicator.on.value)
     if (await registry.registry(user.email, user.password, user.name, user.address)){
       Alert.alert(RegisterStateNote.registroExitoso.value)
-      setUserSend({email: ClearRegisterData.clear.value, Password: ClearRegisterData.clear.value, name: ClearRegisterData.clear.value, address: ClearRegisterData.clear.value})
+      setUser({email: "", Password: "", name: "", address: ""})
       setEstado(RegisterStateNote.inicial.value)
       setLoading(AppActivityIndicator.off.value)
       navigation.goBack()
