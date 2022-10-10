@@ -77,6 +77,11 @@ function ShoppingCar(){
     });
 
     for (const products of productos) {
+      const CantidadRef = doc(database, `product`, `${products.id}`);
+      await updateDoc(CantidadRef, {
+          "amount": increment(-products.quantity),
+      });
+
       const ref = doc(database, `shoppingCar${auth.currentUser.uid}`, `${products.id}`);
       deleteDoc(ref);
       console.log("Producto Eliminado");
