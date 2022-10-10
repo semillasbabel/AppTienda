@@ -30,6 +30,7 @@ const Loggin = () => {
     if (validateEmail(userSend.Email)) {
       setnote("");
       if (validatePassword(userSend.Password)) {
+        setnote("");
         setLoading(AppActivityIndicator.on.value)
         if (await signInService.signIn(userSend.Email,userSend.Password)) {
           switch (await rolService.getRol(auth.currentUser.uid)) {
