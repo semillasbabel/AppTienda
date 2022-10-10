@@ -5,10 +5,9 @@ import { useNavigation } from "@react-navigation/native";
 import { ManagerRead } from "../../../../../../Domain/Repositories/Firebase/Crud/Read/read";
 import { ImagesUrisEnum } from "../../../../../Enums/AppImagesUris"
 import { getDownloadURL, ref} from "firebase/storage"
-import { storage } from "../../../../../../Data/Repositories/FirebaseConfig/fbconfig"
+import { storage, database } from "../../../../../../Data/Repositories/FirebaseConfig/fbconfig"
 import { productRoutes } from "../constants/productsKey"
-import { doc, deleteDoc, updateDoc} from "firebase/firestore"
-import { database, firebaseApp } from "../../../../../../Data/Repositories/FirebaseConfig/fbconfig"
+import { doc, deleteDoc} from "firebase/firestore"
 
 function AllProducts(){
   const navigation = useNavigation();
