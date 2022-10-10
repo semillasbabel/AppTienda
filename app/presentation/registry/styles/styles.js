@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
         height:120, 
         width:150, 
         alignItems:'center', 
-        marginLeft:125, 
+        marginLeft:25, 
         paddingVertical:25
     },
     TEXTO:{

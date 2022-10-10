@@ -1,6 +1,6 @@
 import { View, Text, ImageBackground, ActivityIndicator, ScrollView, TextInput, Alert } from 'react-native'
 import React from 'react'
-import { Button} from "@rneui/themed";
+import { Button, Badge, BadgedIcon} from "@rneui/themed";
 import { useNavigation } from "@react-navigation/native";
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { RegisterStateNote } from '../enums/registerKeys';
@@ -9,6 +9,7 @@ import { AppActivityIndicator } from "../enums/appActivityIndicator"
 import { PlaceholdersEnum, TextInputEnum, RegisterInputsIcons } from "../enums/inputsEnum"
 import { styles } from './styles/styles';
 import {RegistryServiceDomain} from "../../domain/registry/service/registryService";
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Register = () => {
   const navigation = useNavigation();
@@ -41,6 +42,7 @@ const Register = () => {
    
     <ImageBackground source={{uri: AppImages.backgroundImage.value}} resizeMode="cover" style={styles.image}>
      
+    
       <ScrollView>
 
         <Text style={styles.TEXTO}>Registro de Usuarios</Text>
@@ -104,7 +106,14 @@ const Register = () => {
           />
         </View>
         
-
+        <View style={{width: 200, alignSelf:"center"}}>
+          <Button style={styles.botton}
+            title={'Volver'}
+            onPress={()=>navigation.goBack()}/>
+        </View>
+        
+        
+       
       </ScrollView>
     </ImageBackground>
       

@@ -9,6 +9,8 @@ import { ImagesUrisEnum } from "../../Enums/AppImagesUris";
 import { ActivityStateEnum } from "../../Enums/ActivityIndicatorState"
 import { PlaceholdersEnum, TextInputEnum, RegisterInputsIcons } from "../../Enums/InputsEnum"
 import { styles } from './stylesRegister/stylesR';
+import { ViewPagerAndroidBase } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Register = () => {
   const navigation = useNavigation();
@@ -43,6 +45,7 @@ const Register = () => {
   return (
    
     <ImageBackground source={{uri: ImagesUrisEnum.backgroundImage.value}} resizeMode="cover" style={styles.image}>
+      
      
       <ScrollView>
         <Text style={styles.TEXTO}>Registro de Usuarios</Text>
