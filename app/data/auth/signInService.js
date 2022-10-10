@@ -1,8 +1,8 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebaseConfig/config";
 
-export async function SignInServiceData(email, password){
-    return signInWithEmailAndPassword(auth, email, password)
+export async function SignInServiceData(signIn){
+    return signInWithEmailAndPassword(auth, signIn.email, signIn.password)
     .then(()=>{
         return true
     })

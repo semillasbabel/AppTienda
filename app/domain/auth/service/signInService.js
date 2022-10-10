@@ -6,8 +6,7 @@ export class SignInServiceDomain{
     async signIn(email, password){
         try {
             const signIn = new SignInModel(email, password);
-            signIn.validate();
-            return await SignInServiceData(email, password);
+            return await SignInServiceData(signIn);
         } catch{
             return false;
         }

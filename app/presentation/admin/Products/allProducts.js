@@ -1,14 +1,17 @@
 import React, { useEffect } from "react";
-import { TouchableOpacity, View, Text, ActivityIndicator, Image,ImageBackground, Button } from "react-native";
+import { TouchableOpacity, View, Text, ActivityIndicator,Alert, Image,ImageBackground, Button } from "react-native";
 import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
 import { SearchesService } from "../../../domain/searches/service/searchService";
 import { AppImages } from "../../enums/appImages"
 import { productRoutes } from "./constants/productsKey"
+import { DeleteProductServiceDomain } from "../../../domain/products/service/deleteProductService"
+
 
 function AllProducts(){
   const navigation = useNavigation();
   const [productos, setProductos] = React.useState([]);
+  const delProduct = new DeleteProductServiceDomain();
 
   useEffect(() => {
     try {
@@ -20,10 +23,28 @@ function AllProducts(){
   }, []);
 
 
-  const eliminar = (id)=>{
-    const ref = doc(database, `product`, `${id}`);
-    deleteDoc(ref);
+  async function eliminar(id){
+    Alert.alert(
+      "Eliminar",
+      "¿Esta seguro que desea eliminar el producto?, ¡esta acción es irreversible!",
+      [
+        {
+          text: "NO",
+          style: "cancel"
+        },
+        { text: "SI", onPress:async ()=>{
+          if (await delProduct.delete(id)) {
+            Alert.alert("","Producto Eliminado Satisfactoriamente")
+          }
+          else{
+            Alert.alert("","El producto no se elimino debido a un error, reintente")
+          }
+        }
+        }
+      ]
+    );
   }
+
 
   return (
     <ImageBackground source={{uri: AppImages.backgroundImage.value}} resizeMode="cover" style={{flex:1}}>
