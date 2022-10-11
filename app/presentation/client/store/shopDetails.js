@@ -14,7 +14,7 @@ function DetailsScreen({ route, navigation }) {
   const {item} = route.params;
 
   async function addToCar(){
-    const docuRef = doc(database, `shoppingCar${auth.currentUser.uid}/${item.id}` )
+    const docuRef = doc(database, `shoppingCar/${auth.currentUser.uid}/Productos/${item.id}` )
     setDoc(docuRef,{
       amount: item.amount,
       category: item.category,
@@ -24,8 +24,8 @@ function DetailsScreen({ route, navigation }) {
       price: item.price,
       quantity: 1,
     },{merge: true})
+    navigation.goBack();
   }
-
  
 
   return (

@@ -48,17 +48,18 @@ const Register = () => {
       return false;
     }
     if(!validatePassword(user.password)){
-      setNote("La contraseña es incorrecta")
+      Alert.alert("","La contraseña debe incluir al menos una mayuscula, un digito y un caracter especial")
+      setNote("La contraseña no contiene el formato correcto")
       return false;
     }
 
     if (user.name === "") {
-      setNote("El nombre es incorrecto")
+      setNote("El campo nombre se encuentra vacío")
       return false;
     }
 
     if (user.address === "") {
-      setNote("La dirección es incorrecta")
+      setNote("El campo dirección se encuentra vacío")
       return false;
     }
     return true
@@ -134,7 +135,7 @@ const Register = () => {
           />
         </View>
         
-        <View style={{width: 200, alignSelf:"center"}}>
+        <View style={{width: 200, alignSelf:"center", marginTop: 20}}>
           <Button style={styles.botton}
             title={'Volver'}
             onPress={()=>navigation.goBack()}/>

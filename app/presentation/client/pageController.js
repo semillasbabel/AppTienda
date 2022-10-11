@@ -1,16 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/FontAwesome5';
 import { ClientRoutesName } from "../enums/routesName"
 import { iconsKeys } from "./constants/clientKeys"
+import { SearchesService } from "../../domain/searches/service/searchService";
 
 import store from "./store/drawerController";
 import shoppingCar from "./shoppingCar/shoppingCar";
 import exit from "./exit/exit";
 
+
+
 const Tab = createBottomTabNavigator();
 
 export default function TabsUser() {
+  const [productos, setProductos] = React.useState([]);
+
+  useEffect(() => {
+    try { 
+      const manager = new SearchesService();
+      manager.SearchShoppingCar().search(setProductos);
+    } catch (e) {
+      alert(e);
+    }
+  }, []);
+
   return (
     
     <Tab.Navigator screenOptions={({ route }) => ({
@@ -50,7 +64,7 @@ export default function TabsUser() {
       
             
     <Tab.Screen name={ClientRoutesName.shop.value} component={store} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black',}}}/>
-    <Tab.Screen name={ClientRoutesName.shoppingCar.value} component={shoppingCar} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black',}}}/>
+    <Tab.Screen name={ClientRoutesName.shoppingCar.value} component={shoppingCar} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black'},tabBarBadge: productos.length}}/>
     <Tab.Screen name={ClientRoutesName.exit.value} component={exit} options={{headerTitleStyle: {color: '#1899c5'},headerStyle: {backgroundColor: 'black',}}}/>
   </Tab.Navigator>
 
