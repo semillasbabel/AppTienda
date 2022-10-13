@@ -52,11 +52,11 @@ export default function CreateScreen({navigation, route}) {
     if ( await create.create(image, data.Name, data.Description, Number(data.Price), Number(data.Amount), offert, categoria)) {
       console.log("true");
       Alert.alert("Producto Agregado");
+      navigation.goBack();
       setData({...data, Name:"", Description:"", Price:"", Amount:"", Offert:""})
       setCategoria("No seleccionado")
       setOffert(false);
       setImage(null);
-      navigation.goBack();
     } else {
       Alert.alert("","Error al crear el producto");
     }
