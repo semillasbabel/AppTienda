@@ -32,7 +32,7 @@ function ShoppingCar(){
 
   async function aumentarCantidad(productId, index){
     if (productos[index].quantity < productos[index].amount) {
-      const CantidadRef = doc(database, `shoppingCar${auth.currentUser.uid}`, `${productId}`);
+      const CantidadRef = doc(database, `shoppingCar/${auth.currentUser.uid}/Productos`, `${productId}`);
       await updateDoc(CantidadRef, {
           "quantity": increment(1),
       });   
@@ -50,14 +50,14 @@ function ShoppingCar(){
             style: "cancel"
           },
           { text: "SI", onPress:()=>{
-            const ref = doc(database, `shoppingCar${auth.currentUser.uid}`, `${productId}`);
+            const ref = doc(database, `shoppingCar/${auth.currentUser.uid}/Productos`, `${productId}`);
             deleteDoc(ref);
           }
           }
         ]
       );
     }else{
-      const CantidadRef = doc(database, `shoppingCar${auth.currentUser.uid}`, `${productId}`);
+      const CantidadRef = doc(database, `shoppingCar/${auth.currentUser.uid}/Productos`, `${productId}`);
       await updateDoc(CantidadRef, {
           "quantity": increment(-1),
       });
@@ -88,6 +88,7 @@ function ShoppingCar(){
     }
     setProductos([]);
     SetLoadingPay(false)
+    Alert.alert("","Compra realizada exitosamente")
   }
 
   return (
@@ -141,7 +142,7 @@ function ShoppingCar(){
 
               {loadingPay === false ?(
                 <View style={{height:100, backgroundColor:"#29b6f5", alignItems:"center"}}>
-                <Text style={styles.mount}> total a pagar: ¢ {preciototal}</Text>
+                <Text style={styles.mount}> Total a pagar: ¢ {preciototal}</Text>
                 <TouchableOpacity onPress={()=>realizarCompra()}>
                   <View style={{height:40, width:150, backgroundColor:"yellow"}}>
                     <Text style={{marginTop:10, alignSelf:"center"}}>Realizar Compra</Text>

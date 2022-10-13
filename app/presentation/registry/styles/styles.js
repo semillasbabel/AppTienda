@@ -59,10 +59,12 @@ export const styles = StyleSheet.create({
          marginRight:20
     },
     note:{
-        color:"#f8f8f8", 
+        color:"white", 
         alignContent:'center', 
         alignSelf:'center', 
-        fontWeight:'bold'
+        fontWeight:'bold',
+        fontSize:20,
+        marginBottom:30
     }
     
 
