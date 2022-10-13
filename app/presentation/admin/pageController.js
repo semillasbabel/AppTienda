@@ -4,7 +4,7 @@ import Ionicons from 'react-native-vector-icons/FontAwesome5';
 import { AdminRoutesName } from "../enums/routesName"
 import { iconsKeys } from "./Constants/adminKeys"
 
-import report from "./Report/report"
+import report from "./Report/stackController"
 import stackController from "./Products/stackController"
 import exit from "./Exit/exit"
 

@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
      borderRadius: 10,
      backgroundColor:'#1899c5',
      alignSelf:"center",
+     paddingHorizontal: 10,
   
     },
     TSSexto:{

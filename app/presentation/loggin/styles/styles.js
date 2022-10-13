@@ -18,9 +18,9 @@ export const styles = StyleSheet.create({
     TEXTO:{
       fontSize: 20,
       color:'#fdd835',
+      marginTop: 10,
       justifyContent:'center',
       alignItems:'center',
-      paddingVertical:15,
       textAlign:'center',
     },
     container: {
@@ -44,6 +44,7 @@ export const styles = StyleSheet.create({
     Inputicon:{
      height: 40, 
      marginBottom:15,
+     paddingHorizontal: 10,
      width:300,
      fontSize: 20,
      color:"#1899c5",
