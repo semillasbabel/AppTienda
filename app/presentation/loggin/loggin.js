@@ -94,11 +94,10 @@ const Loggin = () => {
           <Button style={styles.botton} onPress={()=>logIn()} title={'Ingresar'}>Ingresar</Button>
 
           <View>{isLoading === AppActivityIndicator.on.value ? <ActivityIndicator size="large" color="#1899c5"/> : <Text/>}</View>
-
-          <Text  style={styles.TEXTO}>NO ESTÁ REGISTRADO?</Text>
           
-          <TouchableOpacity>
-            <Text  style={styles.TEXTO} onPress={() => navigation.navigate(MainRoutesEnum.register.value) }>REGISTRESE AQUI</Text>
+          <TouchableOpacity onPress={() => navigation.navigate(MainRoutesEnum.register.value) }>
+            <Text style={styles.TEXTO}>¿No esta registrado? </Text>
+            <Text style={styles.TEXTO}>Registrese dando click aquí</Text>
           </TouchableOpacity>
         </View>
 
