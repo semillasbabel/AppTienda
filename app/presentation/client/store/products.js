@@ -61,20 +61,6 @@ function Offerts(props){
   }, []);
 
 
-  // (async function () {
-  //   if (temp[0] !== undefined) {
-  //     if (productos.length === 0) {
-  //       for (const data of temp) {
-  //         const reference = ref(storage, `Productos/${data.imageurl}`);
-  //         data.imageurl = await getDownloadURL(reference)
-  //         .then((x)=>{return x;})
-  //         .catch((e)=>{})
-  //       }
-  //       setProductos(temp);
-  //     }
-  //   }
-  // })();
-
   
   
   return (
