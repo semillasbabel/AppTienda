@@ -10,7 +10,7 @@ import exit from "./Exit/exit"
 
 const Tab = createBottomTabNavigator();
 
-export default function TabsAdmin() {
+export default function TabsReports() {
   return (
     
     <Tab.Navigator screenOptions={({ route }) => ({

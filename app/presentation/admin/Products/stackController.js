@@ -4,7 +4,7 @@ import { productRoutes } from "./constants/productsKey"
 import products from "./allProducts"
 import details from "./details"
 import create from "./createProduct"
-// import category from "./category"
+import category from "./category"
 
 const Stack = createNativeStackNavigator();
 
@@ -27,10 +27,10 @@ function StackController() {
           name={productRoutes.create}
           component={create}
         />
-          {/* <Stack.Screen 
+        <Stack.Screen 
           name={productRoutes.category}
           component={category}
-        /> */}
+        />
 
     </Stack.Navigator>
   );

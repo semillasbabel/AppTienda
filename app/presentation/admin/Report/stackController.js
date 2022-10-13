@@ -1,7 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { productRoutes } from "./constants/productsKey"
-import reporte from "./report"
+import list from "./shopList"
 import details from "./productDetails"
 
 const Stack = createNativeStackNavigator();
@@ -12,8 +12,8 @@ function StackController() {
         screenOptions={{headerShown: false}}>
 
         <Stack.Screen
-          name="Reporte"
-          component={reporte}
+          name="shopList"
+          component={list}
         />
         
         <Stack.Screen 

@@ -20,7 +20,7 @@ export async function createProductServiceData (data) {
 
     await addDoc (collection(database, "product"),{
       amount: data.amount,
-      category: "Indefinido",
+      category: data.category,
       description: data.description,
       imageurl: imageurl,
       name: data.name,

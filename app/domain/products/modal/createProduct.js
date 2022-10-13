@@ -7,14 +7,16 @@ export class CreateProductModel{
     #description
     #amount
     #offert
+    #category
 
-    constructor(image, name, price, description, amount, offert){
+    constructor(image, name, price, description, amount, offert, category){
         this.#image = image;
         this.#name = name;
         this.#price = price;
         this.#description = description;
         this.#amount = amount;
         this.#offert = offert;
+        this.#category = category;
         this.validate();
     }
 
@@ -24,11 +26,13 @@ export class CreateProductModel{
     get description(){ return this.#description; }
     get amount(){ return this.#amount; }
     get offert(){ return this.#offert; }
+    get category(){return this.#category}
 
     validate(){
         // this.validateFieldsStrings(this.#image);
         this.validateFieldsStrings(this.#name);
         this.validateFieldsStrings(this.#description);
+        this.validateFieldsStrings(this.#category);
         this.validateFieldsNumbers(this.#price);
         this.validateFieldsNumbers(this.#amount);
         this.validateFieldsBools(this.#offert);

@@ -11,7 +11,8 @@ import {
     SearchVideoCards,
     SearchShoppingCar,
     SearchAllProducts,
-    SearchReports
+    SearchReports,
+    SearchCategories
   } from "../model/searches";
 
   const manager = new SearchManager();
@@ -97,6 +98,13 @@ import {
       this.query = manager.getList();
       return this;
     }
+
+    SearchCategories(){
+      const search = new SearchCategories();
+      manager.setSearch(search);
+      this.query = manager.getList();
+      return this;
+    }
   
     async search(set){
       if (this._validation(this.query)){
@@ -130,6 +138,21 @@ import {
               totalPurchase: x.data().totalPurchase,
               date: x.data().date,
               createAt: x.data().createAt,
+            }))
+          );
+        });
+      } else {
+        return null
+      }
+    }
+
+    async searchCategories(set){
+      if (this._validation(this.query)){
+        return onSnapshot(this.query, (querySnapshot) => {
+          set(
+            querySnapshot.docs.map((x) => ({
+              id: x.id,
+              name: x.name
             }))
           );
         });

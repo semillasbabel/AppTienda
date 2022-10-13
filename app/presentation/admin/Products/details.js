@@ -67,11 +67,12 @@ function DetailsScreen({ route, navigation }) {
             onChangeText={(e) => setData({...data, Description: e})}
             style={styles.Inputicon}
           />
-           <Text style={styles.TSSexto}>Seleccionar Catergoria: </Text>
-          <Button   onPress={()=>navigation.goBack()} type="solid" style={{height:40, width:120}}>
-          Categorias
-          </Button>
-          <Text style={styles.TSSexto}>Seleccionar Catergoria: </Text>
+
+          <View style={{height: 20}}/>
+          
+          <Text style={styles.TSSexto}>Categoria: {item.category} </Text>
+
+          <View style={{height: 20}}/>
           
            <Text style={styles.TSSexto}>Precio : </Text>
           <TextInput

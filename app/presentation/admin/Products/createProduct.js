@@ -15,10 +15,11 @@ import { Alert } from "react-native";
 import { styles } from "./styles-products/style-create";
 
 
-export default function CreateScreen({navigation}) {
+export default function CreateScreen({navigation, route}) {
   const create = new CreateProductServiceDomain();
   const [image, setImage] = useState(null);
   const [offert, setOffert] = React.useState(false);
+  const [categoria, setCategoria] = React.useState("No seleccionado");
 
   const [data, setData] = React.useState({
     Name: "",
@@ -27,6 +28,12 @@ export default function CreateScreen({navigation}) {
     Amount: "",
     Offert: "",
   },);
+
+  React.useEffect(() => {
+    if (route.params?.post) {
+      setCategoria(route.params?.post)
+    }
+  }, [route.params?.post]);
 
   const pickImage = async ()=>{
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -42,10 +49,14 @@ export default function CreateScreen({navigation}) {
   }
 
   const uploadImage = async () => {
-    if ( await create.create(image, data.Name, data.Description, Number(data.Price), Number(data.Amount), offert)) {
+    if ( await create.create(image, data.Name, data.Description, Number(data.Price), Number(data.Amount), offert, categoria)) {
       console.log("true");
-      Alert.alert("photo uploaded..!!");
+      Alert.alert("Producto Agregado");
+      setData({...data, Name:"", Description:"", Price:"", Amount:"", Offert:""})
+      setCategoria("No seleccionado")
+      setOffert(false);
       setImage(null);
+      navigation.goBack();
     } else {
       Alert.alert("","Error al crear el producto");
     }
@@ -93,6 +104,16 @@ export default function CreateScreen({navigation}) {
             onChangeText={(e) => setData({...data, Price: e})}
             style={styles.Inputicon}
           />
+
+          <Text style={{alignSelf:"center"}}>Seleccionar Catergoria: </Text>
+          
+          <Button   onPress={()=>navigation.navigate("Categorias")} type="solid" style={{height:40, width:120}}>
+          Categorias
+          </Button>
+
+          <Text style={{marginVertical: 20}}>Categoria Seleccionada: {categoria} </Text>
+
+
           <View  style={{alignSelf:"center", alignItems:"center"}}>
            <Text  style={{marginLeft:15}}>cantidad en stock:</Text>
            
@@ -101,7 +122,7 @@ export default function CreateScreen({navigation}) {
             onChangeText={(e) => setData({...data, Amount: e})}
             style={{height:30, width:50, borderRadius:10, fontSize:15,marginTop:20, marginRight:-5,backgroundColor:'#1899c5'}}
           />
-            <Text>está en oferta?: {offert ? "SI" : "NO"} </Text>
+            <Text>Estado de la oferta: {offert ? "NO" : "SI"} </Text>
             <Button
               title={offert ? "SI" : "NO"}
               color={offert ? "green" : "red"}

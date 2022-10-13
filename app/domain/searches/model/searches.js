@@ -2,6 +2,7 @@ import { getCategories } from "../../../data/searches/getCategories"
 import { getAllProducts } from "../../../data/searches/getAllProducts"
 import { getShoppingCar } from "../../../data/searches/getShoppingCar"
 import { getReports } from "../../../data/searches/getReports"
+import { getIdCategories } from "../../../data/searches/getIdCategories"
 
 
 export class SearchOffert {
@@ -67,5 +68,11 @@ export class SearchAllProducts {
 export class SearchReports {
     getList(){
         return getReports();
+    }
+}
+
+export class SearchCategories {
+    getList(){
+        return getIdCategories();
     }
 }
