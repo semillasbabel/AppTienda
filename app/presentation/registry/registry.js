@@ -65,6 +65,12 @@ const Register = () => {
     return true
   }
 
+  function volver(){
+    navigation.goBack();
+    setUser({...user, email:"", password: "", name:"", address:""})
+  }
+
+
   return (
    
     <ImageBackground source={{uri: AppImages.backgroundImage.value}} resizeMode="cover" style={styles.image}>
@@ -138,7 +144,7 @@ const Register = () => {
         <View style={{width: 200, alignSelf:"center", marginTop: 20}}>
           <Button style={styles.botton}
             title={'Volver'}
-            onPress={()=>navigation.goBack()}/>
+            onPress={()=>volver()}/>
         </View>
         
         

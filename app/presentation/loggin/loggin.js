@@ -37,11 +37,13 @@ const Loggin = () => {
             case AppRoles.admin.value:
               setLoading(AppActivityIndicator.off.value)
               navigation.navigate(MainRoutesEnum.admin.value)
+              setUserSend({...userSend, Email:"", Password: ""})
             break;
           
             case AppRoles.client.value:
               setLoading(AppActivityIndicator.off.value)
               navigation.navigate(MainRoutesEnum.client.value)
+              setUserSend({...userSend, Email:"", Password: ""})
             break;
 
             default:
