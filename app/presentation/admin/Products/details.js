@@ -7,6 +7,10 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { UpdateProductServiceDomain } from "../../../domain/products/service/updateProductService"
 import {styles} from './styles-products/style-details'
 
+
+
+
+
 function DetailsScreen({ route, navigation }) {
   const {item} = route.params;
   const update = new UpdateProductServiceDomain();
@@ -17,6 +21,7 @@ function DetailsScreen({ route, navigation }) {
     Amount: `${item.amount}`,
   },);
   const [offert, setOffert] = React.useState(item.offert);
+
 
   async function updateProduct(){
     Alert.alert(
@@ -47,8 +52,8 @@ function DetailsScreen({ route, navigation }) {
         <View style={{height:"30%", width:"80%", alignSelf:"center"}}>
           <Image source={{uri: item.imageurl}} style={{height: "95%", width:"60%", marginTop: 5, alignSelf:"center"}}/>
         </View>
-
-        <KeyboardAwareScrollView resetScrollToCoords={{ x: 0, y: 0 }}>
+     
+        <KeyboardAwareScrollView>
         <View>
         <Text style={styles.TSSexto}>Nombre del articulo: </Text>
           <TextInput
@@ -62,6 +67,12 @@ function DetailsScreen({ route, navigation }) {
             onChangeText={(e) => setData({...data, Description: e})}
             style={styles.Inputicon}
           />
+           <Text style={styles.TSSexto}>Seleccionar Catergoria: </Text>
+          <Button   onPress={()=>navigation.goBack()} type="solid" style={{height:40, width:120}}>
+          Categorias
+          </Button>
+          <Text style={styles.TSSexto}>Seleccionar Catergoria: </Text>
+          
            <Text style={styles.TSSexto}>Precio : </Text>
           <TextInput
             value={data.Price}
@@ -104,11 +115,12 @@ function DetailsScreen({ route, navigation }) {
        
         
         </View>
+       
         </KeyboardAwareScrollView>
       </View>
         
     </View>
-    
+   
     
   );
 }
