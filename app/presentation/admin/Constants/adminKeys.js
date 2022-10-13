@@ -1,5 +1,5 @@
 export const iconsKeys = {
-    shop: "book",
-    shoppingCar: "shopping-cart",
+    shop: "book-open",
+    shoppingCar: "list",
     exit: "power-off",
 }

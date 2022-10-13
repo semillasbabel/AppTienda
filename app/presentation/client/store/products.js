@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { TouchableOpacity, View, Text, ActivityIndicator, Image,ImageBackground } from "react-native";
+import { TouchableOpacity, View, Text, ActivityIndicator, Image,ImageBackground,Button } from "react-native";
 import { FlatGrid } from 'react-native-super-grid';
 import { useNavigation } from "@react-navigation/native";
 import { SearchesService } from "../../../domain/searches/service/searchService";
@@ -76,6 +76,7 @@ function Offerts(props){
   // })();
 
   
+  
   return (
     <ImageBackground source={{uri: AppImages.backgroundImage.value}} resizeMode="cover" style={{flex:1}}>
     <View style={{flex: 1, backgroundColor: "transparent"}}>
@@ -110,6 +111,10 @@ function Offerts(props){
                       <Text style={styles.textsale}> Precio: ¢ {data.item.price}</Text>
 
                     </View>
+                    <Button
+                title="Agregar al Carrito"
+                onPress={()=>addToCar()}
+                />
 
                   </TouchableOpacity>
   
