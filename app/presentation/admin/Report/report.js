@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { View, Text, ActivityIndicator, ImageBackground, StyleSheet, FlatList } from "react-native";
+import { View, Text, ActivityIndicator, ImageBackground, StyleSheet, FlatList, Button } from "react-native";
 import { SearchesService } from "../../../domain/searches/service/searchService";
 import { AppImages } from "../../enums/appImages"
+import { useNavigation } from "@react-navigation/native";
 
-function Report(props){
+function Report(){
   const [reports, setReports] = React.useState([]);
-
+  const navigation = useNavigation();
   useEffect(() => {
     try {
       const manager = new SearchesService();
@@ -39,6 +40,7 @@ function Report(props){
                       <Text style={{color:"black"}}>Persona: {data.item.personId}</Text>
                       <Text style={{color:"black"}}>Total de la Compra: ¢{data.item.totalPurchase}</Text>
                       <Text style={{color:"black"}}>Fecha de Compra: {data.item.date}</Text>
+                      <Button title="Productos" onPress={()=>navigation.navigate("Detalles", {item: data.item})}/>
                     </View>
                 </View>
                 )}

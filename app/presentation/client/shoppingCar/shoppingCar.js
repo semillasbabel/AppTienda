@@ -3,7 +3,7 @@ import { TouchableOpacity, View, FlatList, Alert, Text, ActivityIndicator, Image
 import { AppImages } from "../../enums/appImages"
 import { getAuth } from 'firebase/auth';
 import { database, firebaseApp } from "../../../data/firebaseConfig/config";
-import { doc, increment, updateDoc, deleteDoc, addDoc, collection} from "firebase/firestore";
+import { doc, increment, updateDoc, deleteDoc, addDoc, collection, setDoc} from "firebase/firestore";
 import { SearchesService } from "../../../domain/searches/service/searchService";
 import { styles } from "./styles/styles";
 
@@ -74,6 +74,19 @@ function ShoppingCar(){
       date: `Realizada el: ${fecha} a las: ${hora}`,
       createAt: now,
       totalPurchase: preciototal,  
+    }).then((e)=>{
+      for (const products of productos) {
+        const docuRef = doc(database, `report/${e.id}/Products/${products.id}` )
+        setDoc(docuRef,{
+          amount: products.amount,
+          category: products.category,
+          description: products.description,
+          imageurl: products.imageurl,
+          name: products.name,
+          price: products.price,
+          quantity: products.quantity,
+        },{merge: true})
+      }
     });
 
     for (const products of productos) {
@@ -82,7 +95,7 @@ function ShoppingCar(){
           "amount": increment(-products.quantity),
       });
 
-      const ref = doc(database, `shoppingCar${auth.currentUser.uid}`, `${products.id}`);
+      const ref = doc(database, `shoppingCar/${auth.currentUser.uid}/Productos`, `${products.id}`);
       deleteDoc(ref);
       console.log("Producto Eliminado");
     }
@@ -98,8 +111,8 @@ function ShoppingCar(){
         <View style={{ flex: 1}}>
           {productos.length === 0 ? (
           <View style={{flex: 1, justifyContent: "center", alignItems: "center" }}>
-            <ActivityIndicator size="large" color="#00ff00" />
-            <Text style={{color:"white", fontSize: 20}}>Esperando que agregues algún producto</Text>
+            {/* <ActivityIndicator size="large" color="#00ff00" /> */}
+            <Text style={{color:"white", fontSize: 20}}>Todavía no se ha agregado ningún producto</Text>
           </View>
           ) : (
             <View style={{flex:1}}>
