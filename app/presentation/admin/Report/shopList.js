@@ -40,7 +40,7 @@ function Report(){
                       <Text style={{color:"black"}}>Persona: {data.item.personId}</Text>
                       <Text style={{color:"black"}}>Total de la Compra: ¢{data.item.totalPurchase}</Text>
                       <Text style={{color:"black"}}>Fecha de Compra: {data.item.date}</Text>
-                      <Button title="Productos" onPress={()=>navigation.navigate("Detalles", {item: data.item})}/>
+                      <Button title="Detalles de Venta" onPress={()=>navigation.navigate("Detalles", {item: data.item})}/>
                     </View>
                 </View>
                 )}

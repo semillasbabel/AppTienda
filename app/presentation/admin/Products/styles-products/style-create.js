@@ -9,7 +9,8 @@ export const styles = StyleSheet.create({
      color:"black",
      borderRadius: 10,
      backgroundColor:'#1899c5',
-     alignSelf:"center"
+     alignSelf:"center",
+     paddingHorizontal:7
     },
 
     texto:{

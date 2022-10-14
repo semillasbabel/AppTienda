@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
         marginBottom:15,
         width:300,
         fontSize: 20,
-        color:"",
+        color:"#1899c5",
         borderRadius: 10,
         backgroundColor:'white',
         borderBottomColor: "#f8f8f8"

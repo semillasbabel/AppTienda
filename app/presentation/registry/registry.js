@@ -48,7 +48,7 @@ const Register = () => {
       return false;
     }
     if(!validatePassword(user.password)){
-      Alert.alert("","La contraseña debe incluir al menos una mayuscula, un digito y un caracter especial")
+      Alert.alert("","La contraseña debe incluir al menos una mayuscula, un digito y un caracter especial, debe contener de 8 a 16 caracteres")
       setNote("La contraseña no contiene el formato correcto")
       return false;
     }

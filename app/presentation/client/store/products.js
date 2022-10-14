@@ -6,7 +6,8 @@ import { SearchesService } from "../../../domain/searches/service/searchService"
 import { shopScreens } from "./Constants/keysShop"
 import { AppImages } from "../../enums/appImages"
 import { getDownloadURL, ref} from "firebase/storage"
-import { storage } from "../../../data/firebaseConfig/config"
+import { doc, setDoc } from "firebase/firestore";
+import { storage, auth, database } from "../../../data/firebaseConfig/config"
 import { styles } from "./styles/productStyles"
 import { getOfferts } from "../../../domain/searches/service/searches"
 
@@ -60,6 +61,19 @@ function Offerts(props){
     }
   }, []);
 
+  async function addToCar(item){
+    const docuRef = doc(database, `shoppingCar/${auth.currentUser.uid}/Productos/${item.id}` )
+    setDoc(docuRef,{
+      amount: item.amount,
+      category: item.category,
+      description: item.description,
+      imageurl: item.imageurl,
+      name: item.name,
+      price: item.price,
+      quantity: 1,
+    },{merge: true})
+  }
+
 
   
   
@@ -86,7 +100,7 @@ function Offerts(props){
 
                   <TouchableOpacity onPress={()=>navigation.navigate("Details", {item: data.item})}>
 
-                    <View style={{flex:1, alignContent:"center", alignItems: "center"}}>
+                    <View style={{height:320,width:195, alignContent:"center", alignItems: "center"}}>
                       
                     <Image source={{uri: data.item.imageurl}} style={{height: 150, width: 150, marginTop: 5}}/>
 
@@ -96,13 +110,12 @@ function Offerts(props){
                       <Text style={styles.textsale}> Stock: {data.item.amount}</Text>
                       <Text style={styles.textsale}> Precio: ¢ {data.item.price}</Text>
 
-                    </View>
-                    <Button
-                title="Agregar al Carrito"
-                onPress={()=>addToCar()}
-                />
-
+                    </View>                  
                   </TouchableOpacity>
+                  <Button
+                    title="Agregar al Carrito"
+                    onPress={()=>addToCar(data.item)}
+                  />
   
   
                 </View>

@@ -48,10 +48,11 @@ function AllProducts({ route, navigation }){
                 )}
               style={{ marginTop: 10 }}
             />
-            <Button
-                  title="Volver"
-                  onPress={()=>navigation.goBack()}
-                  />
+                  <View style={{height:50, width:200, marginHorizontal:110}}>
+                    <Button
+                    title="Volver"
+                    onPress={()=>navigation.goBack()}/>
+                  </View>
             </View>
           )}
         </View>

@@ -25,8 +25,8 @@ function DetailsScreen({ route, navigation }) {
 
   async function updateProduct(){
     Alert.alert(
-      "Eliminar",
-      "¿Esta seguro que desea actualizar el producto?, ¡esta acción es irreversible!",
+      "Actualizar",
+      "¿Esta seguro que desea actualizar el producto?",
       [
         {
           text: "NO",

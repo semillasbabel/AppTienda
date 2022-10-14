@@ -120,7 +120,7 @@ export default function CreateScreen({navigation, route}) {
           <TextInput
             value={data.Amount}
             onChangeText={(e) => setData({...data, Amount: e})}
-            style={{height:30, width:50, borderRadius:10, fontSize:15,marginTop:20, marginRight:-5,backgroundColor:'#1899c5'}}
+            style={{height:30, width:50, borderRadius:10, fontSize:15,marginTop:20, marginRight:-5,backgroundColor:'#1899c5', paddingHorizontal:5}}
           />
             <Text>Estado de la oferta: {offert ? "NO" : "SI"} </Text>
             <Button
@@ -140,8 +140,8 @@ export default function CreateScreen({navigation, route}) {
           </Button>
 
 
-        <Button  onPress={()=>uploadImage()} type="solid" style={{height:40, width:120}}>
-          Actualizar
+        <Button  onPress={()=>uploadImage()} type="solid" style={{height:40, width:135}}>
+          Crear Articulo
           <Icon name="refresh" color="white" />
           </Button>
         </View>

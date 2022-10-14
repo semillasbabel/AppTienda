@@ -138,10 +138,10 @@ function ShoppingCar(){
                         <Text style={styles.textsale}> Stock: {data.item.amount}</Text>
                         <Text style={styles.textsale}>Precio: ¢ {data.item.price}</Text>
                         <View style={{height:45 ,flexDirection:"row", alignSelf:"center"}}>
-                          <Button title="min" onPress={()=>disminuirCantidad(data.item.id, data.index)}/>
+                          <Button title="-" onPress={()=>disminuirCantidad(data.item.id, data.index)}/>
                           <Text style={{marginTop:10, alignContent:'center', marginLeft:10, alignItems:'center'}}> {data.item.quantity}</Text>
                           <View style={{width:25}}/>
-                          <Button style={{height:25}} title="max" onPress={()=>aumentarCantidad(data.item.id, data.index)}/>
+                          <Button style={{height:25}} title="+" onPress={()=>aumentarCantidad(data.item.id, data.index)}/>
                         </View>
                      
                       </View>
