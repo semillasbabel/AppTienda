@@ -5,7 +5,7 @@ export class PlaceholdersEnum {
     static logginPassword = new PlaceholdersEnum("Contraseña")
     static registerEmail = new PlaceholdersEnum("Correo Electronico")
     static registerPassword = new PlaceholdersEnum("Contraseña")
-    static registerName = new PlaceholdersEnum("NombreCompleto")
+    static registerName = new PlaceholdersEnum("Nombre Completo")
     static registerAddress = new PlaceholdersEnum("Domicilio")
 
     constructor(value) {
